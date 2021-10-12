@@ -65,7 +65,7 @@ const App = () => {
                         <Route exact path="/about" component={About} />
                         <Route exact path="/privacy-policy" component={Privacy} />
                         <Route exact path="/terms-conditions" component={Terms} />
-                        <Route exact path="/register/vendor" component={Register} />
+                        <Route exact path="/register" component={Register} />
                         <Route exact path="/forgot-password" component={ForgotPassword} />
                         <Route exact path="/reset-password/:resetToken" component={ResetPassword} />
                         {/* <Route exact path="/search/:query" component={Search} /> */}

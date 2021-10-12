@@ -146,11 +146,6 @@ const Login = (props) => {
                                     onChange={(e) => {setLogData({...loginData, password: e.target.value})}}
                                     value={loginData.password}
                                     type={pass} className="form-control fs-13" placeholder="Your password" />
-                                    <div className="input-group-append passt-i">
-                                    <span className="input-group-text passt">
-                                        <Link onClick={(e) => showPass(e)} to="" className={`fe ${pass === 'password' ? 'fe-eye' : 'fe-eye-off'}`}></Link>
-                                    </span>
-                                    </div>
                                 </div>
 
                                 <div className="form-group">
@@ -161,13 +156,13 @@ const Login = (props) => {
                                     }
                                     {
                                         !loading &&
-                                        <button className="btn btn-lg btn-block onwhite">LOGIN</button>
+                                        <button className="btn btn-lg btn-block bg-orange onwhite">LOGIN</button>
                                     }
                                 </div>
 
                                 <div className="mrgt2 mrgb1 ui-text-center">
-                                    <p className="mb-1"><Link to="/forgot-password" className="brand-orange fs-14 ui-text-center mrgb1">Forgot password?</Link></p>
-                                    <Link to="/contact" className="brand-orange fs-14 ui-text-center mrgb1">New? Create account</Link>
+                                    <p className="mb-1"><Link to="/forgot-password" className="onblack fs-14 ui-text-center mrgb1">Forgot password?</Link></p>
+                                    <Link to="/contact" className="onblack fs-14 ui-text-center mrgb1">New? Create account</Link>
                                 </div>                
                             </div>
                                 
