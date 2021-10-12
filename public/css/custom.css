@@ -14,6 +14,10 @@
 .m-auto {
     margin: auto !important;
   }
+
+  .bg-white{
+    background-color: #fff !important;
+  }
   
   .mt-auto,
   .my-auto {

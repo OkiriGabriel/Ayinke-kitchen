@@ -118,7 +118,7 @@ const Login = (props) => {
 
                             
 
-                            <form onSubmit={(e) => submit(e)} className="gnr-form mrgt1">
+                            <form onSubmit={(e) => submit(e)} className="gnr-form mrgt1 bg-white">
                             <div className="auth--bx">
 
                                 <div className="mrgb2">

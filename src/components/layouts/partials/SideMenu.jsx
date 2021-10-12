@@ -30,16 +30,16 @@ const SideMenu = () => {
                         </li>
 
                         <li className="nav-item">
-                        <Link className="nav-link" to='/dashboard/todo-list'>
+                        <Link className="nav-link" to='/dashboard/food-items'>
                             <span className="fe fe-list pdr" />
-                            Todo List
+                            Food Items
                         </Link>
                         </li>
 
                         <li className="nav-item">
                         <Link className="nav-link" href="#">
                             <span className="fe fe-calendar pdr" />
-                            Meetings
+                           Orders
                         </Link>
                         </li>
 

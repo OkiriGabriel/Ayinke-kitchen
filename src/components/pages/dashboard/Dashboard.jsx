@@ -18,7 +18,7 @@ const Dashboard = () => {
             <main className="dash-inner mrgb3">
                 <OverView  />
 
-                <section className="ord-ovw mrgb3">
+                <section className="ord-ovw mrgb1">
                     <div className="container">
                         <div className="ui-dashboard-card">
                             <div className="ui-card-body ui-full-bg-norm" style={{backgroundImage: 'url("../../../images/assets/blob-one.svg")'}}>
