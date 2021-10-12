@@ -108,7 +108,7 @@ const FoodItem = ({ foodItem, allFood, locations, addresses, updateStatus }) => 
     return (
         <>
             <section>
-                <div className="container">
+                <div className="container mrgb5">
                     <div className="row">
                         <div className="col-lg-6 mx-auto">
                             

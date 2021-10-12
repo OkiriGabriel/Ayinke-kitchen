@@ -17,7 +17,7 @@ const Dashboard = (DashboardComponent, flat) => {
 
             return (
                 <>
-   <Header />
+                <Header />
                     <div className={`${flat && flat === true ? '' : 'container-fluid main-cont'}`}>
 
                         <SideMenu />

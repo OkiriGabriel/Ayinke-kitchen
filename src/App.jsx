@@ -33,9 +33,7 @@ const Terms = React.lazy(() => import('./components/pages/TnC'));
 const DashboardHome = React.lazy(() => import('./components/pages/dashboard/Home'));
 const Dashboard = React.lazy(() => import('./components/pages/dashboard/Dashboard'));
 const Account = React.lazy(() => import('./components/pages/dashboard/Account'));
-const Preference = React.lazy(() => import('./components/pages/dashboard/Preference'));
-const Subscription = React.lazy(() => import('./components/pages/dashboard/Subscription'));
-const ReferalProgram = React.lazy(() => import('./components/pages/dashboard/ReferalProgram'));
+
 const FoodItems = React.lazy(() => import('./components/pages/dashboard/FoodItems'));
 const AddFood = React.lazy(() => import('./components/pages/dashboard/AddFood'));
 const DashAbout = React.lazy(() => import('./components/pages/dashboard/about/About'));
@@ -73,9 +71,6 @@ const App = () => {
 
                         <Route exact path="/dashboard/account" component={Account} />
                         <Route exact path="/dashboard" component={DashboardLayout(Dashboard)} />
-                        <Route exact path="/dash/preference" component={DashboardLayout(Preference)} />
-                        <Route exact path="/dash/subscription" component={DashboardLayout(Subscription)} />
-                        <Route exact path="/dash/referal-program" component={DashboardLayout(ReferalProgram)}/>
                         <Route exact path="/dashboard/food-items" component={DashboardLayout(FoodItems)}/>
 
                         <Route exact path="/dashboard/food-items/add" component={DashboardLayout(AddFood)}/>

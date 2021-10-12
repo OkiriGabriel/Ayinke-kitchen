@@ -225,148 +225,158 @@ const FoodItems = (props) => {
         <>
 
             {/* <TopBar userLoading={userContext.loading} user={userContext.user} /> */}
-
-            <div className="mrgb5">
-
-                <main className="dash-inner">
-
-                    <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                        <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                        <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
-                    </div>
-
-                    <section className="ord-ovw">
-        
-                        <div className="food-items dash">
-
-                            <div className="container">
-                                <Link to="/dashboard/food-items/add" className="add-btn ml-auto">
-                                    <span className="fe fe-plus"></span>
-                                </Link>
-                                <div className="d-flex align-items-center mrgb1 mrgt2">
-                                    <h3 className="title fs-16 mrgb0 font-metromedium">Food Items</h3>
-
-                                    <Dropdown className="ftr-drop" options={getLocations} selected={getSelected} placeholder={`filter`} search={false}  />
-                                    
+            <section>
+            <main className="dash-inner">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-11 mx-auto">                       
+                            <div className="mrgt3 mrgb2">
+                                <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                    <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
+                                    <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
                                 </div>
-
-                                <form className="mrgb1 form-search" onSubmit={(e) => e.preventDefault()}>
-                                    <span className="fe fe-search onsilver"></span>
-                                    <input ref={searchRef} type="text" onChange={(e) => search(e)} className="form-control search-txt font-metrolight" placeholder="Search..." />
-                                </form>
-
-                                {
-                                    foodItemContext.loading && !filter.filter && foodItemContext.restFoodItems.length <= 0 && 
-                                    <>
-                                        {
-                                            empty ?
-                                            (<>
-                                                <div className="load--bx fd-page food-empty">
-
-                                                    <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
-                                                    <div className="row ui-text-center pdr4 pdl4 mrgt1">
-                                                        <p className="onsilver">No food items</p>
-                                                    </div>
-
-                                                </div>
-                                            </>) 
-                                            : (
-                                            <>
-                                                <div className="load--bx fd-page food-empty">
-                                                    <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                                                </div>
-                                            </>
-                                            )
-                                        }    
-                                    </>  
-                                }
-
-                                {
-                                    foodItemContext.loading && filter.filter && 
-                                    <>
-                                        <div className="load--bx fd-page food-empty">
-                                            <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                                        </div>   
-                                    </>  
-                                }
-
-                                {
-                                    !foodItemContext.loading && filter.filter && foodItemContext.restFoodItems.length <= 0 &&
-                                    <>
-                                        <div className="load--bx fd-page food-empty">
-
-                                            <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
-                                            <div className="row ui-text-center pdr4 pdl4 mrgt1">
-                                                <p className="brand-green font-metromedium">There are no food items fo the filtered location.</p>
-                                            </div>
-
-                                        </div>  
-                                    </>  
-                                }
-
-                                    {
-                                        !foodItemContext.loading && foodItemContext.restFoodItems.length > 0 &&
-                                        <>
-                                        
-                                            <div className="list-box">
-
-                                                {
-                                                    foodItemList.length > 0 && 
-                                                    foodItemList.map((fd, i) =>
-                                                    
-                                                        <>
-                                                            {
-                                                                !foodContext.loading && !locationContext.loading &&
-                                                                <FoodItem 
-                                                                statusLoading={sLoading} 
-                                                                updateStatus={updateFoodStatus} 
-                                                                foodItem={fd} 
-                                                                allFood={foodContext.allFood} 
-                                                                addresses={addressContext.restAddresses}
-                                                                locations={locationContext.locations} 
-                                                                />
-                                                            }
-                                                        </>
-
-                                                    )
-                                                }
-
-                                                {
-                                                    foodItemList.length <= 0 && foodItemContext.restFoodItems.map((fd, i) => 
-                                                        <>
-                                                            {
-                                                                !foodContext.loading && !locationContext.loading &&
-                                                                <FoodItem 
-                                                                statusLoading={sLoading} 
-                                                                updateStatus={updateFoodStatus} 
-                                                                foodItem={fd} 
-                                                                allFood={foodContext.allFood} 
-                                                                addresses={addressContext.restAddresses}
-                                                                locations={locationContext.locations} 
-                                                                />
-                                                            }
-                                                        </>
-                                                    )
-                                                }
-
-                                            </div>
-                                        
-                                        </>
-                                        
-                                    }
-                                
                             </div>
 
                         </div>
-                    
-                    </section>
 
+                    </div>
+                
+                    <div className="row">
+                        <div className="col-lg-12">
+
+                        <section className="ord-ovw">
+
+                            <div className="food-items dash">
+
+                                <div className="container">
+                                    <Link to="/dashboard/food-items/add" className="add-btn ml-auto">
+                                        <span className="fe fe-plus"></span>
+                                    </Link>
+                                    <div className="d-flex align-items-center mrgb1 mrgt2">
+                                        <h3 className="title fs-16 mrgb0 font-metromedium">Food Items</h3>
+
+                                        <Dropdown className="ftr-drop" options={getLocations} selected={getSelected} placeholder={`filter`} search={false}  />
+                                        
+                                    </div>
+
+                                    <form className="mrgb1 form-search" onSubmit={(e) => e.preventDefault()}>
+                                        <span className="fe fe-search onsilver"></span>
+                                        <input ref={searchRef} type="text" onChange={(e) => search(e)} className="form-control search-txt font-metrolight" placeholder="Search..." />
+                                    </form>
+
+                                    {
+                                        foodItemContext.loading && !filter.filter && foodItemContext.restFoodItems.length <= 0 && 
+                                        <>
+                                            {
+                                                empty ?
+                                                (<>
+                                                    <div className="load--bx fd-page food-empty">
+
+                                                        <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
+                                                        <div className="row ui-text-center pdr4 pdl4 mrgt1">
+                                                            <p className="onsilver">No food items</p>
+                                                        </div>
+
+                                                    </div>
+                                                </>) 
+                                                : (
+                                                <>
+                                                    <div className="load--bx fd-page food-empty">
+                                                        <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
+                                                    </div>
+                                                </>
+                                                )
+                                            }    
+                                        </>  
+                                    }
+
+                                    {
+                                        foodItemContext.loading && filter.filter && 
+                                        <>
+                                            <div className="load--bx fd-page food-empty">
+                                                <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
+                                            </div>   
+                                        </>  
+                                    }
+
+                                    {
+                                        !foodItemContext.loading && filter.filter && foodItemContext.restFoodItems.length <= 0 &&
+                                        <>
+                                            <div className="load--bx fd-page food-empty">
+
+                                                <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
+                                                <div className="row ui-text-center pdr4 pdl4 mrgt1">
+                                                    <p className="brand-green font-metromedium">There are no food items fo the filtered location.</p>
+                                                </div>
+
+                                            </div>  
+                                        </>  
+                                    }
+
+                                        {
+                                            !foodItemContext.loading && foodItemContext.restFoodItems.length > 0 &&
+                                            <>
+                                            
+                                                <div className="list-box">
+
+                                                    {
+                                                        foodItemList.length > 0 && 
+                                                        foodItemList.map((fd, i) =>
+                                                        
+                                                            <>
+                                                                {
+                                                                    !foodContext.loading && !locationContext.loading &&
+                                                                    <FoodItem 
+                                                                    statusLoading={sLoading} 
+                                                                    updateStatus={updateFoodStatus} 
+                                                                    foodItem={fd} 
+                                                                    allFood={foodContext.allFood} 
+                                                                    addresses={addressContext.restAddresses}
+                                                                    locations={locationContext.locations} 
+                                                                    />
+                                                                }
+                                                            </>
+
+                                                        )
+                                                    }
+
+                                                    {
+                                                        foodItemList.length <= 0 && foodItemContext.restFoodItems.map((fd, i) => 
+                                                            <>
+                                                                {
+                                                                    !foodContext.loading && !locationContext.loading &&
+                                                                    <FoodItem 
+                                                                    statusLoading={sLoading} 
+                                                                    updateStatus={updateFoodStatus} 
+                                                                    foodItem={fd} 
+                                                                    allFood={foodContext.allFood} 
+                                                                    addresses={addressContext.restAddresses}
+                                                                    locations={locationContext.locations} 
+                                                                    />
+                                                                }
+                                                            </>
+                                                        )
+                                                    }
+
+                                                </div>
+                                            
+                                            </>
+                                            
+                                        }
+                                    
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                    </div>
+                </div>
+                </div>
                 </main>
-
-
-            </div>
-
-            
+            </section>
             <BottomNav isFit={false} />
         
             <AlertModal isShow={showAlert} closeModal={toggleAlert} type={msgModal.type} data={msgModal} />
