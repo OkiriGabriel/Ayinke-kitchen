@@ -19,6 +19,40 @@
 
 @media screen and (max-width:768px){
 
+  .sidebar{
+    position: fixed;
+    width: 70%;
+    left: 0;
+    top: 0;
+    box-shadow: 8px 0 0 40px 0 rgb(96 108 115 / 10%);
+    border-right: 1px soild rgba(0, 0, 0, 0.05);
+    z-index: 2000;
+    overflow-y: scroll;
+    padding: 0.6rem 0rem;
+    
+    -webkit-transition: all 0.15s ease 0s;
+    -Moz-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s;
+
+    -webkit-transform: translateX(-290px);
+    
+    -moz-transform: translateX(290px);
+    
+    transform: translateX(- 290px);
+  }
+  .sidebar.collapse.show{
+     height: 100%;
+     -webkit-transform: translateX(0);
+     -moz-transform: translateX(0);
+     transform: translateX(0);
+  }
+
+  .sidebar::-webkit-scrollbar{
+
+    display: none;
+  }
+
+
   .our-works-boby {
     padding: 0.65rem 1rem;
     display: flex;

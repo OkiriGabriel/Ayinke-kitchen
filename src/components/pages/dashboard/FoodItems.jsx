@@ -224,16 +224,16 @@ const FoodItems = (props) => {
     return (
         <>
 
-            <TopBar userLoading={userContext.loading} user={userContext.user} />
+            {/* <TopBar userLoading={userContext.loading} user={userContext.user} /> */}
 
-            <div className="">
+            <div className="mrgb5">
 
                 <main className="dash-inner">
 
                     <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-        <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-        <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
-    </div>
+                        <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
+                        <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
+                    </div>
 
                     <section className="ord-ovw">
         

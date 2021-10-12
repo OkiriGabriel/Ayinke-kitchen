@@ -85,6 +85,7 @@ const App = () => {
                         <Route exact path="/:id" component={RestDetails} />
 
                         <Route exact path="/order/plates" component={Plates} />
+      
                         <Route exact path="/order/confirm" component={ConfirmOrder} />
 
      

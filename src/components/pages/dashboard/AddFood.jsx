@@ -341,112 +341,122 @@ const AddFood = (props) => {
     return (
 
         <>
+{/* 
+            <TopBar background={'light'}  /> */}
 
-            <TopBar background={'light'} userLoading={userContext.loading} user={userContext.user} />
+            <section className="mrgb6">
+                <div className="container">
+                            <div className="row">
+                                <div className="col-lg-7 mx-auto">
+                                    
+                                        <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                            <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
+                                            <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
+                                        </div>
 
-            <section>
+                                        <div className="d-flex align-items-center mrgt1 ui-text-center">
+                                            <h3 className="title fs-16 font-metrobold mrgb0 text-center mrgt1" style={{color: colors.primary.green}}>Add new food item</h3>
+                                        </div>
 
-                <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                    <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                    <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
-                </div>
-
-                <div className="d-flex align-items-center mrgt1">
-                    <h3 className="title fs-16 font-metrobold mrgb0 mrgt1" style={{color: colors.primary.green}}>Add new food item</h3>
-                </div>
-
-                <div className="mrgt2 bg-white">
-
-                    {
-                        step === 0 &&
-                        <form className="gnr-form" onSubmit={(e) => e.preventDefault()}>
-
-                        <Alert show={aData.show} type={aData.type} message={aData.message} />
-
-                        <div className="form-group mb-3">
-                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Choose food item</label>
-                            <DropDown search={true} options={getFood} className="fd-drop food food-add" selected={selectFood} placeholder={`Select`}  />
-                        </div>
-
-                        <div className="form-group mb-3">
-
-                            <div className="d-flex align-items-center">
-                                <div className="ff-ctl">
-                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Price</label>
-                                    <input 
-                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                    type="number" placeholder="0.00" className="form-control" />
                                 </div>
-                                <div className="ff-ctl ml-auto">
-                                    <div className="d-flex align-items-center mb-2">
-                                        <label className="font-metromedium fs-13 mrgb0" style={{color: colors.primary.green}}>Pick location</label>
-                                        <Link onClick={(e) => toggleMulti(e)} className="font-metromedium fs-13 ml-auto" style={{color: colors.primary.orange}}> { multiple ? 'single' : 'multiple'} </Link>
+                            </div>
+                </div>
+                    <div className="row">
+                        <div className="col-lg-5 mx-auto">
+                                <div className="mrgt2 bg-white">
+
+                                    {
+                                        step === 0 &&
+                                        <form className="gnr-form" onSubmit={(e) => e.preventDefault()}>
+
+                                        <Alert show={aData.show} type={aData.type} message={aData.message} />
+
+                                        <div className="form-group mb-3">
+                                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Choose food item</label>
+                                            <DropDown search={true} options={getFood} className="fd-drop food food-add" selected={selectFood} placeholder={`Select`}  />
+                                        </div>
+
+                                        <div className="form-group mb-3">
+
+                                            <div className="d-flex align-items-center">
+                                                <div className="ff-ctl">
+                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Price</label>
+                                                    <input 
+                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
+                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
+                                                    type="number" placeholder="0.00" className="form-control" />
+                                                </div>
+                                                <div className="ff-ctl ml-auto">
+                                                    <div className="d-flex align-items-center mb-2">
+                                                        <label className="font-metromedium fs-13 mrgb0" style={{color: colors.primary.green}}>Pick location</label>
+                                                        <Link onClick={(e) => toggleMulti(e)} className="font-metromedium fs-13 ml-auto" style={{color: colors.primary.orange}}> { multiple ? 'single' : 'multiple'} </Link>
+                                                    </div>
+                                                    <DropDown disabled={ multiple ? true: false } options={getLocations} className="fd-drop address add-d" selected={selectLocation} placeholder={`Select`} search={true}  />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        {
+                                            multiple && !addressContext.loading &&
+                                            <div className="form-group mb-3 multi-add">
+
+                                                <><p className="font-metromedium fs-13 mrgb1" style={{color: colors.primary.green}}>Select multpile addresses below</p></>
+
+                                                {
+                                                    addressContext.restAddresses.map((ad, i) => 
+                                                        <>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input onChange={(e) => handleCheck(ad._id, e)} type="checkbox" class="custom-control-input" id={`chk-fd${i}`} />
+                                                                <label class="custom-control-label mrgb0 font-metrolight" for={`chk-fd${i}`}>{ ad.address }</label>
+                                                            </div>   
+                                                        </>
+                                                    )
+                                                }
+
+                                            </div>
+                                        }
+
+                                        <div className="form-group mb-3">
+                                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Food status</label>
+                                            <DropDown options={getStatus} className="fd-drop" selected={selectStatus} placeholder={`Select`} search={false}  />
+                                        </div>
+
+                                        {
+                                            showBy &&
+                                            <div className="mb-3">
+                                                <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>What time is food available?</label>
+                                                <input 
+                                                defaultValue={ date } 
+                                                onChange={ (e) => handleTime(e) }
+                                                className="meeting form-control" 
+                                                type="datetime-local"
+                                                />
+                                            </div>
+                                            
+                                        }
+
+                                        <div className="mrgb1 ui-text-center mrgt3">
+                                            {
+                                                loading ? (
+                                                    <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3 disabled-show" style={{backgroundColor: colors.primary.green}}><img src="../../../images/assets/spinner-white.svg" alt="spinner" width="30px" /></Link>
+                                                ): (
+                                                    <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3" style={{backgroundColor: colors.primary.green}}>Submit</Link>
+                                                )
+                                            }
+                                        </div>
+
+                                    </form>
+                                    }
+
+                                    {
+                                        step === 1 &&
+                                        <Message />
+                                    }
+
                                     </div>
-                                    <DropDown disabled={ multiple ? true: false } options={getLocations} className="fd-drop address add-d" selected={selectLocation} placeholder={`Select`} search={true}  />
-                                </div>
-                            </div>
-
                         </div>
-
-                        {
-                            multiple && !addressContext.loading &&
-                            <div className="form-group mb-3 multi-add">
-
-                                <><p className="font-metromedium fs-13 mrgb1" style={{color: colors.primary.green}}>Select multpile addresses below</p></>
-
-                                {
-                                    addressContext.restAddresses.map((ad, i) => 
-                                        <>
-                                            <div class="custom-control custom-checkbox">
-                                                <input onChange={(e) => handleCheck(ad._id, e)} type="checkbox" class="custom-control-input" id={`chk-fd${i}`} />
-                                                <label class="custom-control-label mrgb0 font-metrolight" for={`chk-fd${i}`}>{ ad.address }</label>
-                                            </div>   
-                                        </>
-                                    )
-                                }
-
-                            </div>
-                        }
-
-                        <div className="form-group mb-3">
-                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Food status</label>
-                            <DropDown options={getStatus} className="fd-drop" selected={selectStatus} placeholder={`Select`} search={false}  />
-                        </div>
-
-                        {
-                            showBy &&
-                            <div className="mb-3">
-                                <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>What time is food available?</label>
-                                <input 
-                                 defaultValue={ date } 
-                                 onChange={ (e) => handleTime(e) }
-                                 className="meeting form-control" 
-                                 type="datetime-local"
-                                 />
-                            </div>
-                            
-                        }
-
-                        <div className="mrgb1 ui-text-center mrgt3">
-                            {
-                                loading ? (
-                                    <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3 disabled-show" style={{backgroundColor: colors.primary.green}}><img src="../../../images/assets/spinner-white.svg" alt="spinner" width="30px" /></Link>
-                                ): (
-                                    <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3" style={{backgroundColor: colors.primary.green}}>Submit</Link>
-                                )
-                            }
-                        </div>
-
-                    </form>
-                    }
-
-                    {
-                        step === 1 &&
-                        <Message />
-                    }
-
-                </div>
+                    </div>
 
             </section>
 

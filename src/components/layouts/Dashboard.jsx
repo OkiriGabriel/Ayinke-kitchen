@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import TopBar from '../pages/dashboard/TopBar';
+import Header from '../pages/dashboard/TopBar';
 import SideMenu from '../layouts/partials/SideMenu';
+
 
 const Dashboard = (DashboardComponent, flat) => {
 
@@ -16,7 +17,7 @@ const Dashboard = (DashboardComponent, flat) => {
 
             return (
                 <>
-
+   <Header />
                     <div className={`${flat && flat === true ? '' : 'container-fluid main-cont'}`}>
 
                         <SideMenu />

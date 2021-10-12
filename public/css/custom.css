@@ -5,6 +5,7 @@
 
 .body, body {
     padding: 0;
+    background-color: #edf0f5;
     margin: 0;
     font-size: 16px;
     line-height: 18px;
@@ -458,7 +459,7 @@ label {
 
 /* brand colors */
 .brand-orange, .brand-orange span{
-  color: #E54600 !important;
+  color: #434A58 !important;
 }
 .brand-green{
   color: #204650 !important;
@@ -1088,8 +1089,11 @@ a.md-button{
   }
 
   .food-items {
+    background: #fff;
     width: 100%;
     margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 6px;
     margin-bottom: 9rem !important;
 }
   .food-items .pub{
@@ -1457,19 +1461,18 @@ a.md-button{
   top: 2px;
 }
 
-.food-items .search-txt{
+.food-items .search-txt {
   height: 42px;
   font-size: 14px;
-  border: none;
-  background-color: #fff;
+  border-radius: 8px !important;
+
+  border: 1px solid #ccc;
 
   -webkit-transition: all 0.15s ease;
   -moz-transition: all 0.15s ease;
   transition: all 0.15s ease;
-
   padding-right: 2.5rem;
 }
-
 .food-items .search-txt:focus,
 .food-items .search-txt:active{
   box-shadow: none;
@@ -1850,8 +1853,9 @@ form .fx-ctl {
   z-index: 1000;
 }
 
-.overview{
-  margin-top: 4.5rem;
+.overview {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
 }
 .rt--bx{
   margin-top: 4.4rem;
@@ -2102,6 +2106,11 @@ form .custom-checkbox span{
   display: flex;
   align-items: center;
 }
+.gnr-form {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 6px;
+}
 
 .gnr-form .form-control{
   width: 100%;
@@ -2300,9 +2309,10 @@ form .custom-checkbox span{
   margin-right: 1rem;
 }
 
-.fooditem-bx{
+.fooditem-bx {
   padding: 1.3rem 1rem;
-  margin-top: 4.8rem;
+  margin-top: 2.8rem !important;
+  background: #fff;
   border-radius: 8px;
 }
 .fooditem-bx.off{
@@ -2394,3 +2404,4 @@ form .custom-checkbox span{
   height: 17rem;
   width: 24rem;
 }
+

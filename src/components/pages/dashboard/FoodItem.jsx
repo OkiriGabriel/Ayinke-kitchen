@@ -12,6 +12,7 @@ import time from '../../helpers/time'
 
 import dayjs from 'dayjs'
 import customParse from 'dayjs/plugin/customParseFormat'
+
 dayjs.extend(customParse);
 
 const FoodItem = ({ foodItem, allFood, locations, addresses, updateStatus }) => {
@@ -106,50 +107,59 @@ const FoodItem = ({ foodItem, allFood, locations, addresses, updateStatus }) => 
 
     return (
         <>
+            <section>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-6 mx-auto">
+                            
             <div className="food d">
 
-                <div onClick={(e) => toggleOpen(e)} className="ui-text-center">
-                    <img class="img-icon mx-auto" src={`../../../images/icons/dfood2.svg`} alt="icon"/>
-                </div>
+<div onClick={(e) => toggleOpen(e)} className="ui-text-center">
+    <img class="img-icon mx-auto" src={`../../../images/icons/dfood2.svg`} alt="icon"/>
+</div>
 
-                <div>
-                    <div className="d-flex align-items-center">
-                        <p onClick={(e) => toggleOpen(e)} className="mrgb0">
-                            <span style={{color: colors.primary.green}} className="title font-metromedium onminshaft">{formatType(getFood(foodItem.food).name, getFood(foodItem.food).type)}</span>
-                        </p>
+<div>
+    <div className="d-flex align-items-center">
+        <p onClick={(e) => toggleOpen(e)} className="mrgb0">
+            <span style={{color: colors.primary.green}} className="title font-metromedium onminshaft">{formatType(getFood(foodItem.food).name, getFood(foodItem.food).type)}</span>
+        </p>
+    </div>
+    <p className="mrgb0">
+        <span className="text-muted fs-12 font-metromedium">
+            &#x20A6;{ `${ foodItem ? foodItem.price : '0' } - `}
+            {/* { ` ${ getLoc(foodItem.location._id) }` } &nbsp;  */}
+        </span>
+        <span className={`fs-12 font-metromedium ${foodItem.status ? 'success' : foodItem.availableBy ? 'onblue' : 'error'}`}>
+            <>
+                { 
+                    foodItem.status ? 'Available' : 
+                    foodItem.availableBy ? 'Available by: ' + formatDate(foodItem.availableBy)  : 'Unavailable'
+                } 
+            </>
+        </span>
+    </p>
+</div>
+
+<div className="ml-auto ui-text-right d-flex align-items-center">
+    {
+        (foodItem.availableBy === '' || foodItem.availableBy === null) &&
+        <label className="switch mrgb0">
+            <input onChange={(e) => handleCheck(foodItem._id, e)} type="checkbox" defaultChecked={foodItem.status}/>
+            <span className="slider round"></span>
+        </label>
+    }
+    <span className="pdl2"></span>
+    <Link onClick={(e) => toggleOpen(e)} style={{ position: 'relative', top: '3px'}}>
+        <span className="fe fe-chevron-right fs-24 onsilver"></span>
+    </Link>
+</div>
+
+</div>
+
+                        </div>
                     </div>
-                    <p className="mrgb0">
-                        <span className="text-muted fs-12 font-metromedium">
-                            &#x20A6;{ `${ foodItem ? foodItem.price : '0' } - `}
-                            {/* { ` ${ getLoc(foodItem.location._id) }` } &nbsp;  */}
-                        </span>
-                        <span className={`fs-12 font-metromedium ${foodItem.status ? 'success' : foodItem.availableBy ? 'onblue' : 'error'}`}>
-                            <>
-                                { 
-                                    foodItem.status ? 'Available' : 
-                                    foodItem.availableBy ? 'Available by: ' + formatDate(foodItem.availableBy)  : 'Unavailable'
-                                } 
-                            </>
-                        </span>
-                    </p>
                 </div>
-
-                <div className="ml-auto ui-text-right d-flex align-items-center">
-                    {
-                        (foodItem.availableBy === '' || foodItem.availableBy === null) &&
-                        <label className="switch mrgb0">
-                            <input onChange={(e) => handleCheck(foodItem._id, e)} type="checkbox" defaultChecked={foodItem.status}/>
-                            <span className="slider round"></span>
-                        </label>
-                    }
-                    <span className="pdl2"></span>
-                    <Link onClick={(e) => toggleOpen(e)} style={{ position: 'relative', top: '3px'}}>
-                        <span className="fe fe-chevron-right fs-24 onsilver"></span>
-                    </Link>
-                </div>
-
-            </div>
-
+            </section>
             <AlertModal isShow={showAlert} closeModal={toggleAlert} type={msgModal.type} data={msgModal} />
 
             <FoodDetails locations={locations} allFood={allFood} addresses={addresses} data={foodItem} open={openPop} close={toggleOpen} />
