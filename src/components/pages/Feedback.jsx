@@ -166,11 +166,6 @@ const Feedback = (props) => {
                                         <button className="btn btn-lg btn-block bg-orange onwhite">LOGIN</button>
                                     }
                                 </div>
-
-                                <div className="mrgt2 mrgb1 ui-text-center">
-                                    <p className="mb-1"><Link to="/forgot-password" className="onblack fs-14 ui-text-center mrgb1">Forgot password?</Link></p>
-                                    <Link to="/contact" className="onblack fs-14 ui-text-center mrgb1">New? Create account</Link>
-                                </div>                
                             </div>
                                 
                             </form>
