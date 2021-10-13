@@ -61,8 +61,7 @@ const App = () => {
                         <Route exact path="/login" component={Login} />
                       <Route exact path="/food-list" component={FoodList} />
                         <Route exact path="/about" component={About} />
-                        <Route exact path="/privacy-policy" component={Privacy} />
-                        <Route exact path="/terms-conditions" component={Terms} />
+                 
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/forgot-password" component={ForgotPassword} />
                         <Route exact path="/reset-password/:resetToken" component={ResetPassword} />
