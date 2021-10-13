@@ -2114,6 +2114,7 @@ form .custom-checkbox span{
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   border-radius: 6px;
+  background: #fff;
 }
 
 .gnr-form .form-control{
