@@ -26,7 +26,7 @@ const Register = React.lazy(() => import('./components/pages/auth/Register'));
 const ForgotPassword = React.lazy(() => import('./components/pages/auth/ForgotPassword'));
 const ResetPassword = React.lazy(() => import('./components/pages/auth/ResetPassword'));
 const About = React.lazy(() => import('./components/pages/About'));
-const Privacy = React.lazy(() => import('./components/pages/Privacyp'));
+const Feedback = React.lazy(() => import('./components/pages/Feedback'));
 const Terms = React.lazy(() => import('./components/pages/TnC'));
 
 
@@ -61,7 +61,7 @@ const App = () => {
                         <Route exact path="/login" component={Login} />
                       <Route exact path="/food-list" component={FoodList} />
                         <Route exact path="/about" component={About} />
-                        <Route exact path="/privacy-policy" component={Privacy} />
+                        <Route exact path="/feedback" component={Feedback} />
                         <Route exact path="/terms-conditions" component={Terms} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/forgot-password" component={ForgotPassword} />
