@@ -67,7 +67,6 @@ const Home = (props) => {
                                     </div>
 
                                     <div className="ui-group-button mrgt3">
-                                        <Link to="/food-items" className="btn btn-big bg-orange onwhite">Get Started</Link>
                                         <Link to="/food-list" className="btn btn-big ghost onwhite ccblue"> Food items</Link>
                                     </div>
 
