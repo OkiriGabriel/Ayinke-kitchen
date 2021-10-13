@@ -19,6 +19,11 @@
 
 @media screen and (max-width:768px){
 
+  .flist {
+    height: 11rem;
+    width: 24rem;
+}
+
   .sidebar{
     position: fixed;
     width: 70%;
@@ -89,11 +94,75 @@
   }
 
   .headline {
-    margin-top: 18.5rem !important;
+    margin-top: -1.5rem !important;
     font-size: 40px !important;
     line-height: 43px !important;
+  }
+
+.offer-dish{
+  font-size: 14px !important;
+}
+.how-it-works{
+  font-size: 11px !important;
+}
+.how-w{
+  
+    margin-bottom: 1em !important;
+
+}
+.how-it-works-p{
+  font-size: 11px !important;
+  line-height: 18px !important;
+}
+.hero.home-hero {
+  height: 87vh;
 }
 
+.foot-er h4{
+  
+font-size: 15px !important;
+
+}
+.foot-er{
+  margin-top: 1rem;
+}
+
+.social_media li {
+  margin: 0 0.1rem !important;
+}
+
+.oop {
+    margin-left: 34px !important;
+    margin-bottom: 0.5rem;
+}
+
+.menu_toggle .hamburger {
+  position: absolute;
+  margin-left: -1px !important;
+  height: 100%;
+  color: #000 !important;
+  width: 100%;
+  display: block;
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  background: #fff;
+  right: 1rem;
+  padding: 0.5rem;
+}
+
+.header.header-sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+}
+
+
+.l
   .intro{
     padding: 0 !important;
     font-size: 15px !important;
@@ -220,6 +289,16 @@
 }
 
 @media screen and (max-width:576px){
+
+  .navbar-brand {
+    display: inline-block;
+    padding-top: 0.359375rem;
+    padding-bottom: 0.359375rem;
+    margin-right: 1rem;
+    font-size: 25px !important;
+    line-height: inherit;
+    white-space: nowrap;
+}
     
     .modal .dm--dbx {
         display: none !important;
@@ -231,4 +310,24 @@
       width: 100% !important;
     }
     
+}
+
+@media screen and (max-width: 375px){
+.headline {
+    margin-top: 3.5rem !important;
+    font-size: 40px !important;
+    line-height: 43px !important;
+}
+
+.hero.home-hero {
+  height: 98vh;
+}
+
+.learn {
+  padding: 0rem;
+  display: block;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #f4f4f4;
+}
 }

@@ -54,34 +54,34 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                             </div> 
 
                             <div className="dm--ct">
-
-
                                   
-        <h1 className="headline onblack font-helveticabold fs-35 mrgt" style={{lineHeight: '30px'}}>
-            We're excited to hear from you.
-        </h1>
-        
+                                <h1 className="headline onblack font-helveticabold fs-35 mrgt" style={{lineHeight: '30px'}}>
+                                    We're excited to hear from you.
+                                </h1>
+                                
 
-        <div class="onblack font-helveticamedium fs-18 mt-4" style={{lineHeight: '24px'}}>
-           Shoot us an email at AkinyemoKitchen@gmail.com or contact us on our channels.
-        </div>
+                                <div class="onblack font-helveticamedium fs-18 mt-4" style={{lineHeight: '24px'}}>
+                                Shoot us an email at AkinyemoKitchen@gmail.com or contact us on our channels.
+                                </div>
 
-         <div className="ui-group-button mrgt3">
-             <a  href="" className="btn btn-big bg-orange onwhite">Shoot Us an Email</a>
-        </div>
+                                <div className="ui-group-button mrgt3">
+                                    <a  href="" className="btn btn-big bg-orange onwhite">Shoot Us an Email</a>
+                                </div>
 
-        <p class="onblack font-helveticamedium fs-13 mt-4" style={{lineHeight: '24px'}}>If order related please visit our support</p>
+                                <p class="onblack font-helveticamedium fs-13 mt-4" style={{lineHeight: '24px'}}>If order related please visit our support clcik the ink below
+                                
+                                </p>
+                                <Link to="/feedback">Feedback</Link>
+                                <div className="mrgt3">
 
-        <div className="mrgt3">
+                                <ul class="social_media list-inline onwhite mrgt3">
+                                    <li class="list-inline-item "><a href="https://www.instagram.com/concreap/" target="_blank" class="ig link-underlined hover"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/concreap" target="_blank" class="fb link-underlined hover"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.linkedin.com/company/concreap/" target="_blank" class="lkd link-underlined hover"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                </ul>
 
-        <ul class="social_media list-inline onwhite mrgt3">
-            <li class="list-inline-item "><a href="https://www.instagram.com/concreap/" target="_blank" class="ig link-underlined hover"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-            <li class="list-inline-item"><a href="https://twitter.com/concreap" target="_blank" class="fb link-underlined hover"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-            <li class="list-inline-item"><a href="https://www.linkedin.com/company/concreap/" target="_blank" class="lkd link-underlined hover"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-        </ul>
-
-        </div>
-       
+                                </div>
+                            
                             </div>                                  
                         </div>
                     </div>

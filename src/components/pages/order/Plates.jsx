@@ -70,16 +70,16 @@ const Plates = (props) => {
 
     useEffect(async () => {
 
-        locationContext.getLocations();
-        foodContext.getAllFood(9999);
-        foodItemContext.getRestFoodItems(storage.getPlate()[0].restaurant)
+        // locationContext.getLocations();
+        // foodContext.getAllFood(9999);
 
-        setPlates(storage.getPlate());
-        calcDefPrice(storage.getPlate()[0].items)
 
-        Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+        // setPlates(storage.getPlate());
+        // calcDefPrice(storage.getPlate()[0].items)
 
-        checkCustomer();
+        // Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
+        // checkCustomer();
 
 
     }, []);

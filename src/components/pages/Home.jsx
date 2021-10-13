@@ -56,7 +56,7 @@ const Home = (props) => {
 
                             <div className="row heading-content">
 
-                                <div data-aos={"fade-right"} className="col-md-7">
+                                <div data-aos={"fade-right"} className="col-lg-7 col-md-7">
                                     
                                     <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
                                        Welcome to <br /> Akinyemomay's Kitchen
@@ -67,8 +67,8 @@ const Home = (props) => {
                                     </div>
 
                                     <div className="ui-group-button mrgt3">
-                                        <Link to="/food-items" className="btn btn-big bg-orange onwhite">Get Started</Link>
                                         <Link to="/food-list" className="btn btn-big ghost onwhite ccblue"> Food items</Link>
+                                    
                                     </div>
 
                                     <div className="d-flex mrgt1">
@@ -110,10 +110,10 @@ const Home = (props) => {
 
                         <div className="text-data ui-text-center mrgt" style={{lineHeight: '22px'}}>
 
-                            <h3 className="fs-30 font-helveticamedium brandccpurple mrgb2">How it works</h3>
+                            <h3 className="fs-30 font-helveticamedium brandccpurple mrgb2 how-w">How it works</h3>
 
                             <div className="row">
-                                 <div className="col-md-4 mrgb1">
+                                 <div className="col-md-4 mrgb1 col-6">
 
                                     <div className="learn">
 
@@ -121,20 +121,20 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/your-location.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1 ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 how-it-works font-helveticamedium mrgt1 ml-2 mrgb0">
                                             Set delivery location
                                             </h2>
                                         </div>
 
                                         <div className="mrgt">
-                                            <p className="brandccpurple fs-14 ui-text-center mt-4 "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
+                                            <p className="brandccpurple fs-14 ui-text-center mt-4  how-it-works-p "> Lorem, ipsum dolor sit amet ipsum lorem  consectetur adipisicing</p>
                                         </div>
 
                                     </div>
 
                                 </div>
 
-                                <div className="col-md-4 mrgb1">
+                                <div className="col-md-4  col-6 mrgb1">
 
                                     <div className="learn">
 
@@ -142,11 +142,11 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/24-hours.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1 how-it-works  ml-2 mrgb0">
                                                Check available food
                                             </h2>
                                             <div className="mrgt">
-                                            <p className="brandccpurple fs-14 ui-text-center mt-4 "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
+                                            <p className="brandccpurple fs-14 ui-text-center mt-4  how-it-works-p"> Lorem, ipsum lorem oplodp dolor sit amet consectetur adipisicing</p>
                                         </div>
                                         </div>
                                  
@@ -155,7 +155,7 @@ const Home = (props) => {
 
                                 </div>
 
-                                <div className="col-md-4 mrgb1">
+                                <div className="col-md-4  mrgb1">
 
                                     <div className="learn">
 
@@ -163,12 +163,12 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/checkout.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1 how-it-works  ml-2 mrgb0">
                                                Order
                                             </h2>
                                         </div>
                                         <div className="mrgt">
-                                        <p className="brandccpurple fs-14 ui-text-center mt-4 "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
+                                        <p className="brandccpurple fs-14 ui-text-center mt-4 how-it-works-p "> Lorem, ipsum dolor sit amet ipsum lorem oplodp dolor consectetur adipisicing</p>
                                         </div>
 
                                     </div>
@@ -219,7 +219,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 offer-dish mrgb0">
                                             Set delivery location
                                             </h2>
                                         </div>
@@ -236,7 +236,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/food-2.jpg" alt="" className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">
                                                General Dishes
                                             </h2>
                                         </div>
@@ -254,7 +254,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/amala.jpg" alt=""  className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">
                                             Nigerian Dishes
                                             </h2>
                                         </div>
@@ -276,7 +276,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 offer-dish mrgb0">
                                             Set delivery location
                                             </h2>
                                         </div>
@@ -293,7 +293,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/food-2.jpg" alt="" className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 offer-dish mrgb0">
                                                General Dishes
                                             </h2>
                                         </div>
@@ -311,7 +311,7 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/amala.jpg" alt=""  className="ui-rounded-small flist" />
                                         </span>
-                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">
                                             Nigerian Dishes
                                             </h2>
                                         </div>
@@ -351,9 +351,10 @@ const Home = (props) => {
                 <p className="onwhite fs-14 mrgt1 text-center "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
        
         <div className="ui-group-button mrgt2 text-center">
-            <Link to="/contact" className="btn btn-big bg-brandccred onwhite">Check available food</Link>
+            <Link to="/contact" className="btn btn-big bg-brandccred onwhite oop ui-hide-mobile-only">Check available food</Link>
             <Link to="/donation" className="btn btn-big ghost onwhite order">Order Now</Link>
         </div>
+        
 
         {/* <ul class="social_media list-inline onwhite mrgt1">
             <li class="list-inline-item "><a href="" target="_blank" class="ig link-underlined hover"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>

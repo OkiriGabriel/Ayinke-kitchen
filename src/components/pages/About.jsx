@@ -18,7 +18,7 @@ const About = () => {
                                    <div className="col-lg-10 col-md-12">
    
                                        <h1 className="headline font-gilroybold fs-30 text-center animated fastest fadeIn">
-                                        About Checkaam
+                                        About Ayinke Kitchen
                                        </h1>
                                        <p className="fs-17 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum repellat culpa aut. Recusandae,
                                           omnis ab. Necessitatibus fugit, optio minima velit doloribus soluta debitis quidem magnam. 

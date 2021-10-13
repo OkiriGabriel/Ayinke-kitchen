@@ -260,7 +260,7 @@ const RestDetails = (props) => {
 
                             <div className="row">
 
-                                <div data-aos={"fade-right"} className="col-md-12">
+                                <div data-aos={"fade-right"} className="col-md-7 mx-auto">
                                     
                                
                                         <div className="">
@@ -301,17 +301,6 @@ const RestDetails = (props) => {
                         <div className="container">
 
                             <div className="restaurant details">
-
-                                <div className="avatar">
-                                    {
-                                        userContext.restaurant.logo && userContext.restaurant.logo !== 'no-logo.jpg' &&
-                                        <img src={userContext.restaurant.logo} alt="rest logo" />
-                                    }
-                                    {
-                                        (!userContext.restaurant.logo || userContext.restaurant.logo === 'no-logo.jpg') &&
-                                        <img src="../../../images/assets/avatar-bag.svg" alt="rest logo" />
-                                    }
-                                </div>
 
                                 <div className="details">
 

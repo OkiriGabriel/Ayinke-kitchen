@@ -10,7 +10,7 @@ import LocationState from './context/location/locationState'
 import AddressState from './context/address/addressState'
 import FoodState from './context/food/foodState';
 import FoodItemState from './context/foodItem/foodItemState'
-import Privacyp from './components/pages/Privacyp';
+
 
 // components: lazyload pages
 // const MainLoader = React.lazy(() => import('./components/helpers/MainLoader'));
@@ -26,11 +26,8 @@ const Register = React.lazy(() => import('./components/pages/auth/Register'));
 const ForgotPassword = React.lazy(() => import('./components/pages/auth/ForgotPassword'));
 const ResetPassword = React.lazy(() => import('./components/pages/auth/ResetPassword'));
 const About = React.lazy(() => import('./components/pages/About'));
-const Privacy = React.lazy(() => import('./components/pages/Privacyp'));
-const Terms = React.lazy(() => import('./components/pages/TnC'));
+const Feedback = React.lazy(() => import('./components/pages/Feedback'));
 
-
-const DashboardHome = React.lazy(() => import('./components/pages/dashboard/Home'));
 const Dashboard = React.lazy(() => import('./components/pages/dashboard/Dashboard'));
 const Account = React.lazy(() => import('./components/pages/dashboard/Account'));
 
@@ -61,7 +58,7 @@ const App = () => {
                         <Route exact path="/login" component={Login} />
                       <Route exact path="/food-list" component={FoodList} />
                         <Route exact path="/about" component={About} />
-                 
+                        <Route exact path="/feedback" component={Feedback} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/forgot-password" component={ForgotPassword} />
                         <Route exact path="/reset-password/:resetToken" component={ResetPassword} />
