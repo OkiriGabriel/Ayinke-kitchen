@@ -59,7 +59,7 @@ const Home = (props) => {
                                 <div data-aos={"fade-right"} className="col-lg-7 col-md-7">
                                     
                                     <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
-                                       Welcome to <br /> Akinyemomay's Kitchen
+                                       Welcome to <br /> Ayinke - Kitchen
                                     </h1>
 
                                     <div class="onwhite font-helveticamedium fs-17 intro" style={{lineHeight: '27px'}}>

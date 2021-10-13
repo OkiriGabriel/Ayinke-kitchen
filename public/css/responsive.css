@@ -289,7 +289,10 @@ font-size: 15px !important;
 }
 
 @media screen and (max-width:576px){
-
+  .flist {
+    height: 15rem;
+    width: 24rem;
+}
   .navbar-brand {
     display: inline-block;
     padding-top: 0.359375rem;
