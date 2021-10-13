@@ -145,15 +145,19 @@ const Search = (props) => {
 
                             <div className="row">
 
-                                <div data-aos={"fade-right"} className="col-md-6 mx-auto">
+                                <div data-aos={"fade-right"} className="col-lg-6  col-lg-10 mx-auto">
                                     
-                                {
-                                        !locationContext.loading && !foodContext.loading &&
-                                        !userContext.loading && userContext.restaurants.length > 0 &&
-                                        <div className="">
-                                            <SearchBox foodOptions={foodContext.allFood} locations={locationContext.locations} />
-                                        </div>
-                                    }
+              
+                                    <div className="form-group">
+                                    <input type="text" placeholder="search food of the day..." className="search"  
+         
+         // onChange={(e) => setQuery(e.target.value)} 
+         // onKeyPress={search}           
+         />
+                                                <button class="btn search-bx-btn" type="button">
+                                    Search
+                                    </button>
+                                    </div>
                                     
                                 </div>
 
@@ -167,178 +171,7 @@ const Search = (props) => {
             </section>
          
 
-            <section className="list fd-itm mrgt2">
-
-                <div className="container">
-
-                    <h3 className="title mrgb0 font-metromedium">Search results</h3>
-                    <p className="mrgb2 fs-13 text-muted font-metrolight">
-                        {`Looking for ${params.food} 
-                        ${ params.location && !params.restaurant ? 'at ' + params.location : '' } 
-                        ${ !params.location && params.restaurant ? 'at ' + params.restaurant : '' }
-                        ${ params.location && params.restaurant ? 'at ' + params.location + params.restaurant : '' }`}
-                    </p>
-
-                    {
-                        userContext.loading && userContext.searchResults.length <= 0 &&
-                        <>
-                            <div className="load--bx">
-                                <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                            </div>
-                        </>
-                    }
-
-                    {
-                        !userContext.loading && userContext.searchResults.length <= 0 &&
-                        <>
-                            <div className="load--bx">
-
-                                {
-                                    empty ? (
-                                        <>
-                                            <img src="../../../images/icons/dplate-c.svg" width="90px" alt="icon"/>
-                                            
-                                            <div className="row ui-text-center pdr4 pdl4 mrgt1 fs-16">
-                                                <p className="onmineshaft font-metromedium">There are currently no restaurants with available food items. Check back soonest!</p>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                                    )
-                                }
-
-                            </div>
-                        </>
-                    }
-
-                    
-
-                    {
-                        !userContext.loading && userContext.searchResults.length > 0 &&
-                        <>
-                            {
-                                userContext.searchResults.map((data) => 
-
-                                <>
-                                    <div className="">
-
-                                        <div className="restaurant details ui-box-shadow-dark-light">
-
-                                            <div className="avatar">
-                                            {
-                                                data.logo && data.logo !== 'no-logo.jpg' &&
-                                                <img src={data.logo} alt="rest logo" />
-                                            }
-                                            {
-                                                (!data.logo || data.logo === 'no-logo.jpg') &&
-                                                <img src="../../../images/assets/avatar-bag.svg" alt="rest logo" />
-                                            }
-                                            </div>
-
-                                            <div className="details">
-
-                                            <p className="title">
-                                                { !data.resturantName && <Placeholder width="150px" /> }
-                                                {  data.resturantName ? data.resturantName : '' }
-                                            </p>
-                                            
-                                            <p className="address">
-                                                { !data.phoneNumber && <Placeholder width="100px" /> }
-                                                <span> { data.phoneNumber ? data.phoneNumber : '' }</span>
-                                            </p>
-
-                                            <div className="text-muted pdl">
-                                                &nbsp;
-                                                <span className="fs-13">{params.food} </span>
-                                                <span className={`fs-13 ${ formatData(data.foodItems, data._id).status ? 'success' : formatData(data.foodItems, data._id).availableBy ? 'onblue' : 'error' }`}>
-                                                    {formatData(data.foodItems, data._id).status ? 'is available' : formatData(data.foodItems, data._id).availableBy ? 'ready by ' + formatData(data.foodItems, data._id).availableBy : 'unavailable'}
-                                                </span>
-                                                {/* <span >
-                                                    { formatData(data.foodItems, data._id).status }
-                                                </span> */}
-                                            </div>
-
-                                        </div>
-
-                                            <div className="ml-auto pdr1 ui-group-button">
-
-                                                <Link onClick={(e) => openAddress(e, data._id)} to="" className="blink">
-                                                    { 
-                                                        blink ? (<></>) : (<span className="blink-circle init-blink"></span>)                                    
-                                                    }  
-                                                    <span className="fe fe-map-pin brand-orange fs-24"> </span>
-                                                </Link>
-
-                                                <a href={`tel: ${userContext.restaurant.phoneNumber}`}><span className="fe fe-phone onapple fs-24"></span></a>
-
-                                            </div>
-                                      
-                                        </div>
-                                        
-
-                                    </div>
-                                    
-
-                                    <div className="mb-3 mt-2"></div>
-                                    
-                                    <div className={`address-box ${show ? 'open' : 'close'} ui-box-shadow-dark-light`}>
-
-                                        <div className="container">
-
-                                            <div className="d-flex align-items-center">
-                                                <h3 className="title fs-18 mrgb1">Addresses</h3>
-                                                <div className="ml-auto">
-                                                    <Link onClick={(e) => openAddress(e)} style={{position:'relative', top: '-5px'}}><span className="fe fe-x fs-18 brand-orange"></span></Link>
-                                                </div>
-                                            </div>
-                                            
-                                            {
-                                                !addressContext.loading && addressContext.restAddresses.length > 0 &&
-                                                addressContext.restAddresses.map((ad, i) =>
-
-                                                    <>
-                                                        <div className="add-item">
-
-                                                            <div className="d-flex align-items-center">
-                                                                <p className="title onmineshaft fs-14 mrgb0">{ad.phoneNumber ? ad.phoneNumber : '080XXXXXXXX' }</p>
-                                                                <p className="mrgb0 onmineshaft fs-14 font-weight-medium pdl1"> <span className="fe fe-map-pin"></span> { !locationContext.loading ? getLoc(ad.location) : '' } </p>
-                                                                
-                                                            </div>
-                                                            <p className="mrgb0 text-muted">{ad.address} </p>
-
-                                                        </div>
-
-                                                        <div className="ui-line add bg-silverlight" />
-
-                                                    </>
-
-                                                )
-                                                
-                                            }
-
-                                        </div>
-
-                                    </div>
-
-                                </>
-
-                                 
-                                
-                                )
-                            }
-                            
-            
-                        </>
-                    }
-
-                    
-                   
-                </div>
-
-            </section>
-
-            
-            <BottomBar />
+  
         </>
     )
 

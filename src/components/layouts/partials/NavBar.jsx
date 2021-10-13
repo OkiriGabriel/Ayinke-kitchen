@@ -73,7 +73,7 @@ const NavBar = ({ scrollTo, openModal, position }) => {
                                 {/* right */}
                                 <ul className="nav navbar-nav ml-auto">
                                     <li className="nav-item brandccred font-gilroymedium"><Link to="/" className="nav-link onwhite">Home</Link></li>
-                                    <li className="nav-item brandccred font-gilroymedium"><Link to="/search-food" className="nav-link onwhite">Food item</Link></li>
+                                    <li className="nav-item brandccred font-gilroymedium"><Link to="/search" className="nav-link onwhite">Search</Link></li>
                                     {
                                         storage.checkToken() &&
                                         <li className="nav-item last"><Link onClick={(e) => logout(e)} to="" className="btn btn-mini mt-2 fs-14 font-gilroybold onwhite bg-brandccred">Logout</Link></li>

@@ -70,7 +70,6 @@ const App = () => {
                         <Route exact path="/dashboard/food-items" component={DashboardLayout(FoodItems)}/>
 
                         <Route exact path="/dashboard/food-items/add" component={DashboardLayout(AddFood)}/>
-                        <Route exact path="/dashboard/about" component={DashboardLayout(DashAbout)}/>
 
                         {/* put this here */}
                         <Route exact path="/:id" component={RestDetails} />

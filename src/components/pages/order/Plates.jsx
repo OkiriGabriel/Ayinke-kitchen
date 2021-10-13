@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, Fragment } from 'react';
+    import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios'
 
@@ -731,7 +731,7 @@ const Plates = (props) => {
 
             <section>
 
-                <div className="container">
+                <div className="container ">
 
                     <div className="d-flex align-items-center mrgt1">
 
@@ -849,18 +849,11 @@ const Plates = (props) => {
                     </div>
 
                     <div className="ui-line bg-silverlight mrgb1"></div>
-
-                   <div>
-                        {
-                            !storage.checkToken() && (!storage.checkUserID() || storage.checkUserID()) &&
-                            <InfoBox action="login" actionText="Login" title="Have an account?" />
-                        }
-
-                        {
-                            storage.checkToken() && (!storage.checkUserID() || storage.checkUserID()) &&
-                            <InfoBox action="logout" actionText="Logout" title={storage.getUserEmail()} />
-                        }
-                        
+                    
+                    <div className="row">
+                        <div className="col-lg-5 mx-auto mrgb6">
+                            
+                   <div className="orderr">
 
                         <div className="d-flex align-items-center mrgt2">
 
@@ -1162,6 +1155,8 @@ const Plates = (props) => {
                         
                    </div>
 
+                        </div>
+                    </div>
 
                 </div>
 
