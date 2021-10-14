@@ -1101,10 +1101,10 @@ a.md-button{
     margin-bottom: 9rem !important;
 }
 .food-items .pub {
-  height: 80vh !important;
+  height: 63vh !important;
   overflow-x: hidden;
   overflow-y: scroll;
-  margin-bottom: 15rem !important;
+  margin-bottom: 8rem !important;
 }
   .food-items .pub::-webkit-scrollbar{
     display: none;
@@ -1990,8 +1990,8 @@ form .custom-checkbox span{
   margin-right: 1rem;
 }
 
-.food-disp .img-icon{
-  width: 25px;
+.food-disp .img-icon {
+  width: 51px;
   position: relative;
   top: -3px;
 }
