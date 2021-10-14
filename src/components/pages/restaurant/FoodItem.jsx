@@ -134,7 +134,7 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                         <p className="title font-metrobold fs-15 mrgb0">{ !foodContext.loading ? formatType(getFood(foodItem.food).name, getFood(foodItem.food).type) : 'Food name' }</p>
                         <div className="">
                             <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;{ foodItem.price ? foodItem.price : '' }</span>
-                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/scoop</span>
+                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
                         {
                             !locationContext.loading &&
