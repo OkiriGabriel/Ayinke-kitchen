@@ -131,34 +131,20 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                     </div>
 
                     <div className="ui-text-center">
-                        <p className="title font-metrobold fs-15 mrgb0">{ !foodContext.loading ? formatType(getFood(foodItem.food).name, getFood(foodItem.food).type) : 'Food name' }</p>
+                        <p className="title font-metrobold fs-15 mrgb0">food</p>
                         <div className="">
-                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;{ foodItem.price ? foodItem.price : '' }</span>
+                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;500</span>
                             <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
-                        {
-                            !locationContext.loading &&
-                            <div className="food-loc">
-                                <span className="font-metromedium fs-12 mrgb0 pdr">{ getLoc(foodItem.location._id) }</span>
-                            </div>
-                        }
-                       
-                       {
-                           !foodItem.status &&
-                           <div className="ui-text-center pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
-                           </div>
-                       }
-                       {
-                           foodItem.status &&
+                   
+                    
                            <div className="d-flex align-items-center pdt pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
 
                                 <div className="item-btn ml-auto">
                                     <Link onClick={e => select(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
                                 </div>
                             </div>
-                       }
+                  
 
                     </div>
 
