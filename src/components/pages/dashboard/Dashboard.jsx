@@ -15,8 +15,8 @@ const Dashboard = () => {
         <>
       
 
-            <main className="dash-inner mrgb3">
-                <OverView  />
+            <main className="dash-inner mrgb3 mrgt2">
+                
 
                 <section className="ord-ovw mrgb1">
                     <div className="container">
@@ -59,7 +59,7 @@ const Dashboard = () => {
                         <div className="row">
                         <div className="col-lg-4">
                                 
-                                <Link className="block-link">
+                                <Link to="/dashboard/food-items/add" className="block-link">
 
                                     <div className="mng-item">
 
@@ -111,8 +111,6 @@ const Dashboard = () => {
                 </section>  
 
             </main>
-
-            <BottomNav />
            
         </>
     )
