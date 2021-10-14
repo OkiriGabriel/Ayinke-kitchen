@@ -29,7 +29,7 @@ import customParse from 'dayjs/plugin/customParseFormat'
 dayjs.extend(customParse);
 
 
-const AddFood = (props) => {
+const AddLocation = (props) => {
 
 
     const foodContext = useContext(FoodContext);
@@ -350,12 +350,12 @@ const AddFood = (props) => {
                                 <div className="col-lg-7 mx-auto">
                                     
                                         <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                                            <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                                            <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
+                                            <h1 className="fs-30 brand-green font-metrobold mrgb0">0</h1>
+                                            <p className="mrgb0 brand-green fs-13 font-metromedium">0 locations </p>
                                         </div>
 
-                                        <div className="d-flex align-items-center mrgt1 ui-text-center">
-                                            <h3 className="title fs-16 font-metrobold mrgb0 text-center mrgt1" style={{color: colors.primary.green}}>Add new food item</h3>
+                                        <div className=" align-items-center mrgt2 ui-text-center">
+                                            <h3 className="title fs-16 font-metrobold mrgb0 text-center mrgt1" style={{color: colors.primary.green}}>Add Location</h3>
                                         </div>
 
                                 </div>
@@ -389,7 +389,7 @@ const AddFood = (props) => {
                                                 <div className="col-md-6">
                                                     <div className="form-group mb-3">
                                                         <div className="">
-                                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Price</label>
+                                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Delivery price</label>
                                                             <input 
                                                             defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
                                                             onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
@@ -412,27 +412,6 @@ const AddFood = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        <div className="form-group mb-3">
-
-                                            <div className="align-items-center">
-                                                <div className="">
-                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Upload photo</label>
-                                                    <input 
-                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                                    type="file" placeholder="0.00" className="form-control" />
-                                                </div>
-                                                
-                                            </div>
-                                            </div>
-
-{/* 
-                                        <div className="form-group mb-3">
-                                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Food status</label>
-                                            <DropDown options={getStatus} className="fd-drop" selected={selectStatus} placeholder={`Select`} search={false}  />
-                                        </div> */}
-
 
 
                                         <div className="mrgb1 ui-text-center mrgt3">
@@ -467,4 +446,4 @@ const AddFood = (props) => {
 
 }
 
-export default AddFood;
+export default AddLocation;

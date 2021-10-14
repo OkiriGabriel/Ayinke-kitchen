@@ -35,8 +35,7 @@ const Account = React.lazy(() => import('./components/pages/dashboard/Account'))
 
 const FoodItems = React.lazy(() => import('./components/pages/dashboard/FoodItems'));
 const AddFood = React.lazy(() => import('./components/pages/dashboard/AddFood'));
-const DashAbout = React.lazy(() => import('./components/pages/dashboard/about/About'));
-
+const LocationAdd = React.lazy(() => import('./components/pages/dashboard/AddLocation'));
 
 const App = () => {
   
@@ -69,6 +68,7 @@ const App = () => {
 
                         <Route exact path="/dashboard/account" component={Account} />
                         <Route exact path="/dashboard" component={DashboardLayout(Dashboard)} />
+                        <Route exact path="/dashboard/add-location" component={DashboardLayout(LocationAdd)} />
                         <Route exact path="/dashboard/food-items" component={DashboardLayout(FoodItems)}/>
 
                         <Route exact path="/dashboard/food-items/add" component={DashboardLayout(AddFood)}/>

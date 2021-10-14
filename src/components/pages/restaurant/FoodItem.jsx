@@ -20,8 +20,32 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
         
     }, [])
 
-    
     const select = (e, id) => {
+
+        if(e) e.preventDefault();
+
+        const elem = document.getElementById(id);
+
+        if(elem && elem.classList.contains('food-selected') && closeIcon === 'x'){
+
+            elem.classList.remove('food-selected')
+            setClose('plus')
+
+         
+            selectFood(e)
+
+        }else{
+
+            elem.classList.add('food-selected')
+            setClose('x');
+            
+
+
+            selectFood(e,)
+        }
+    }
+    
+    const selec = (e, id) => {
 
         if(e) e.preventDefault();
 
@@ -75,10 +99,10 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                     </div>
 
                     <div className="ui-text-center">
-                        <p className="title font-metrobold fs-15 mrgb0">Rice and Chicken</p>
+                        <p className="title font-helveticabold fs-15 mrgb0">Rice and Chicken</p>
                         <div className="">
-                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
-                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
+                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
+                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
                 
                            {/* <div className="ui-text-center pdb">
@@ -109,10 +133,10 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                     </div>
 
                     <div className="ui-text-center">
-                        <p className="title font-metrobold fs-15 mrgb0">Beans and Rice</p>
+                        <p className="title font-helveticabold fs-15 mrgb0">Beans and Rice</p>
                         <div className="">
-                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;1200</span>
-                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
+                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;1200</span>
+                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
                 
                            {/* <div className="ui-text-center pdb">
@@ -123,7 +147,7 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                                 {/* <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span> */}
 
                                 <div className="item-btn ml-auto">
-                                    <Link  onClick={e => select(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
+                                    <Link  onClick={e => selec(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
                                 </div>
                             </div>
                     
@@ -144,10 +168,10 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                     </div>
 
                     <div className="ui-text-center">
-                        <p className="title font-metrobold fs-15 mrgb0">Rice, Chicken, Platain and Beef</p>
+                        <p className="title font-helveticabold fs-15 mrgb0">Rice, Chicken, Platain and Beef</p>
                         <div className="">
-                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;2000</span>
-                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
+                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2000</span>
+                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
                 
                            {/* <div className="ui-text-center pdb">
@@ -180,10 +204,10 @@ const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food })
                     </div>
 
                     <div className="ui-text-center">
-                        <p className="title font-metrobold fs-15 mrgb0">Roasted Chicken</p>
+                        <p className="title font-helveticabold fs-15 mrgb0">Roasted Chicken</p>
                         <div className="">
-                            <span className="font-metromedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
-                            <span className="font-metromedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
+                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
+                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                        </div>
                 
                            {/* <div className="ui-text-center pdb">

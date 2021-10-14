@@ -89,7 +89,7 @@ const Home = (props) => {
                                         // onChange={(e) => setQuery(e.target.value)} 
                                         // onKeyPress={search}           
                                         />
-                                   <button class="btn search-bx-btn" type="button">
+                                   <button class="btn search-bx-btn font-helveticamedium fs-17" type="button">
                                     Search
                                     </button>
                                     </div>

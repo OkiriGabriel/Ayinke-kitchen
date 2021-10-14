@@ -66,7 +66,7 @@ const BottomNav = ({ isFit }) => {
                 </div>
 
                 <div>
-                    <Link onClick={(e) => goto(e, '/dashboard', 'loc')} className="btm-link font-metromedium" to="">
+                    <Link onClick={(e) => goto(e, '/dashboard/add-location', 'loc')} className="btm-link font-metromedium" to="">
                         <div>
                             <span className="chk-icon loc">
                                 <img src={`../../../images/icons/${lType === 'loc' ? '' : 'd'}pin.svg`} alt="icon"/>
@@ -84,7 +84,7 @@ const BottomNav = ({ isFit }) => {
                                 <img src={`../../../images/icons/${lType === 'acct' ? '' : 'd'}user.svg`} alt="icon"/>
                             </span>
                         </div>
-                        <span style={{position: 'relative', top: '0px'}} className={`${lType === 'acct' ? 'brand-green' : 'onsilver'}`}>Profile</span>
+                        <span style={{position: 'relative', top: '0px'}} className={`${lType === 'acct' ? 'brand-green' : 'onsilver'}`}>Admins</span>
                         
                     </Link>
                 </div>

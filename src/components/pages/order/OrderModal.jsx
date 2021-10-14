@@ -82,7 +82,6 @@ const OrderModal = ({isShow, closeModal}) => {
         closeModal();
     }
 
-    
 
     const submit = async (e) => {
 
@@ -166,26 +165,13 @@ const OrderModal = ({isShow, closeModal}) => {
 
                         <div className="dm--dbx ui-full-bg-norm">
                             <div className="dm--d">
-                                <div>
-                                <div className="plate-fd" style={{color: colors.primary.green}}>
-
-<div>
-    <span className="font-metromedium fs-14">Rice</span>
-    <span className="font-metromedium fs-14 pdl" style={{position: 'relative', top:'0px'}}>
-        &#x20A6;<i id={`fd-price1`} className="font-metromedium fs-14 ui-font-normal">200</i>
-    </span>
-</div>
-
-<div className="ml-auto">
-
-    <Link className="minus"><span className="fe fe-minus fs-13"></span></Link>
-    <span  className="font-metromedium fs-13 qty">Qunatity</span>
-    <Link  className="plus"><span className="fe fe-plus fs-13"></span></Link>
-
-</div>
-
-</div>
-                                </div>
+                                
+                                <form className="foorm">
+                                <h2 className="brandcox-firefly fs-18">Meal Quantity</h2>
+                                    <div className="value-button" id="decrease" >-</div>
+                                    <input type="number" id="number" defaultValue={0} />
+                                    <div className="value-button" id="increase" >+</div>
+                                </form>
                             </div>
                         </div>
                         <div className="dm--body">

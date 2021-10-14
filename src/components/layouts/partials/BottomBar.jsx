@@ -78,7 +78,7 @@ const BottomBar = ({ count, total, items, restId, check }) => {
                     <div className="ml-auto">
 
                         <div className="bar-food">
-                            <Link onClick={toggleModal}className={`bar-fdbtn font-metromedium fs-14 onwhite disabled `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
+                            <Link onClick={toggleModal}className={`bar-fdbtn font-metromedium fs-14 onwhite  `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
                         </div>
 
                     </div>
