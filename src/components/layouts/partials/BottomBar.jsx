@@ -7,11 +7,14 @@ import UserContext from '../../../context/user/userContext'
 import storage from '../../helpers/storage'
 
 
+import OrderModal from '../../pages/order/OrderModal'
+
 const BottomBar = ({ count, total, items, restId, check }) => {
 
     const userContext =  useContext(UserContext);
 
     const history = useHistory();
+    const [show, setShow] = useState(false);
     const location = useLocation();
     const [plate, setPlate] = useState({
         items: [],
@@ -19,6 +22,10 @@ const BottomBar = ({ count, total, items, restId, check }) => {
         restaurant: ''
     })
 
+              
+    const toggleModal = () => {
+        setShow(!show);
+    }
 
 
     useEffect( async () => {
@@ -71,13 +78,15 @@ const BottomBar = ({ count, total, items, restId, check }) => {
                     <div className="ml-auto">
 
                         <div className="bar-food">
-                            <Link to="/order/plates" className={`bar-fdbtn font-metromedium fs-14 onwhite `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
+                            <Link onClick={toggleModal}className={`bar-fdbtn font-metromedium fs-14 onwhite disabled `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
                         </div>
 
                     </div>
 
                 </div>
             </footer>
+
+            <OrderModal isShow={show}  closeModal={toggleModal} />
 
         </>
 
