@@ -1,4 +1,4 @@
-    import React, { useEffect, useContext, useState, Fragment } from 'react';
+import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios'
 
@@ -70,16 +70,16 @@ const Plates = (props) => {
 
     useEffect(async () => {
 
-        // locationContext.getLocations();
-        // foodContext.getAllFood(9999);
+        locationContext.getLocations();
+        foodContext.getAllFood(9999);
+        foodItemContext.getRestFoodItems(storage.getPlate()[0].restaurant)
 
+        setPlates(storage.getPlate());
+        calcDefPrice(storage.getPlate()[0].items)
 
-        // setPlates(storage.getPlate());
-        // calcDefPrice(storage.getPlate()[0].items)
+        Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
-        // Axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-
-        // checkCustomer();
+        checkCustomer();
 
 
     }, []);
@@ -729,132 +729,136 @@ const Plates = (props) => {
         <>
             <NavBar />
 
-            <section>
+            <section >
 
-                <div className="container ">
+                <div className="container ordder">
+                    
+                    <div className="row">
+                        <div className="col-lg-8 mx-auto">
 
-                    <div className="d-flex align-items-center mrgt1">
+                        <div className="d-flex align-items-center mrgt">
 
-                        <Link onClick={(e) => goBack(e)} className="pdr">
-                            <span className="fe fs-18 fe-chevron-left" style={{color: colors.neutral.grey, position: 'relative', top:'1px', left: '-5px'}}></span>
-                        </Link>
+                            <Link onClick={(e) => goBack(e)} className="pdr">
+                                <span className="fe fs-18 fe-chevron-left" style={{color: colors.neutral.grey, position: 'relative', top:'1px', left: '-5px'}}></span>
+                            </Link>
 
-                        <h3 onClick={(e) => { e.preventDefault(); console.log(plates)}} className="title fs-18 font-metrobold mrgb0" style={{color: colors.primary.green}}>Your Plate</h3>
-
-                    </div>
-
-                    <div className="plate-bx mrgt1">
-
-                        {
-                            plates && plates.length > 0 &&
-                            <>
-                                {
-                                    plates.map((plate, i) => 
-                                    
-                                        <>
-                                            <div className="plate-itm">
-                                                <div className="plate-jumbo" style={{backgroundColor: colors.accent.pink}}>
-                                                    <div>
-                                                        <span className="font-metrobold fs-15">Plate { (i+1) } - </span>
-                                                        <span id={`platefd${i}`} className="font-metromedium fs-14 pdl" style={{position: 'relative', top:'0px'}}>&#x20A6;{plate.totalPrice}</span>
-                                                        <p className="font-metromedium fs-12 mb-1">{ mergeFoodNames(plate.items) }</p>
-                                                    </div>
-
-                                                    <a onClick={showIcon} className=""  
-                                                    data-toggle="collapse" 
-                                                    href="#multiCollapseExample1" 
-                                                    aria-expanded="false" 
-                                                    aria-controls="multiCollapseExample1">
-                                                        <span className={`fe fe-chevron-${iconShow ? 'up' : 'down'} fs-17`}></span>
-                                                    </a>
-
-                                                </div>
-                        
-                                                <div className="collapse multi-collapse" id="multiCollapseExample1">
-                                                    
-                                                    <div className="plate-cont" style={{backgroundColor: colors.neutral.greyLight.three}}>
-
-                                                        {
-                                                            plate.items.map((fd, index) => 
-                                                            <>
-                                                                <div className="plate-fd" style={{color: colors.primary.green}}>
-
-                                                                    <div>
-                                                                        <span className="font-metromedium fs-14">{ fd.food.name }</span>
-                                                                        <span className="font-metromedium fs-14 pdl" style={{position: 'relative', top:'0px'}}>
-                                                                            &#x20A6;<i id={`fd-price${index}`} className="font-metromedium fs-14 ui-font-normal">{fd.price}</i>
-                                                                        </span>
-                                                                    </div>
-
-                                                                    <div className="ml-auto">
-
-                                                                        <Link onClick={(e) => inc(e, 'sub', fd, `fd-qty${index}`, `fd-price${index}`, `platefd${i}`, i)} className="minus"><span className="fe fe-minus fs-13"></span></Link>
-                                                                        <span id={`fd-qty${index}`} className="font-metromedium fs-13 qty">{fd.qty}</span>
-                                                                        <Link onClick={(e) => inc(e, 'add', fd, `fd-qty${index}`, `fd-price${index}`, `platefd${i}`, i)} className="plus"><span className="fe fe-plus fs-13"></span></Link>
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </>
-                                                            )
-                                                        }
-
-                                                    </div>
-
-                                                </div>
-                                                
-                                            </div>
-                                        </>
-
-                                    )
-                                }    
-                            </>
-                        }
-
-                        <div className="ui-line bg-silverlight"></div>
-
-                        <div className="dlv-bx">
-
-                            <h3 className="font-metromedium fs-14 mrgb0" style={{color: colors.primary.green}}>Delivery price</h3>
-                            <h3 className="font-metrobold fs-14 ml-auto mrgb0" style={{color: colors.neutral.grey}}>
-                                {
-                                    !locationContext.loading && storage.checkObject(locationContext.delivery) > 0 && 
-                                    <>&#x20A6;{ locationContext.delivery.price }</>
-                                }
-
-                                {/* {
-                                    !locationContext.loading && ( locationContext.delivery === null ) &&
-                                    <>&#x20A6;0</>
-                                } */}
-
-                                {
-                                    !locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 && dStart === true &&
-                                    <>&#x20A6;0</>
-                                }
-
-                                {
-                                    !locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 && dStart === false &&
-                                    <>Choose location</>
-                                }
-
-                                {
-                                    locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 &&
-                                    <>Getting price</>
-                                }
-
-                            </h3>
+                            <h3 onClick={(e) => { e.preventDefault(); console.log(plates)}} className="title fs-18 font-metrobold mrgb0" style={{color: colors.primary.green}}>Your Plate</h3>
 
                         </div>
 
+                    <div className="plate-bx mrgt1">
+
+                    {
+                        plates && plates.length > 0 &&
+                        <>
+                            {
+                                plates.map((plate, i) => 
+                                
+                                    <>
+                                        <div className="plate-itm">
+                                            <div className="plate-jumbo" style={{backgroundColor: colors.accent.pink}}>
+                                                <div>
+                                                    <span className="font-metrobold fs-15">Plate { (i+1) } - </span>
+                                                    <span id={`platefd${i}`} className="font-metromedium fs-14 pdl" style={{position: 'relative', top:'0px'}}>&#x20A6;{plate.totalPrice}</span>
+                                                    <p className="font-metromedium fs-12 mb-1">{ mergeFoodNames(plate.items) }</p>
+                                                </div>
+
+                                                <a onClick={showIcon} className=""  
+                                                data-toggle="collapse" 
+                                                href="#multiCollapseExample1" 
+                                                aria-expanded="false" 
+                                                aria-controls="multiCollapseExample1">
+                                                    <span className={`fe fe-chevron-${iconShow ? 'up' : 'down'} fs-17`}></span>
+                                                </a>
+
+                                            </div>
+
+                                            <div className="collapse multi-collapse" id="multiCollapseExample1">
+                                                
+                                                <div className="plate-cont" style={{backgroundColor: colors.neutral.greyLight.three}}>
+
+                                                    {
+                                                        plate.items.map((fd, index) => 
+                                                        <>
+                                                            <div className="plate-fd" style={{color: colors.primary.green}}>
+
+                                                                <div>
+                                                                    <span className="font-metromedium fs-14">{ fd.food.name }</span>
+                                                                    <span className="font-metromedium fs-14 pdl" style={{position: 'relative', top:'0px'}}>
+                                                                        &#x20A6;<i id={`fd-price${index}`} className="font-metromedium fs-14 ui-font-normal">{fd.price}</i>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div className="ml-auto">
+
+                                                                    <Link onClick={(e) => inc(e, 'sub', fd, `fd-qty${index}`, `fd-price${index}`, `platefd${i}`, i)} className="minus"><span className="fe fe-minus fs-13"></span></Link>
+                                                                    <span id={`fd-qty${index}`} className="font-metromedium fs-13 qty">{fd.qty}</span>
+                                                                    <Link onClick={(e) => inc(e, 'add', fd, `fd-qty${index}`, `fd-price${index}`, `platefd${i}`, i)} className="plus"><span className="fe fe-plus fs-13"></span></Link>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </>
+                                                        )
+                                                    }
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </>
+
+                                )
+                            }    
+                        </>
+                    }
+
+                    <div className="ui-line bg-silverlight"></div>
+
+                    <div className="dlv-bx">
+
+                        <h3 className="font-metromedium fs-14 mrgb0" style={{color: colors.primary.green}}>Delivery price</h3>
+                        <h3 className="font-metrobold fs-14 ml-auto mrgb0" style={{color: colors.neutral.grey}}>
+                            {
+                                !locationContext.loading && storage.checkObject(locationContext.delivery) > 0 && 
+                                <>&#x20A6;{ locationContext.delivery.price }</>
+                            }
+
+                            {/* {
+                                !locationContext.loading && ( locationContext.delivery === null ) &&
+                                <>&#x20A6;0</>
+                            } */}
+
+                            {
+                                !locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 && dStart === true &&
+                                <>&#x20A6;0</>
+                            }
+
+                            {
+                                !locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 && dStart === false &&
+                                <>Choose location</>
+                            }
+
+                            {
+                                locationContext.loading && storage.checkObject(locationContext.delivery) <= 0 &&
+                                <>Getting price</>
+                            }
+
+                        </h3>
+
                     </div>
 
+                    </div>
+
+                        </div>
+                    </div>
                     <div className="ui-line bg-silverlight mrgb1"></div>
                     
                     <div className="row">
-                        <div className="col-lg-5 mx-auto mrgb6">
+                        <div className="col-lg-5 mx-auto">
                             
-                   <div className="orderr">
-
+                   <div>
                         <div className="d-flex align-items-center mrgt2">
 
                         <h3 className="font-metromedium fs-14 mrgb0" style={{color: colors.primary.green}}>How do we find you?</h3>
@@ -886,28 +890,6 @@ const Plates = (props) => {
                                     <div className="load--bx food-empty">
                                         <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
                                     </div>
-
-                                </div>
-
-                            </>
-                        }
-
-                        {
-                            !userContext.loading && checkLogin() &&
-                            <>
-
-                                <div className="dmr-bx ui-text-center" style={{backgroundColor: colors.neutral.greyLight.three}}>
-
-                                   <div className="pdt2 pdb2">
-
-                                        <h3 className="font-metrobold fs-18" style={{color: colors.primary.green}}>Sorry!</h3>
-                                        <p className="font-metromedium fs-14 mrgb1" style={{color: colors.primary.green}}>
-                                            You cannot place an order as a restaurant. Please logout and login as a customer.
-                                        </p>
-
-                                        <Link onClick={(e) => logout(e)} to="" className="btn onwhite font-metromedium fs-14 pdr2 pdl2" style={{backgroundColor: colors.primary.green}}> Logout </Link>
-
-                                   </div>
 
                                 </div>
 
@@ -1162,7 +1144,9 @@ const Plates = (props) => {
 
             </section>
                 
+   
             <BottomBar plates={plates} totalPrice={totalPrice} process={processOrder} loading={loading} />
+  
             
         </>
     )

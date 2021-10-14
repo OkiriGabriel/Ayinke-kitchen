@@ -4,7 +4,7 @@ import FoodContext from '../../../context/food/foodContext';
 import LocationContext from '../../../context/location/locationContext'
 import Placeholder from '../../layouts/partials/Placeholder'
 import colors from '../../helpers/colors'
-import icons from '../../helpers/icons'
+
 
 const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food }) => {
 
