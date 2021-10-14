@@ -12,6 +12,8 @@ import FoodState from './context/food/foodState';
 import FoodItemState from './context/foodItem/foodItemState'
 
 
+
+// 
 // components: lazyload pages
 // const MainLoader = React.lazy(() => import('./components/helpers/MainLoader'));
 const Home = React.lazy(() => import('./components/pages/Home'));
