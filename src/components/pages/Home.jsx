@@ -67,7 +67,7 @@ const Home = (props) => {
                                     </div>
 
                                     <div className="ui-group-button mrgt3">
-                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue">Pick your location</Link>
+                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue">Food Items</Link>
                                     
                                     </div>
 
@@ -121,13 +121,13 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/your-location.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 how-it-works font-helveticamedium mrgt1 ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 how-it-works font-helveticabold mrgt1 ml-2 mrgb0">
                                             Set delivery location
                                             </h2>
                                         </div>
 
                                         <div className="mrgt">
-                                            <p className="brandccpurple fs-14 ui-text-center mt-4  how-it-works-p "> Lorem, ipsum dolor sit amet ipsum lorem  consectetur adipisicing</p>
+                                            <p className="brandccpurple fs-14 ui-text-center mt-4 font-helveticamedium  how-it-works-p "> Lorem, ipsum dolor sit amet ipsum lorem  consectetur adipisicing</p>
                                         </div>
 
                                     </div>
@@ -142,11 +142,11 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/24-hours.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1 how-it-works  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 font-helveticabold mrgt1 how-it-works  ml-2 mrgb0">
                                                Check available food
                                             </h2>
                                             <div className="mrgt">
-                                            <p className="brandccpurple fs-14 ui-text-center mt-4  how-it-works-p"> Lorem, ipsum lorem oplodp dolor sit amet consectetur adipisicing</p>
+                                            <p className="brandccpurple fs-14 ui-text-center mt-4 font-helveticamedium  how-it-works-p"> Lorem, ipsum lorem oplodp dolor sit amet consectetur adipisicing</p>
                                         </div>
                                         </div>
                                  
@@ -163,12 +163,12 @@ const Home = (props) => {
                                         <span className=" bg-brandccbluee ui-rounded">
                                             <img src="../../../../images/assets/checkout.png"  width="60px"alt="" />
                                         </span>
-                                        <h2 className="brandccpurple fs-25 font-helveticamedium mrgt1 how-it-works  ml-2 mrgb0">
+                                        <h2 className="brandccpurple fs-25 font-helveticabold mrgt1 how-it-works  ml-2 mrgb0">
                                                Order
                                             </h2>
                                         </div>
                                         <div className="mrgt">
-                                        <p className="brandccpurple fs-14 ui-text-center mt-4 how-it-works-p "> Lorem, ipsum dolor sit amet ipsum lorem oplodp dolor consectetur adipisicing</p>
+                                        <p className="brandccpurple fs-14 ui-text-center mt-4 how-it-works-p font-helveticamedium "> Lorem, ipsum dolor sit amet ipsum lorem oplodp dolor consectetur adipisicing</p>
                                         </div>
 
                                     </div>
@@ -208,7 +208,7 @@ const Home = (props) => {
 
                         <div className="text-data ui-text-center mrgt" style={{lineHeight: '22px'}}>
 
-                            <h3 className="fs-30 font-helveticamedium brandccpurple mrgb2">Dishes we offer</h3>
+                            <h3 className="fs-30 font-helveticabold brandccpurple mrgb2">Dishes we offer</h3>
 
                             <div className="row">
                                  <div className="col-md-4 mrgb1">
@@ -348,11 +348,11 @@ const Home = (props) => {
           Get Started 
         </h1>
 
-                <p className="onwhite fs-14 mrgt1 text-center "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
+                <p className="onwhite fs-14 mrgt1 text-center font-helveticamedium "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
        
         <div className="ui-group-button mrgt2 text-center">
             <Link to="/contact" className="btn btn-big bg-brandccred onwhite oop ui-hide-mobile-only">Check available food</Link>
-            <Link to="/donation" className="btn btn-big ghost onwhite order">Order Now</Link>
+            <Link to="/donation" className="btn btn-big ghost onwhite order font-helveticamedium">Order Now</Link>
         </div>
         
 

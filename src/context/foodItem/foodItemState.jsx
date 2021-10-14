@@ -113,7 +113,7 @@ const FoodItemState = (props) => {
 
         try {
 
-            await Axios.get(`${process.env.REACT_APP_API_URL}/food-items/restaurant/${id}${loc && loc !== '' ? '?location=' + loc : ''}`, config)
+            await Axios.get(`${process.env.REACT_APP_API_URL}/food-items/restaurant/${id}`, config)
             .then(async (resp) => {
                 
                 if(resp.data.error === false && resp.data.data.length > 0){

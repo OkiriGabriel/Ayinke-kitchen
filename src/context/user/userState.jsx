@@ -107,7 +107,7 @@ const UserState = (props) => {
     const getRestaurant = async(id) => {
 
         setLoading();
-        const url = storage.checkHex(id) ? `${process.env.REACT_APP_API_URL}/users/restaurants/${id}` : `${process.env.REACT_APP_API_URL}/users/find-by-username/${id}`;
+        const url = storage.checkHex(id) ? `${process.env.REACT_APP_API_URL}/users/restaurants` : `${process.env.REACT_APP_API_URL}/users/find-by-username/${id}`;
 
         try {
 
