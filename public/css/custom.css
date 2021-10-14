@@ -1398,7 +1398,7 @@ a.md-button{
 }
 
 .ui-group-button a, .ui-group-button .icon {
-  width: 21px;
+  width: auto;
 }
 
 .topbar .topbar-options .fw{
