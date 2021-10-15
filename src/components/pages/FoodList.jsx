@@ -9,6 +9,7 @@ import NavBar from '../layouts/partials/NavBar'
 // import UserContext from '../../context/user/userContext';
 // import LocationContext from '../../context/location/locationContext';
 // import FoodContext from '../../context/food/foodContext'
+import OrderModal from './order/OrderModal';
 import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
@@ -40,33 +41,78 @@ import Dropdown from '../layouts/partials/DropDown'
 
 
 const Home = (props) => {
-    const [filter, setFilter] = useState(false)
-    const [empty, setEmpty] = useState(false);
-    const [locName, setLocName] = useState('')
+    const [count, setCount] = useState(0);
+    const [sel, setSel] = useState(false);
+    const [show, setShow] = useState(false);
+    const [pricing, setPrincing] = useState(0);
+    const [closeIcon, setClose] = useState('plus')
 
     
     const [selected, setSelected] = useState({
         count: 0,
         total: 0,
         items: []
-    })
+    });
 
-
-    const selectFood = async (e, data) => {
-
-       
-    }
-
-    const getSelected = (val) => {
-
-        setEmpty(false);
-        setSelected({ ...selected, count: 0, total: 0, items: [] })
-       
-        setLocName(val.label)
-
-    }
-
+    useEffect(() => {
+        
     
+        
+    }, [])
+
+                  
+    const toggleModal = () => {
+        setShow(!show);
+    }
+
+
+
+    const inc = (e) => {
+        if(e) e.preventDefault()
+        setCount(count + 1);
+    }
+
+    const dec = (e) => {
+        if(e) e.preventDefault()
+
+        if(count < 1){
+            setCount(0)
+        }else{
+            setCount(count - 1);
+        }
+        
+
+    }
+
+    const select = (e) => {
+
+        if(e) e.preventDefault();
+
+        if(sel === false){
+            setClose('x');
+        }else{
+            setClose('plus')
+        }
+
+       setSel(!sel);
+
+
+    }
+
+    const getSelected = (e, t, price) => {
+        if(e) e.preventDefault();
+
+        if(t === 'add'){
+            setPrincing(pricing + parseFloat(price))
+        }
+
+        if(t === 'sub'){
+            setPrincing(pricing - parseFloat(price))
+        }
+        
+    } 
+
+
     return(
         <>  
                 <NavBar position={true} />
@@ -104,8 +150,6 @@ const Home = (props) => {
                 </div>
             </section>
          
-
-         
             <div id="pubfood" className="food-items mrgt2  container">
 
                     {/* <Alert show={aData.show} type={aData.type} message={aData.message} /> */}
@@ -113,16 +157,67 @@ const Home = (props) => {
                  <div className="">
                     <div className="row food-disp pub">
                         <>
-                            <FoodItem selectFood={selectFood} />
-                            {/* <Food food={f} selectFood={selectFood} loading={locationContext.loading} bg={ colors.accents[i] } index={i} locations={locationContext.locations} foodItem={f} /> */}
+                        <FoodItem 
+                            food="Rice + Beans"
+                            price="200" 
+                            get={getSelected}
+                            />
+
+                      
+                            <FoodItem 
+                            food="Jollof + Chicken"
+                            price="5000" 
+                            get={getSelected}
+                            />
+
+                        <FoodItem 
+                            food=" Yam + Beans"
+                            price="1200" 
+                            get={getSelected}
+                            />
+
+                        <FoodItem 
+                            food="Spagetti + Beans"
+                            price="200" 
+                            get={getSelected}
+                            />
                         </>    
 
                     </div>
                 </div>
 
             </div>
+           
 
-                <BottomBar   count={selected.count} total={selected.total} items={selected.items} />
+            <footer>
+                <div id="bottom-bar" className="bottom-bar food">
+
+                    <div className="bar-food">
+                        <Link  className="pdr1 mrl"><span className="fe fe-chevron-left fs-15" style={{color: colors.neutral.grey, position:'relative', top:'5px'}}></span></Link>
+                        <img src="../../../images/icons/dfood2.svg" alt="food icon"/>
+                        <sup className="fd-sup">{ count }</sup>
+                    </div>
+
+                    <div className="bar-food">
+                        <p className="mrgb0">
+                            <span className="title font-metrolight fs-14 pdr">Total:</span>
+                            <span className="title font-metrobold fs-15">&#x20A6;{ pricing.toFixed(2) }</span>
+                        </p>
+                    </div>
+
+                    <div className="ml-auto">
+
+                        <div className="bar-food">
+                            <Link  onClick={toggleModal} className={`bar-fdbtn font-metromedium fs-14 onwhite  `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
+                        </div> 
+
+                    </div>
+
+                </div>
+            </footer>
+
+
+            <OrderModal isShow={show}  closeModal={toggleModal} />
             
         </>
     )

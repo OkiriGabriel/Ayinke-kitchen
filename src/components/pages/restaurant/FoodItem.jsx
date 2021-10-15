@@ -6,228 +6,66 @@ import Placeholder from '../../layouts/partials/Placeholder'
 import colors from '../../helpers/colors'
 
 
-const FoodItem = ({ foodItem, locations, loading, bg, index, selectFood, food }) => {
+const FoodItem = ({ food, price, get }) => {
 
 
 
-    const [closeIcon, setClose] = useState('plus')
-    const [locFoods, setLocFood] = useState([]);
-    let qfd = [];
+   
+    const [closeIcon, setClose] = useState('plus');
+    const [sel, setSel] = useState(false)
+   
+
 
     useEffect(() => {
-        
-    
-        
+
     }, [])
 
-    const select = (e, id) => {
+    const select = (e) => {
 
         if(e) e.preventDefault();
 
-        const elem = document.getElementById(id);
-
-        if(elem && elem.classList.contains('food-selected') && closeIcon === 'x'){
-
-            elem.classList.remove('food-selected')
-            setClose('plus')
-
-         
-            selectFood(e)
-
-        }else{
-
-            elem.classList.add('food-selected')
+        if(sel === false){
             setClose('x');
-            
-
-
-            selectFood(e,)
-        }
-    }
-    
-    const selec = (e, id) => {
-
-        if(e) e.preventDefault();
-
-        const elem = document.getElementById(id);
-
-        if(elem && elem.classList.contains('food-selected') && closeIcon === 'x'){
-
-            elem.classList.remove('food-selected')
-            setClose('plus')
-
-         
-            selectFood(e)
-
+            get(e, 'add', price)
         }else{
-
-            elem.classList.add('food-selected')
-            setClose('x');
-            
-
-
-            selectFood(e,)
+            setClose('plus');
+            get(e, 'sub', price)
         }
-    }
 
+       setSel(!sel);
 
-    const formatType = (n, t) => {
-
-        let cmb = t + ' ' + n;
-        return cmb;
 
     }
-
-    const getLoc = (id) => {
-        
-        const loc = locations.find((l) => l._id === id);
-        return loc ? loc.name : '';
-    }
-
-
 
 
     return (
         <>  
+          <div className="col-md-3 col-6 mrgt2">
+            <div id={`food-box`} className={`food-box ${sel ? 'selected' : ''}`}>
 
-            <div className="col-md-3 col-6 mrgt2">
-
-                <div id={`food-box${index}`} className="cont-bx" style={{backgroundColor: "rgb(248 248 248)"}}>
-
+                  
                     <div className="ui-text-center pdt pdb1">
                         <img class="img-icon mx-auto" src={`../../images/assets/dish.png`} alt="icon"/>
                     </div>
+                    <p className="font-helveticabold fs-15 mrgb0" >{ food }</p>
 
                     <div className="ui-text-center">
-                        <p className="title font-helveticabold fs-15 mrgb0">Rice and Chicken</p>
-                        <div className="">
-                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
-                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
-                       </div>
-                
-                           {/* <div className="ui-text-center pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
-                           </div> */}
-                    
-                           <div className="d-flex align-items-center pdt pdb">
-                                {/* <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span> */}
+                        <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;{ price  }</span>
+                        <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
+                    </div>
 
-                                <div className="item-btn ml-auto">
-                                    <Link onClick={e => select(e, `food-box${index}`)} className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
+
+                    <div className="item-btn ml-auto">
+                    <Link onClick={e => select(e)} className="item-btn"><span className={`fe fe-${closeIcon} fs-14`} style={{color: colors.primary.green}}></span></Link>
                                 </div>
-                            </div>
                     
 
                     </div>
-
-                </div>
-
-            </div>
-
-            <div className="col-md-3 col-6 mrgt2">
-
-                <div id={`food-box${index}`} className="cont-bx" style={{backgroundColor: "rgb(248 248 248)"}}>
-
-                    <div className="ui-text-center pdt pdb1">
-                        <img class="img-icon mx-auto" src={`../../../images/assets/hot.png`} alt="icon"/>
-                    </div>
-
-                    <div className="ui-text-center">
-                        <p className="title font-helveticabold fs-15 mrgb0">Beans and Rice</p>
-                        <div className="">
-                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;1200</span>
-                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
-                       </div>
                 
-                           {/* <div className="ui-text-center pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
-                           </div> */}
-                    
-                           <div className="d-flex align-items-center pdt pdb">
-                                {/* <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span> */}
-
-                                <div className="item-btn ml-auto">
-                                    <Link  onClick={e => selec(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
-                                </div>
-                            </div>
-                    
-
                     </div>
-
-                </div>
-
-            </div>
+           
 
 
-            <div className="col-md-3 col-6 mrgt2">
-
-                <div id={`food-box${index}`} className="cont-bx" style={{backgroundColor: "rgb(248 248 248)"}}>
-
-                    <div className="ui-text-center pdt pdb1">
-                        <img class="img-icon mx-auto" src={`../../../images/assets/breakfast.png`} alt="icon"/>
-                    </div>
-
-                    <div className="ui-text-center">
-                        <p className="title font-helveticabold fs-15 mrgb0">Rice, Chicken, Platain and Beef</p>
-                        <div className="">
-                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2000</span>
-                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
-                       </div>
-                
-                           {/* <div className="ui-text-center pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
-                           </div> */}
-                    
-                           <div className="d-flex align-items-center pdt pdb">
-                                {/* <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span> */}
-
-                                <div className="item-btn ml-auto">
-                                    <Link onClick={e => select(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
-                                </div>
-                            </div>
-                    
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <div className="col-md-3 col-6 mrgt2">
-
-                <div id={`food-box${index}`} className="cont-bx" style={{backgroundColor: "rgb(248 248 248)"}}>
-
-                    <div className="ui-text-center pdt pdb1">
-                        <img class="img-icon mx-auto" src={`../../../images/assets/roasted-chicken.png`} alt="icon"/>
-                    </div>
-
-                    <div className="ui-text-center">
-                        <p className="title font-helveticabold fs-15 mrgb0">Roasted Chicken</p>
-                        <div className="">
-                            <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;2500</span>
-                            <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
-                       </div>
-                
-                           {/* <div className="ui-text-center pdb">
-                                <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span>
-                           </div> */}
-                    
-                           <div className="d-flex align-items-center pdt pdb">
-                                {/* <span className={`fs-12 mrgb0 pdr ${foodItem.status ? 'success' : 'onaliz'}`}>{foodItem.status ? 'Available' : 'Unavailable'}</span> */}
-
-                                <div className="item-btn ml-auto">
-                                    <Link onClick={e => select(e, `food-box${index}`)} to="" className=""><span className={`fe fe-${closeIcon} fs-20`} style={{color: colors.primary.green}}></span></Link>
-                                </div>
-                            </div>
-                    
-
-                    </div>
-
-                </div>
-
-            </div>
 
         </>
     )

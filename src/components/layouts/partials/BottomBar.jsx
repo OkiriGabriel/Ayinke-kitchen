@@ -9,7 +9,7 @@ import storage from '../../helpers/storage'
 
 import OrderModal from '../../pages/order/OrderModal'
 
-const BottomBar = ({ count, total, items, restId, check }) => {
+const BottomBar = ({ count, pricing, items, restId, check }) => {
 
     const userContext =  useContext(UserContext);
 
@@ -71,7 +71,7 @@ const BottomBar = ({ count, total, items, restId, check }) => {
                     <div className="bar-food">
                         <p className="mrgb0">
                             <span className="title font-metrolight fs-14 pdr">Total:</span>
-                            <span className="title font-metrobold fs-15">&#x20A6;{total}</span>
+                            <span className="title font-metrobold fs-15">&#x20A6;{ pricing.toFixed(2) }</span>
                         </p>
                     </div>
 
