@@ -265,6 +265,19 @@ const FoodItems = (props) => {
 
                             </div>
 
+                            <div className="col-lg-6 col-md-6 col-sm-12">   
+
+                                <div className="mrgb2">
+
+                                    <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                        <h1 className="fs-30 brand-green font-helveticabold mrgb0">{ foodItemContext.total }</h1>
+                                        <p className="mrgb0 brand-green fs-13 font-helvetica">{ !foodItemContext.loading ? foodItemContext.total : 0 } Status </p>
+                                    </div>
+
+                                </div>
+
+                                </div>
+
                         </div>
                     
                         <div className="row">
@@ -275,9 +288,9 @@ const FoodItems = (props) => {
 
                                     <h2 className="font-helveticamedium mb-2">Food Items</h2>
 
-                                    <div className="ui-dashboard-card">
+                                    <div className="ui-dashboard-card frnd-list">
 
-                                        <table className="table custom-table">
+                                        <table className="table custom-table  ">
 
                                             <thead>
                                                 <tr className="font-helvetica">
@@ -318,7 +331,7 @@ const FoodItems = (props) => {
                                                     <td className="font-helvetica">1500</td>
                                                     <td className="font-helvetica">Available</td>
                                                     <td>
-                                                        <div className="ui-group-button">
+                                                        <div className="ui-group-button del-btn">
                                                             <Link 
                                                             onClick={toggleEditMeal}
                                                             className="text-primary">
@@ -340,7 +353,7 @@ const FoodItems = (props) => {
                                                     <td className="font-helvetica">1500</td>
                                                     <td className="font-helvetica">Available</td>
                                                     <td>
-                                                        <div className="ui-group-button">
+                                                        <div className="ui-group-button del-btn">
                                                             <Link 
                                                             onClick={toggleEditMeal}
                                                             className="text-primary">
@@ -362,7 +375,7 @@ const FoodItems = (props) => {
                                                     <td className="font-helvetica">1500</td>
                                                     <td className="font-helvetica">Available</td>
                                                     <td>
-                                                        <div className="ui-group-button">
+                                                        <div className="ui-group-button del-btn">
                                                             <Link 
                                                             onClick={toggleEditMeal}
                                                             className="text-primary">
@@ -384,7 +397,7 @@ const FoodItems = (props) => {
                                                     <td className="font-helvetica">1500</td>
                                                     <td className="font-helvetica">Available</td>
                                                     <td>
-                                                        <div className="ui-group-button">
+                                                        <div className="ui-group-button del-btn">
                                                             <Link 
                                                             onClick={toggleEditMeal}
                                                             className="text-primary">

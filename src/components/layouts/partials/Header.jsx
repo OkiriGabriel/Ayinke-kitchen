@@ -6,9 +6,19 @@ const Header = () => {
     return(
         <>
             <nav className="navbar navbar-dark dash-bar">
-                <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                </button>
+                                <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span className="menu_toggle">
+                            <span className="hamburger">
+                                <span />
+                                <span />
+                                <span />
+                            </span>
+                            <span className="hamburger-cross">
+                                <span />
+                                <span />
+                            </span>
+                            </span>
+                        </button>
                 <ul className="navbar-nav px-3">
                 
                 </ul>

@@ -2522,7 +2522,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-
 .food-box a .fe{
   color: #000 !important;
 }
@@ -2573,4 +2572,23 @@ input[type=number]::-webkit-outer-spin-button {
 
 form .form-control:focus {
   border: 1px solid rgb(228, 228, 228) !important;
+}
+
+.frnd-list {
+  height: 308px;
+  max-height: fit-content;
+  min-height: fit-content;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.frnd-list::-webkit-scrollbar{
+  width: 4px;
+  background: transparent;
+  display: none;
+}
+.frnd-list::-webkit-scrollbar-thumb{
+  width: 4px;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.2);
 }

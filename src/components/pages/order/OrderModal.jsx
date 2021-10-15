@@ -210,7 +210,7 @@ const OrderModal = ({isShow, closeModal}) => {
 
                     <div className="row">
 
-                        <div className="col-md-6 inline">
+                        <div className="col-md-6 col-6 inline">
 
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>First name</label>
@@ -222,7 +222,7 @@ const OrderModal = ({isShow, closeModal}) => {
 
                         </div>
 
-                        <div className="col-md-6 inline">
+                        <div className="col-md-6 col-6 inline">
 
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Email</label>
@@ -238,7 +238,7 @@ const OrderModal = ({isShow, closeModal}) => {
 
                     <div className="row">
 
-                        <div className="col-md-6 inline">
+                        <div className="col-md-6 col-6 inline">
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Phone</label>
                                 <input 
@@ -249,7 +249,7 @@ const OrderModal = ({isShow, closeModal}) => {
                             </div>
                         </div>
 
-                        <div className="col-md-6 inline">
+                        <div className="col-md-6 col-6 inline">
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
                                 <input 

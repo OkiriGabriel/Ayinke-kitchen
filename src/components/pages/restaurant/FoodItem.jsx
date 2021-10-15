@@ -47,9 +47,9 @@ const FoodItem = ({ food, price, get, imgSrc }) => {
                     <div className="ui-text-center pdt pdb1">
                         <img class="img-icon mx-auto ui-rounded-small " src={imgSrc} alt="icon"/>
                     </div>
-                    <p className="font-helveticabold fs-15 mrgb0" >{ food }</p>
+                    <p className="font-helveticabold food-lits fs-15 mrgb0" >{ food }</p>
 
-                    <div className="ui-text-center">
+                    <div className="ui-text-center food-lits">
                         <span className="font-helveticamedium fs-14 mrgb0 pdr">&#x20A6;{ price  }</span>
                         <span className="font-helveticamedium fs-13 mrgb0" style={{color: '#8799a5'}}>/plate</span>
                     </div>

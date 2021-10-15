@@ -173,18 +173,21 @@ const Home = (props) => {
                             />
 
                         <FoodItem 
-                            imgSrc="../../images/assets/food-4.jpg"
-                            food=" Yam + Beans"
-                            price="1200" 
+                            food="Rice + Beans"
+                            imgSrc="../../images/assets/food-1.jpeg"
+                            price="200" 
                             get={getSelected}
                             />
 
-                        <FoodItem 
-                            food="Spagetti + Beans"
-                            price="200" 
-                            imgSrc="../../images/assets/food-2.jpg"
+                      
+                            <FoodItem 
+                            food="Jollof + Chicken"
+                            imgSrc="../../images/assets/food-3.jpg"
+                            price="5000" 
                             get={getSelected}
                             />
+
+                      
                         </>    
 
                     </div>
@@ -204,8 +207,8 @@ const Home = (props) => {
 
                     <div className="bar-food">
                         <p className="mrgb0">
-                            <span className="title font-metrolight fs-14 pdr">Total:</span>
-                            <span className="title font-metrobold fs-15">&#x20A6;{ pricing.toFixed(2) }</span>
+                            <span className="title font-metrolight fs-14 pdr food-lit">Total:</span>
+                            <span className="title font-metrobold fs-15 food-lit">&#x20A6;{ pricing.toFixed(2) }</span>
                         </p>
                     </div>
 

@@ -46,6 +46,19 @@ const Locations = () => {
 
                             </div>
 
+                            <div className="col-lg-6 col-md-6 col-sm-12">   
+
+                                <div className="mrgb2">
+
+                                    <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                        <h1 className="fs-30 brand-green font-helveticabold mrgb0">0</h1>
+                                        <p className="mrgb0 brand-green fs-13 font-helvetica">Count(s) </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
                             
                         <div className="row">
@@ -56,7 +69,7 @@ const Locations = () => {
 
                                     <h2 className="font-helveticamedium mb-2">Locations</h2>
                                     
-                                    <div className="ui-dashboard-card">
+                                    <div className="ui-dashboard-card frnd-list">
 
 
                                         <table className="table custom-table">

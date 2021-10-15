@@ -49,7 +49,7 @@ const Orders = () => {
 
                                     <h2 className="font-helveticamedium mb-2">Orders</h2>
                                     
-                                    <div className="ui-dashboard-card">
+                                    <div className="ui-dashboard-card frnd-list">
 
 
                                         <table className="table custom-table">
@@ -118,7 +118,7 @@ const Orders = () => {
 
                                     <h2 className="font-helveticamedium mb-2">Transactions</h2>
                                     
-                                    <div className="ui-dashboard-card">
+                                    <div className="ui-dashboard-card frnd-list">
 
 
                                         <table className="table custom-table">
