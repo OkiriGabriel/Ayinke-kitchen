@@ -47,7 +47,7 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                                     Add Food Item
                                 </h2> */}
                                 <div className="ml-auto">
-                                    <Link onClick={closeModal} className="dot-close">
+                                    <Link onClick={closeModal} className="dot-close fe-order" style={{ position: 'relative', top: '-2px' }}>
                                         <span className="fe fe-x brandcox-fireflydark fs-8"></span>
                                     </Link>
                                 </div>

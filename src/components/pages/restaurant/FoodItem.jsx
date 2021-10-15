@@ -6,7 +6,7 @@ import Placeholder from '../../layouts/partials/Placeholder'
 import colors from '../../helpers/colors'
 
 
-const FoodItem = ({ food, price, get }) => {
+const FoodItem = ({ food, price, get, imgSrc }) => {
 
 
 
@@ -45,7 +45,7 @@ const FoodItem = ({ food, price, get }) => {
 
                   
                     <div className="ui-text-center pdt pdb1">
-                        <img class="img-icon mx-auto" src={`../../images/assets/dish.png`} alt="icon"/>
+                        <img class="img-icon mx-auto ui-rounded-small " src={imgSrc} alt="icon"/>
                     </div>
                     <p className="font-helveticabold fs-15 mrgb0" >{ food }</p>
 

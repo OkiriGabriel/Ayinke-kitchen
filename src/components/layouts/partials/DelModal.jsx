@@ -75,7 +75,7 @@ const DelModal = ({ isShow, closeModal, actionType, remove, deleteType }) => {
                             <div className="modal-header-box">
                                 <h2 className="font-metropolisregular fs-16">Delete Meal</h2>
                                 <div className="ml-auto">
-                                    <Link onClick={closeModal} style={{ position: 'relative', top: '-3px' }}>
+                                    <Link onClick={closeModal}  className="dot-close fe-order" style={{ position: 'relative', top: '-3px' }}>
                                         <span className="fe fe-x on-cord-o fs-13"></span>
                                     </Link>
                                 </div>

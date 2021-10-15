@@ -159,6 +159,7 @@ const Home = (props) => {
                         <>
                         <FoodItem 
                             food="Rice + Beans"
+                            imgSrc="../../images/assets/food-1.jpeg"
                             price="200" 
                             get={getSelected}
                             />
@@ -166,11 +167,13 @@ const Home = (props) => {
                       
                             <FoodItem 
                             food="Jollof + Chicken"
+                            imgSrc="../../images/assets/food-3.jpg"
                             price="5000" 
                             get={getSelected}
                             />
 
                         <FoodItem 
+                            imgSrc="../../images/assets/food-4.jpg"
                             food=" Yam + Beans"
                             price="1200" 
                             get={getSelected}
@@ -179,6 +182,7 @@ const Home = (props) => {
                         <FoodItem 
                             food="Spagetti + Beans"
                             price="200" 
+                            imgSrc="../../images/assets/food-2.jpg"
                             get={getSelected}
                             />
                         </>    

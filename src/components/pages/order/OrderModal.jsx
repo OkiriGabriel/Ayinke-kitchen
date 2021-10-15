@@ -15,10 +15,9 @@ import lottieSuccess from '../../_data/check-green.json'
 
 
 const OrderModal = ({isShow, closeModal}) => {
-
     const [step, setStep] = useState(0);
-    const [totalPrice, setPrice] = useState(0);
-    const [plates, setPlates] = useState([]);
+
+    const [count, setCount] = useState(0);
     const [iconShow, setIcon] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showAdd, setShowAdd] = useState(false)
@@ -53,6 +52,24 @@ const OrderModal = ({isShow, closeModal}) => {
     const showIcon = () => {
         setIcon(!iconShow);
     }
+
+    const inc = (e) => {
+        if(e) e.preventDefault()
+        setCount(count + 1);
+    }
+
+    const dec = (e) => {
+        if(e) e.preventDefault()
+
+        if(count < 1){
+            setCount(0)
+        }else{
+            setCount(count - 1);
+        }
+        
+
+    }
+
  
 
 
@@ -154,149 +171,148 @@ const OrderModal = ({isShow, closeModal}) => {
                 size="sm"
                 fade={false}
                 keyboard={false}
-                aria-labelledby="medium-modal"
+                aria-labelledby="small-modal"
                 centered
-                className="md--modal"
+                className="custom-modal rem-modal"
             >
 
-                <Modal.Body>
+<Modal.Body>
 
-                     <div className="d-flex">
+<div className="modal-box">
 
-                        <div className="dm--dbx ui-full-bg-norm">
-                            <div className="dm--d">
-                                
-                                <form className="foorm">
-                                <h2 className="brandcox-firefly fs-18">Meal Quantity</h2>
-                                    <div className="value-button" id="decrease" >-</div>
-                                    <input type="number" id="number" defaultValue={0} />
-                                    <div className="value-button" id="increase" >+</div>
-                                </form>
+    <div className="modal-sidebar"></div>
+
+    <div className="modal-content-box">
+
+        <div className="modal-header-box">
+            <h2 className=" font-helveticabold fs-16">Checkout</h2>
+            <div className="ml-auto">
+                <Link className="fe-order" onClick={closeModal} style={{ position: 'relative', top: '-3px' }}>
+                    <span className="fe fe-x on-cord-o fs-13"></span>
+                </Link>
+            </div>
+        </div>
+
+        <div className="modal-content-area">
+
+            
+        <form className="foorm">
+                    <h2 className="brandcox-firefly font-helveticamedium mb-3 fs-13">QTY of meal </h2>
+                        <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
+                        <input type="number" id="number" value={count} defaultValue={0} />
+                        <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
+                    </form>
+
+        <form className="gnr-for mrgt1" onSubmit={(e) => e.preventDefault()}>
+        <p className="brandcox-firefly font-helveticamedium fs-13 mb-2  ">please confirm your order and checkout</p>
+
+            <Alert show={aData.show} type={aData.type} message={aData.message} />
+
+                    <div className="row">
+
+                        <div className="col-md-6 inline">
+
+                            <div className="form-group">
+                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>First name</label>
+                                <input 
+                                type="text" 
+                                className="form-control font-metrolight fs-13" 
+                                placeholder="E.g. Wale" />
+                            </div>
+
+                        </div>
+
+                        <div className="col-md-6 inline">
+
+                            <div className="form-group">
+                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Email</label>
+                                <input 
+                                type="text" 
+                                className="form-control font-metrolight fs-13" 
+                                placeholder="yourmail@you.com" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className="row">
+
+                        <div className="col-md-6 inline">
+                            <div className="form-group">
+                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Phone</label>
+                                <input 
+                    
+                                type="text" 
+                                className="form-control font-metrolight fs-13" 
+                                placeholder="080xxx" />
                             </div>
                         </div>
-                        <div className="dm--body">
 
-                            <div className="d-flex align-items-center mrgb1">
-                                <h2 className="brandcox-firefly fs-18">
-                                    Let us know what you think
-                                </h2>
-                                <div className="ml-auto">
-                                    <Link onClick={closeModal} className="dot-close">
-                                        <span className="cox-x brandcox-fireflydark fs-8"></span>
-                                    </Link>
-                                </div>
-                            </div> 
-
-                            <div className="dm--ct">
-
-               
-                            <form className="gnr-form mrgt1" onSubmit={(e) => e.preventDefault()}>
-
-<Alert show={aData.show} type={aData.type} message={aData.message} />
-
-<div className="row">
-
-    <div className="col-md-6 inline">
-
-        <div className="form-group">
-            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>First name</label>
-            <input 
-            type="text" 
-            className="form-control font-metrolight fs-13" 
-            placeholder="E.g. Wale" />
-        </div>
-
-    </div>
-
-    <div className="col-md-6 inline">
-
-        <div className="form-group">
-            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Email</label>
-            <input 
-            type="text" 
-            className="form-control font-metrolight fs-13" 
-            placeholder="yourmail@you.com" />
-        </div>
-
-    </div>
-
-</div>
-
-<div className="row">
-
-    <div className="col-md-6 inline">
-        <div className="form-group">
-            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Phone</label>
-            <input 
-  
-            type="text" 
-            className="form-control font-metrolight fs-13" 
-            placeholder="080xxx" />
-        </div>
-    </div>
-
-    <div className="col-md-6 inline">
-        <div className="form-group">
-            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
-            <input 
-  
-  type="text" 
-  className="form-control font-metrolight fs-13" 
-  placeholder="Enter location" />
-        </div>
-    </div>
-
-</div>
-
-<div className="form-group">
-    <div className="d-flex align-items-center mb">
-        <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
-        <Link onClick={(e) => toggleAdd(e)} className="font-metromedium fs-13 ml-auto mb-1" style={{color: colors.primary.orange}}>
-            {
-                showAdd ? 'Remove' : 'Add description'
-            }
-        </Link>
-    </div>
-    <input 
-
-    type="text" 
-    className="form-control font-metrolight fs-13" 
-    placeholder="your address" />
-</div>
-
-{
-    showAdd &&
-    <div className="form-group">
-    <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Description</label>
-        <textarea 
-    
-        type="text" 
-        className="form-control font-metrolight fs-13" 
-        placeholder="Type here"></textarea>
-    </div>
-}
-
-
-<div className="form-group">
-                                    
-                                    {
-                                        loading &&
-                                        <button className="btn btn-lg btn-block onwhite"><ButtonSpinner imageUrl={`../../../images/assets/spinner-white.svg`} /></button>
-                                    }
-                                    {
-                                        !loading &&
-                                        <button className="btn btn-lg btn-block bg-orange onwhite">Order Now</button>
-                                    }
-                                </div>
-
-</form>
-
-                                
-                            </div>                                  
+                        <div className="col-md-6 inline">
+                            <div className="form-group">
+                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
+                                <input 
+                    
+                    type="text" 
+                    className="form-control font-metrolight fs-13" 
+                    placeholder="Enter location" />
+                            </div>
                         </div>
-                    </div> 
-                     
-                </Modal.Body>
+
+                    </div>
+
+                    <div className="form-group">
+                        <div className="d-flex align-items-center mb">
+                            <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
+                            <Link onClick={(e) => toggleAdd(e)} className="font-metromedium fs-13 ml-auto mb-1" style={{color: colors.primary.orange}}>
+                                {
+                                    showAdd ? 'Remove' : 'Add description'
+                                }
+                            </Link>
+                        </div>
+                        <input 
+
+                        type="text" 
+                        className="form-control font-metrolight fs-13" 
+                        placeholder="your address" />
+                    </div>
+
+                    {
+                        showAdd &&
+                        <div className="form-group">
+                        <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Description</label>
+                            <textarea 
+                        
+                            type="text" 
+                            className="form-control font-metrolight fs-13" 
+                            placeholder="Type here"></textarea>
+                        </div>
+                    }
+
+
+                    <div className="form-group">
+                                                        
+                        {
+                            loading &&
+                            <button className="btn btn-lg btn-block onwhite"><ButtonSpinner imageUrl={`../../../images/assets/spinner-white.svg`} /></button>
+                        }
+                        {
+                            !loading &&
+                            <button className="btn btn-lg btn-block bg-orange onwhite">Order Now</button>
+                        }
+                    </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</Modal.Body>
 
             </Modal>
         

@@ -61,8 +61,8 @@ const Locations = () => {
 
                                         <table className="table custom-table">
 
-                                            <thead>
-                                                <tr className="font-helvetica">
+                                            <thead >
+                                                <tr className="font-helvetica  py-8 ">
                                                     <th>S/N</th>
                                                     <th>Address</th>
                                                     <th>Delivery Price</th>
