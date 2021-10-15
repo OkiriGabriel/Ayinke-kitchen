@@ -3261,9 +3261,9 @@ h6 {
   color: #1f8ceb;
 } */
 
-.btn:hover{
+/* .btn:hover{
   background-color: rgba(255, 255, 255, 0.178) !important;
-}
+} */
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
@@ -4164,7 +4164,7 @@ iframe {
   margin-top: 60px !important;
 }
 
-.modal-backdrop {
+/* .modal-backdrop {
   background-color: rgba(10,11,156,0.95);
-}
+} */
 

@@ -6,10 +6,7 @@ import * as moment from 'moment';
 import Axios from 'axios'
 import LottiePlayer from '../../layouts/partials/LottiePlayer'
 
-
-import GoBack from './GoBack'
-import TopBar from './TopBar'
-import OverView from './OverView'
+import DashTopBar from './DashTopBar'
 
 import FoodContext from '../../../context/food/foodContext'
 import FoodItemContext from '../../../context/foodItem/foodItemContext'
@@ -336,130 +333,141 @@ const AddFood = (props) => {
         }
     }
 
+    const goBack = (e) => {
+        if(e) e.preventDefault();
+        history.goBack();
+    };
 
+    const barLinks = () => {
+
+        return(
+            <>
+                <div className="ui-group-button">
+
+                    <Link onClick={(e) => goBack(e)} className="btn btn-sm btn-primary onwhite fs-15">Back</Link>
+
+                </div>
+            </>
+        )
+
+    }
 
     return (
 
         <>
-{/* 
-            <TopBar background={'light'}  /> */}
+            <DashTopBar pageTitle="Add Food" linkComps={barLinks}  /> 
 
             <section className="mrgb6">
                 <div className="container">
-                            <div className="row">
-                                <div className="col-lg-7 mx-auto">
-                                    
-                                        <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                                            <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                                            <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
-                                        </div>
-
-                                        <div className="d-flex align-items-center mrgt1 ui-text-center">
-                                            <h3 className="title fs-16 font-metrobold mrgb0 text-center mrgt1" style={{color: colors.primary.green}}>Add new food item</h3>
-                                        </div>
-
-                                </div>
-                            </div>
-                </div>
                     <div className="row">
-                        <div className="col-lg-5 mx-auto">
-                                <div className="mrgt2 bg-white">
+                        <div className="col-lg-7 mx-auto">
+                            
+                                <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                    <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
+                                    <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
+                                </div>
 
-                                    {
-                                        step === 0 &&
-                                        <form className="gnr-form" onSubmit={(e) => e.preventDefault()}>
-
-                                        <Alert show={aData.show} type={aData.type} message={aData.message} />
-
-                                        <div className="form-group mb-3">
-
-                                            <div className="align-items-center">
-                                                <div className="">
-                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Name</label>
-                                                    <input 
-                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                                    type="text" placeholder="Rice and chicken" className="form-control" />
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-
-                                             <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="form-group mb-3">
-                                                        <div className="">
-                                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Price</label>
-                                                            <input 
-                                                            defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                                            onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                                            type="number" placeholder="0.00" className="form-control" />
-                                                        </div>
-                                                
-                                                    </div>
-                                                </div>
-
-                                                <div className="col-md-6">
-                                                    <div className="form-group mb-3">
-                                                        <div className="">
-                                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Status</label>
-                                                            <input 
-                                                            defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                                            onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                                            type="number" placeholder="Available" className="form-control" />
-                                                        </div>
-                                                
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        <div className="form-group mb-3">
-
-                                            <div className="align-items-center">
-                                                <div className="">
-                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Upload photo</label>
-                                                    <input 
-                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
-                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
-                                                    type="file" placeholder="0.00" className="form-control" />
-                                                </div>
-                                                
-                                            </div>
-                                            </div>
-
-{/* 
-                                        <div className="form-group mb-3">
-                                            <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Food status</label>
-                                            <DropDown options={getStatus} className="fd-drop" selected={selectStatus} placeholder={`Select`} search={false}  />
-                                        </div> */}
-
-
-
-                                        <div className="mrgb1 ui-text-center mrgt3">
-                                            {
-                                                loading ? (
-                                                    <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3 disabled-show" style={{backgroundColor: colors.primary.green}}><img src="../../../images/assets/spinner-white.svg" alt="spinner" width="30px" /></Link>
-                                                ): (
-                                                    <Link onClick={(e) => submit(e)} className="btn bg-orange btn-block onwhite fs-16 mb-3" style={{backgroundColor: colors.primary.green}}>Submit</Link>
-                                                )
-                                            }
-                                        </div>
-
-                                    </form>
-                                    }
-
-                                    {
-                                        step === 1 &&
-                                        <Message />
-                                    }
-
-                                    </div>
                         </div>
                     </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-lg-5 mx-auto">
+                        <div className="mrgt2 bg-white">
+
+                            {
+                                step === 0 &&
+                                <form className="gnr-form" onSubmit={(e) => e.preventDefault()}>
+
+                                <Alert show={aData.show} type={aData.type} message={aData.message} />
+
+                                <div className="form-group mb-3">
+
+                                    <div className="align-items-center">
+                                        <div className="">
+                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Name</label>
+                                            <input 
+                                            defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
+                                            onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
+                                            type="text" placeholder="Rice and chicken" className="form-control" />
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                        <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group mb-3">
+                                                <div className="">
+                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Price</label>
+                                                    <input 
+                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
+                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
+                                                    type="number" placeholder="0.00" className="form-control" />
+                                                </div>
+                                        
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-6">
+                                            <div className="form-group mb-3">
+                                                <div className="">
+                                                    <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Status</label>
+                                                    <input 
+                                                    defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
+                                                    onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
+                                                    type="number" placeholder="Available" className="form-control" />
+                                                </div>
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div className="form-group mb-3">
+
+                                    <div className="align-items-center">
+                                        <div className="">
+                                            <label className="font-metromedium mb-2" style={{color: colors.primary.green}}>Upload photo</label>
+                                            <input 
+                                            defaultValue={ (e) => {setFoodData({...foodData, price: e.target.value})} } 
+                                            onChange={ (e) => {setFoodData({...foodData, price: e.target.value})} }
+                                            type="file" placeholder="0.00" className="form-control" />
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+
+                                {/* 
+                                <div className="form-group mb-3">
+                                    <label className="font-metromedium fs-13 mb-2" style={{color: colors.primary.green}}>Food status</label>
+                                    <DropDown options={getStatus} className="fd-drop" selected={selectStatus} placeholder={`Select`} search={false}  />
+                                </div> */}
+
+
+
+                                <div className="mrgb1 ui-text-center mrgt3">
+                                    {
+                                        loading ? (
+                                            <Link onClick={(e) => submit(e)} className="btn btn-lgr btn-block onwhite fs-16 mb-3 disabled-show" style={{backgroundColor: colors.primary.green}}><img src="../../../images/assets/spinner-white.svg" alt="spinner" width="30px" /></Link>
+                                        ): (
+                                            <Link onClick={(e) => submit(e)} className="btn bg-primary btn-block onwhite fs-16 mb-3" style={{backgroundColor: colors.primary.green}}>Submit</Link>
+                                        )
+                                    }
+                                </div>
+
+                            </form>
+                            }
+
+                            {
+                                step === 1 &&
+                                <Message />
+                            }
+
+                        </div>
+                    </div>
+                </div>
 
             </section>
-
-            <GoBack />
 
         </>
 

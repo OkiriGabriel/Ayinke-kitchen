@@ -3,19 +3,14 @@ import {Link} from 'react-router-dom';
 import Placeholder from '../../layouts/partials/Placeholder'
 import Axios from 'axios'
 
-
-import FoodDetails from './FoodDetails'
+import DashTopBar from './DashTopBar'
 
 import storage from '../../helpers/storage';
 
-import BottomNav from './BottomNav'
-import TopBar from './TopBar'
-import OverView from './OverView'
-import FoodItem from './FoodItem'
-
-
 import FoodModal from './FoodModal'
 import AlertModal from '../../layouts/partials/AlertModal'
+import DelModal from '../../layouts/partials/DelModal'
+import EditMealModal from '../../layouts/partials/EditMealModal'
 
 import FoodContext from '../../../context/food/foodContext'
 import FoodItemContext from '../../../context/foodItem/foodItemContext'
@@ -37,6 +32,8 @@ const FoodItems = (props) => {
     const [showStat, setShowStat] = useState(false);
     const [sLoading, setSLoading] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    const [showD, setShowD] = useState(false);
+    const [showM, setShowM] = useState(false);
     const [empty, setEmpty] = useState(false);
     const [filter, setFilter] = useState({
         filter: false,
@@ -221,165 +218,208 @@ const FoodItems = (props) => {
 
     }
 
+    const toggleDel = () => {
+        setShowD(!showD)
+    }
+    
+    const toggleEditMeal = () => {
+        setShowM(!showM)
+    }
+
+    const barLinks = () => {
+
+        return(
+            <>
+                <div className="ui-group-button">
+
+                    <Link to="/dashboard/food-items/add" className="btn btn-sm btn-primary onwhite fs-15">Add Food</Link>
+
+                </div>
+            </>
+        )
+
+    }
+
     return (
         <>
 
-            {/* <TopBar userLoading={userContext.loading} user={userContext.user} /> */}
+            <DashTopBar linkComps={barLinks}  /> 
+
             <section>
-            <main className="dash-inner">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-11 mx-auto">                       
-                            <div className="mrgt3 mrgb2">
-                                <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                                    <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                                    <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
+                <main className="dash-inner">
+
+                    <div className="container">
+
+                        <div className="row">
+
+                            <div className="col-lg-6 col-md-6 col-sm-12">   
+
+                                <div className="mrgb2">
+
+                                    <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
+                                        <h1 className="fs-30 brand-green font-helveticabold mrgb0">{ foodItemContext.total }</h1>
+                                        <p className="mrgb0 brand-green fs-13 font-helvetica">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items </p>
+                                    </div>
+
                                 </div>
+
                             </div>
 
                         </div>
+                    
+                        <div className="row">
 
-                    </div>
-                
-                    <div className="row">
-                        <div className="col-lg-12">
+                            <div className="col-md-12">
 
-                        <section className="ord-ovw">
+                                <div className="overview-box">
 
-                            <div className="food-items dash">
+                                    <h2 className="font-helveticamedium mb-2">Food Items</h2>
 
-                                <div className="container">
-                                    <Link to="/dashboard/food-items/add" className="add-btn ml-auto">
-                                        <span className="fe fe-plus"></span>
-                                    </Link>
-                                    <div className="d-flex align-items-center mrgb1 mrgt2">
-                                        <h3 className="title fs-16 mrgb0 font-metromedium">Food Items</h3>
+                                    <div className="ui-dashboard-card">
 
-                                        <Dropdown className="ftr-drop" options={getLocations} selected={getSelected} placeholder={`filter`} search={false}  />
-                                        
+                                        <table className="table custom-table">
+
+                                            <thead>
+                                                <tr className="font-helvetica">
+                                                    <th>S/N</th>
+                                                    <th>Name</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td className="font-helvetica">1</td>
+                                                    <td className="font-helvetica">Rice and Chicken</td>
+                                                    <td className="font-helvetica">1500</td>
+                                                    <td className="font-helvetica">Available</td>
+                                                    <td>
+                                                        <div className="ui-group-button">
+                                                            <Link 
+                                                            onClick={toggleEditMeal}
+                                                            className="text-primary">
+                                                                <span className="fe fe-edit fs-16"></span>
+                                                            </Link>
+                                                            
+                                                            <Link 
+                                                            onClick={toggleDel}
+                                                            className="text-danger">
+                                                                <span className="fe fe-trash-2 fs-16"></span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td className="font-helvetica">2</td>
+                                                    <td className="font-helvetica">Beans and Bread</td>
+                                                    <td className="font-helvetica">1500</td>
+                                                    <td className="font-helvetica">Available</td>
+                                                    <td>
+                                                        <div className="ui-group-button">
+                                                            <Link 
+                                                            onClick={toggleEditMeal}
+                                                            className="text-primary">
+                                                                <span className="fe fe-edit fs-16"></span>
+                                                            </Link>
+                                                            
+                                                            <Link 
+                                                            onClick={toggleDel}
+                                                            className="text-danger">
+                                                                <span className="fe fe-trash-2 fs-16"></span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td className="font-helvetica">3</td>
+                                                    <td className="font-helvetica">Jollof and Chicken</td>
+                                                    <td className="font-helvetica">1500</td>
+                                                    <td className="font-helvetica">Available</td>
+                                                    <td>
+                                                        <div className="ui-group-button">
+                                                            <Link 
+                                                            onClick={toggleEditMeal}
+                                                            className="text-primary">
+                                                                <span className="fe fe-edit fs-16"></span>
+                                                            </Link>
+                                                            
+                                                            <Link 
+                                                            onClick={toggleDel}
+                                                            className="text-danger">
+                                                                <span className="fe fe-trash-2 fs-16"></span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td className="font-helvetica">4</td>
+                                                    <td className="font-helvetica">Plantains and Beans</td>
+                                                    <td className="font-helvetica">1500</td>
+                                                    <td className="font-helvetica">Available</td>
+                                                    <td>
+                                                        <div className="ui-group-button">
+                                                            <Link 
+                                                            onClick={toggleEditMeal}
+                                                            className="text-primary">
+                                                                <span className="fe fe-edit fs-16"></span>
+                                                            </Link>
+                                                            
+                                                            <Link 
+                                                            onClick={toggleDel}
+                                                            className="text-danger">
+                                                                <span className="fe fe-trash-2 fs-16"></span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td className="font-helvetica">5</td>
+                                                    <td className="font-helvetica">Rice and Beans</td>
+                                                    <td className="font-helvetica">1500</td>
+                                                    <td className="font-helvetica">Available</td>
+                                                    <td>
+                                                        <div className="ui-group-button">
+                                                            <Link 
+                                                            onClick={toggleEditMeal}
+                                                            className="text-primary">
+                                                                <span className="fe fe-edit fs-16"></span>
+                                                            </Link>
+                                                            
+                                                            <Link 
+                                                            onClick={toggleDel}
+                                                            className="text-danger">
+                                                                <span className="fe fe-trash-2 fs-16"></span>
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+
                                     </div>
 
-                                    <form className="mrgb1 form-search" onSubmit={(e) => e.preventDefault()}>
-                                        <span className="fe fe-search onsilver"></span>
-                                        <input ref={searchRef} type="text" onChange={(e) => search(e)} className="form-control search-txt font-metrolight" placeholder="Search..." />
-                                    </form>
-
-                                    {
-                                        foodItemContext.loading && !filter.filter && foodItemContext.restFoodItems.length <= 0 && 
-                                        <>
-                                            {
-                                                empty ?
-                                                (<>
-                                                    <div className="load--bx fd-page food-empty">
-
-                                                        <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
-                                                        <div className="row ui-text-center pdr4 pdl4 mrgt1">
-                                                            <p className="onsilver">No food items</p>
-                                                        </div>
-
-                                                    </div>
-                                                </>) 
-                                                : (
-                                                <>
-                                                    <div className="load--bx fd-page food-empty">
-                                                        <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                                                    </div>
-                                                </>
-                                                )
-                                            }    
-                                        </>  
-                                    }
-
-                                    {
-                                        foodItemContext.loading && filter.filter && 
-                                        <>
-                                            <div className="load--bx fd-page food-empty">
-                                                <img src="../../../images/assets/spinner.svg" className="spinner" alt="spinner" />
-                                            </div>   
-                                        </>  
-                                    }
-
-                                    {
-                                        !foodItemContext.loading && filter.filter && foodItemContext.restFoodItems.length <= 0 &&
-                                        <>
-                                            <div className="load--bx fd-page food-empty">
-
-                                                <img src="../../../images/icons/dplate-c.svg" className="empty" alt="empty plate" />
-                                                <div className="row ui-text-center pdr4 pdl4 mrgt1">
-                                                    <p className="brand-green font-metromedium">There are no food items fo the filtered location.</p>
-                                                </div>
-
-                                            </div>  
-                                        </>  
-                                    }
-
-                                        {
-                                            !foodItemContext.loading && foodItemContext.restFoodItems.length > 0 &&
-                                            <>
-                                            
-                                                <div className="list-box">
-
-                                                    {
-                                                        foodItemList.length > 0 && 
-                                                        foodItemList.map((fd, i) =>
-                                                        
-                                                            <>
-                                                                {
-                                                                    !foodContext.loading && !locationContext.loading &&
-                                                                    <FoodItem 
-                                                                    statusLoading={sLoading} 
-                                                                    updateStatus={updateFoodStatus} 
-                                                                    foodItem={fd} 
-                                                                    allFood={foodContext.allFood} 
-                                                                    addresses={addressContext.restAddresses}
-                                                                    locations={locationContext.locations} 
-                                                                    />
-                                                                }
-                                                            </>
-
-                                                        )
-                                                    }
-
-                                                    {
-                                                        foodItemList.length <= 0 && foodItemContext.restFoodItems.map((fd, i) => 
-                                                            <>
-                                                                {
-                                                                    !foodContext.loading && !locationContext.loading &&
-                                                                    <FoodItem 
-                                                                    statusLoading={sLoading} 
-                                                                    updateStatus={updateFoodStatus} 
-                                                                    foodItem={fd} 
-                                                                    allFood={foodContext.allFood} 
-                                                                    addresses={addressContext.restAddresses}
-                                                                    locations={locationContext.locations} 
-                                                                    />
-                                                                }
-                                                            </>
-                                                        )
-                                                    }
-
-                                                </div>
-                                            
-                                            </>
-                                            
-                                        }
-                                    
                                 </div>
 
                             </div>
-
-                        </section>
-
-
+                            
+                        </div>
 
                     </div>
-                </div>
-                </div>
+
                 </main>
+
             </section>
-            <BottomNav isFit={false} />
         
             <AlertModal isShow={showAlert} closeModal={toggleAlert} type={msgModal.type} data={msgModal} />
+            <DelModal isShow={showD} closeModal={toggleDel} />
+            <EditMealModal isShow={showM} closeModal={toggleEditMeal} />
  
         </>
         

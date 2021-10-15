@@ -419,3 +419,42 @@ body {
   font-size: .75rem;
   text-transform: uppercase;
 }
+
+.custom-modal .modal-content {
+  border: none !important;
+  margin: 0 auto;
+}
+.custom-modal.rem-modal .modal-content {
+  width: 50% !important;
+}
+.custom-modal .modal-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.custom-modal .modal-box .modal-side-bar,
+.custom-modal .modal-box .modal-content-box {
+  height: 100%;
+  position: relative;
+}
+.custom-modal .modal-box .modal-side-bar {
+  width: 40%;
+}
+.custom-modal .modal-box .modal-content-box {
+  width: 60%;
+}
+.custom-modal.rem-modal .modal-box .modal-side-bar {
+  display: none;
+}
+.custom-modal.rem-modal .modal-box .modal-content-box {
+  width: 100%;
+}
+.custom-modal .modal-header-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  flex-direction: row;
+}
+.custom-modal .modal-content-area {
+  margin-top: 1.2rem;
+}
