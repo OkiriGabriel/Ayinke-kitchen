@@ -53,7 +53,7 @@
   .search {
     outline: none;
     padding: 30px 5%;
-    border-radius: 20px;
+    border-radius: 9px;
     border: none;
     width: 76%;
     margin-bottom: 5%;
@@ -371,17 +371,18 @@ font-size: 15px !important;
 .search {
   outline: none;
   padding: 17px 5%;
-  border-radius: 20px;
   border: none;
+  border-radius: 9px;
   width: 65%;
   margin-bottom: 6%;
   background: rgba(250, 250, 250, 1.0);
 }
 .search-bx-btn {
-  padding: 0.8rem 2rem;
+  padding: 0.7rem 2rem;
   border-radius: 10px;
   margin-left: 9px;
   color: #fff;
+  font-size: 13px !important;
   background: #fa8b1e;
 }
   .flist {
@@ -414,16 +415,17 @@ font-size: 15px !important;
 
 
   .search-bx-btn {
-    padding: 0.8rem 2rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 10px;
     margin-left: 9px;
     color: #fff;
     background: #fa8b1e;
+    font-size: 11px !important;
 }
 .search {
   outline: none;
   padding: 15px 5%;
-  border-radius: 20px;
+  border-radius: 9px;
   border: none;
   font-size: 12px;
   width: 59%;
@@ -488,7 +490,7 @@ font-size: 9px !important;
   .search {
     outline: none;
     padding: 15px 5%;
-    border-radius: 20px;
+    border-radius: 9px;
     border: none;
     font-size: 12px;
     width: 60%;
@@ -502,10 +504,19 @@ font-size: 9px !important;
 .food-lits span {
 font-size: 9px !important;
 }
+
+.search-bx-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9px;
+  margin-left: 9px;
+  color: #fff;
+  font-size: 17px !important;
+  background: #fa8b1e;
+}
 }
 
 
-@media screen and (max-width: 360px){
+@media screen and (max-width: 320px){
 
   .food-lits {
     font-size: 9px !important;
@@ -516,7 +527,7 @@ font-size: 9px !important;
 .search {
     outline: none;
     padding: 17px 5% !important;
-    border-radius: 20px;
+    border-radius: 9px;
     border: none;
     font-size: 12px;
     width: 59%;
@@ -525,11 +536,11 @@ font-size: 9px !important;
 }
 
 .search-bx-btn {
-  padding: 0.8rem 2rem;
+  padding: 0.7rem 1.5rem;
   border-radius: 10px;
   margin-left: 9px;
   color: #fff;
   background: #fa8b1e;
+  font-size: 11px !important;
 }
-
 }
