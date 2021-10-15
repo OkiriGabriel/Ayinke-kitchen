@@ -312,12 +312,15 @@ const PayModal = ({isShow, closeModal}) => {
 
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
-                                <select className="form-control" id="exampleFormControlSelect1">
-                                    <option>Iwo road</option>
-                                    <option>Challenge</option>
-                                    <option>Bodija</option>
-                                    <option>Saki</option>
-                                    <option>Lautech gate</option>
+                                <select className="form-control" 
+                                
+                                defaultValue={(e) => { setPayData({...payData, location: e.target.value }) }}
+                                onChange={(e) => { setPayData({...payData, location: e.target.value }) }}>
+                                    <option value="iwo">Iwo road</option>
+                                    <option value="challenge">Challenge</option>
+                                    <option value="bodija">Bodija</option>
+                                    <option value="saki">Saki</option>
+                                    <option value="gate">Lautech gate</option>
                                 </select>
                               
                             </div>
