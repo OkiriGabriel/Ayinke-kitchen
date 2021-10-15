@@ -40,13 +40,14 @@ const FoodItem = ({ food, price, get, imgSrc }) => {
 
     return (
         <>  
-          <div className="col-md-3 col-6 mrgt2">
+          <div className="col-md-4 col-6 mrgt2">
+          <div className="ui-text-center pdt">
+                        <img class="img-icon mx-auto ui-rounded-small " src={imgSrc} alt="icon"/>
+                    </div>
             <div id={`food-box`} className={`food-box ${sel ? 'selected' : ''}`}>
 
                   
-                    <div className="ui-text-center pdt pdb1">
-                        <img class="img-icon mx-auto ui-rounded-small " src={imgSrc} alt="icon"/>
-                    </div>
+              
                     <p className="font-helveticabold food-lits fs-15 mrgb0" >{ food }</p>
 
                     <div className="ui-text-center food-lits">

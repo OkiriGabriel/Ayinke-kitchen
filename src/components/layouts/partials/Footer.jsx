@@ -18,9 +18,9 @@ const Footer = () => {
                             
                             <div className="row">
 
-                                {/* <div className="col-md-3 logo-x">
-                                    <img className="" src="images/assets/logo.svg" className="" alt="logo"/>
-                                </div> */}
+                                <div className="col-md-3 logo-x">
+                                <Link to="/" className="navbar-brand font-helveticabold fs-25 on-black" href="">AYINKE MAY KITCHEN</Link>
+                                </div>
                             
                             </div>
                            
@@ -28,37 +28,37 @@ const Footer = () => {
                                     <div className="row foo-ter mrgt3">
 
                                     <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-intersemibold fs-18 on-black mrgb">Locations</h4>
-                                            <ul className="font-interregular links">
-                                                <li className="link-underlined onmineshaft"> 31 Ogo Oluwa Street.</li>
-                                                <li className="link-underlined onmineshaft"> Ojodu, Lagos.</li>
+                                            <h4 className="font-helveticabold  fs-18 on-black mrgb">Locations</h4>
+                                            <ul className="font-helveticamedium links">
+                                                <li className="link-underlined onmineshaft font-helveticamedium"> 31 Ogo Oluwa Street.</li>
+                                                <li className="link-underlined onmineshaft font-helveticamedium"> Ojodu, Lagos.</li>
 
                                             </ul>
                                         </div>
 
                                         <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-intersemibold  fs-18 on-black mrgb">Shops</h4>
+                                            <h4 className="font-helveticabold   fs-18 on-black mrgb">Shops</h4>
                                             <ul className="font-interregular links">
-                                                <li><a href="" className="link-underlined hover">Lorem</a></li>
-                                                <li><Link to="/careers" className="link-underlined hover">Lorem</Link></li>
+                                                <li><a href="" className="link-underlined hover font-helveticamedium">Lorem</a></li>
+                                                <li><Link to="/careers" className="link-underlined hover font-helveticamedium">Lorem</Link></li>
                                             </ul>
                                         </div>
 
                                       
 
                                         <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-intersemibold   fs-18 on-black mrgb">Pages</h4>
+                                            <h4 className="font-helveticabold  fs-18 on-black mrgb">Pages</h4>
                                             <ul className="font-interregular links">
-                                                <li><Link to="/food-list" className="link-underlined hover">Food items</Link></li>
-                                                <li><Link to="/contact" className="link-underlined hover">Contact us</Link></li>
-                                                <li><Link to="/feedback" className="link-underlined hover">Feedback</Link></li>
+                                                <li><Link to="/food-list" className="link-underlined hover font-helveticamedium">Food items</Link></li>
+                                                <li><Link to="/contact" className="link-underlined hover font-helveticamedium">Contact us</Link></li>
+                                                <li><Link to="/feedback" className="link-underlined hover font-helveticamedium">Feedback</Link></li>
                                                 
                                             </ul>
                                         </div>
                                         <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-intersemibold   fs-18 on-black ">Connect with us online</h4>
+                                            <h4 className="font-helveticabold    fs-18 on-black font-helveticamedium ">Connect with us online</h4>
                                             <ul className="font-interregular links">
-                                                <li><Link className="link-underlined hover"></Link></li>
+                                                <li><Link className="link-underlined hover "></Link></li>
                                                 <li>
                                                 <div class="widget about_widget soc">
                                                     <ul class="social_media list-inline">

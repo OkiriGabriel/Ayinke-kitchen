@@ -32,16 +32,17 @@
   .del-btn{
     display: flex !important;
   }
-  .food-box .item-btn a {
+  .food-box {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 35px;
-    margin-top: 10px;
-    height: 35px;
-    background-color: #fff;
-    border-radius: 100%;
     justify-content: center;
+    flex-direction: column;
+    padding: 0.8rem 1.4rem;
+    border-radius: 0px 0px 10px 10px;
+    margin-top: -8px;
+    position: relative;
+    background-color: #f8f8f8;
 }
   .food-lits{
       font-size: 12px !important;
@@ -343,16 +344,17 @@ font-size: 15px !important;
     overflow-x: scroll;
     overflow-y: scroll;
 }
-  .food-box {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0.8rem 1.4rem;
-    border-radius: 8px;
-    position: relative;
-    background-color: #f8f8f8;
+.food-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.8rem 1.4rem;
+  border-radius: 0px 0px 10px 10px;
+  margin-top: -8px;
+  position: relative;
+  background-color: #f8f8f8;
 }
 
   .food-lits {
@@ -377,24 +379,23 @@ font-size: 15px !important;
 }
 .search-bx-btn {
   padding: 0.8rem 2rem;
-  border-radius: 16px;
+  border-radius: 10px;
   margin-left: 9px;
   color: #fff;
-  font-size: 13px !important;
   background: #fa8b1e;
 }
   .flist {
     height: 15rem;
     width: 24rem;
 }
-  .navbar-brand {
-    display: inline-block;
-    padding-top: 0.359375rem;
-    padding-bottom: 0.359375rem;
-    margin-right: 1rem;
-    font-size: 25px !important;
-    line-height: inherit;
-    white-space: nowrap;
+.navbar-brand {
+  display: inline-block;
+  padding-top: 0.359375rem;
+  padding-bottom: 0.359375rem;
+  margin-right: 1rem;
+  font-size: 18px !important;
+  line-height: inherit;
+  white-space: nowrap;
 }
     
     .modal .dm--dbx {
@@ -413,14 +414,12 @@ font-size: 15px !important;
 
 
   .search-bx-btn {
-    padding: 0.7rem 2rem;
-    border-radius: 16px;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
     margin-left: 9px;
     color: #fff;
-    font-size: 11px !important;
     background: #fa8b1e;
 }
-
 .search {
   outline: none;
   padding: 15px 5%;
@@ -439,16 +438,17 @@ font-size: 15px !important;
     font-size: 12px !important;
   }
 
-  .food-box .item-btn a {
+  .food-box {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 35px;
-    height: 35px;
-    background-color: #fff;
-    border-radius: 100%;
     justify-content: center;
-    margin-top: 10px;
+    flex-direction: column;
+    padding: 0.8rem 1.4rem;
+    border-radius: 0px 0px 10px 10px;
+    margin-top: -8px;
+    position: relative;
+    background-color: #f8f8f8;
 }
 
 
@@ -525,11 +525,10 @@ font-size: 9px !important;
 }
 
 .search-bx-btn {
-  padding: 0.7rem 2rem;
-  border-radius: 16px;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
   margin-left: 9px;
   color: #fff;
-  font-size: 11px !important;
   background: #fa8b1e;
 }
 

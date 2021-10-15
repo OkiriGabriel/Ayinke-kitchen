@@ -1,36 +1,62 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useEffect, useContext, useState, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import {Modal} from 'react-bootstrap';
-import * as moment from 'moment';
-import Dropdown from '../../layouts/partials/DropDown';
+import Alert from '../../layouts/partials/Alert'
+import { PaystackButton } from 'react-paystack';
+import DropDown from '../../layouts/partials/DropDown';
 import Axios from 'axios'
 import colors from '../../helpers/colors'
-import LottiePlayer from '../../layouts/partials/LottiePlayer'
-import ButtonSpinner from '../../layouts/partials/ButtonSpinner'
+import LocationContext from '../../../context/location/locationContext'
 
 
-import Alert from '../../layouts/partials/Alert'
-import lottieError from '../../_data/check-error.json'
-import lottieSuccess from '../../_data/check-green.json'
-
-
-const OrderModal = ({isShow, closeModal}) => {
+const PayModal = ({isShow, closeModal}) => {
     const [step, setStep] = useState(0);
 
+    const locationContext = useContext(LocationContext);
+    const [modalTitle, setModalTitle] = useState('');
+    const [showAdd, setShowAdd] = useState(false);
     const [count, setCount] = useState(0);
-    const [iconShow, setIcon] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [showAdd, setShowAdd] = useState(false)
+    const [iconShow, setIcon] = useState(false);
+    
 
-    const [feedData, setFeed] = useState({
-        email: '',
-        message: ''
+    
+    const multiple = 100;
+    const dollarRate = 410;
+
+    useEffect(() => {
+
+        // locationContext.getLocations();
+        setModalTitle('Order now');
+
     });
 
+    const close = (e) => {
+        e.preventDefault();
+        closeModal();
+    }
+
+    const [payData, setPayData] = useState({
+        email: '',
+        name: '',
+        phone: '',
+        amount: (3 * dollarRate) * multiple,
+        address: '',
+        description: '',
+        location: ''
+    });
     const toggleAdd = (e) => {
         if(e) e.preventDefault();
         setShowAdd(!showAdd);
     }
+
+    const [amt, setAmt] = useState(0);
+    const [paid, setPaid] = useState(false);
+    const [aData, setAData] = useState({
+        type: '',
+        message: '',
+        show: false
+    });
 
     const[msgData, setMsgData] = useState({
         title: '',
@@ -38,21 +64,34 @@ const OrderModal = ({isShow, closeModal}) => {
         buttonText: '',
         type: 'success'
     });
+    
+    const getLocations = () => {
+        const loc = locationContext.locations.map((l) => {
+            const c ={
+                value: l._id,
+                label: l.name,
+                left: '',
+                image: ''
+            }
+            return c;
+        });
 
-    const [aData, setAData] = useState({
-        type: '',
-        message: '',
-        show: false
-    })
-
-    useEffect(() => {
-
-    }, [])
-
-    const showIcon = () => {
-        setIcon(!iconShow);
+        return loc;
     }
 
+    // const setAmount = (a) => {
+
+    //     if(a > 0){
+    //         const am = (a * dollarRate) * multiple;
+    //         setAmt(am);
+    //     }else{
+    //         const am = (a * dollarRate) * multiple;
+    //         setAmt(am);
+    //     }
+
+    // }
+
+    
     const inc = (e) => {
         if(e) e.preventDefault()
         setCount(count + 1);
@@ -70,103 +109,118 @@ const OrderModal = ({isShow, closeModal}) => {
 
     }
 
- 
+    const pay = (e) => {
 
+        e.preventDefault();
 
-    // message component
-    const Message = () => {
-        return(
-            <>
-                <div className="ui-text-center mrgb2 mrgt2">
-                    <LottiePlayer lottieData={ msgData.type === 'success' ? lottieSuccess : lottieError } w='100px' h='100px' loop={true} />
-                </div>
-                <div className="mrgb2 pdl3 pdr3">
-                    <h3 className="title fs-20 ui-text-center">{msgData.title}</h3>
-                    <p className="onmineshaft fs-14 ui-text-center mrgb1">{msgData.message}</p>
-                </div>
+        if(!payData.email || !payData.name || !payData.phone || !payData.amount){
+            setAData({...aData, show: true, type: 'danger', message: `All fields are required.`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else if(!payData.email)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Your email is needed.`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else if(!payData.name)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Please enter your name`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else if(!payData.phone)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Please enter your phone number`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else if(!payData.amount)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Please support/donate`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else{
 
-                <div className="ui-text-center">
-                    <Link onClick={closeX} className="btn btn-lgr onwhite bg-brand-orange fs-16 mb-3">{msgData.buttonText ? msgData.buttonText : 'No Text'}</Link>
-                </div>
+            
+            if(amt > 0){
+                payData.amount = amt;
+            }
 
-            </>
-        )
+            const payButton = document.querySelector('.paystack-button');
+            if(payButton){
+
+                payButton.click();
+                
+            }else{
+                setAData({...aData, show: true, type: 'danger', message: `We cannot proccess your request now, please try again.`});
+                setTimeout(() => {
+                    setAData({...aData, show: false})
+                },2000)
+            }
+        }
+
     }
 
+    const saveEmail = async () => {
+
+        const regData = {
+            email: payData.email,
+            phoneNumber: payData.phone,
+            password:'#commanD555/'+payData.email,
+            phoneCode: '+234'
+        }
+
+        try {
+
+            await Axios.post(`${process.env.REACT_APP_AUTH_API_URL}/auth/register`, {...regData})
+            .then((resp) => {
+
+                if(resp.data.error === false){
+                    setPaid(true)
+                }
+
+            }).catch((err) => {
+
+                setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
+                setTimeout(() => {
+                    setAData({...aData, show: false});
+                }, 2000);
+            })
+            
+        } catch (err) {
+            setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
+            setTimeout(() => {
+                setAData({...aData, show: false});
+            }, 2000);
+        }
+
+    }
+
+    const onPaySuccess = () => {
+        setPaid(true);
+        saveEmail();
+    }
+    const onPayClose = () => {
+        setAData({...aData, show: true, type: 'danger', message: `We understand that you may not want to support. Thank you so much 😊`});
+        setTimeout(() => {
+            setAData({...aData, show: false})
+        },4000)
+    }
+
+
+    
     const closeX = () => {
         setStep(0);
         setLoading(false);
         closeModal();
     }
 
-
-    const submit = async (e) => {
-
-        if(!feedData.email && !feedData.message){
-            setAData({...aData, show: true, type: 'danger', message: `All fields are required.`});
-            setTimeout(() => {
-                setAData({...aData, show: false});
-            }, 2000);
-            setLoading(false);
-        }else if(!feedData.email){
-            setAData({...aData, show: true, type: 'danger', message: `Enter your email`});
-            setTimeout(() => {
-                setAData({...aData, show: false});
-            }, 2000);
-            setLoading(false);
-        }else if(!feedData.message){
-            setAData({...aData, show: true, type: 'danger', message: `Enter feedback message`});
-            setTimeout(() => {
-                setAData({...aData, show: false});
-            }, 2000);
-            setLoading(false);
-        }
-        else {
-            
-            setLoading(true);
-
-            try {
-
-                await Axios.post(`${process.env.REACT_APP_API_URL}/auth/feedbacks`, { ...feedData })
-                .then((resp) => {
-
-                    setMsgData({...msgData, title: 'Successful!', message: 'Thank you for your feedback', buttonText: 'Close', type: 'success'});
-                    setStep(1);
-
-                }).catch((err) => {
-                    setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
-                    setTimeout(() => {
-                        setAData({...aData, show: false});
-                    }, 2000);
-                    setLoading(false);
-                })
-                
-            } catch (err) {
-                setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
-                setTimeout(() => {
-                    setAData({...aData, show: false});
-                }, 2000);
-                setLoading(false);
-            }
-        }
-        
-    }
-
-    const mergeFoodNames = (data) => {
-
-        let names = '';
-        for(let i = 0; i < data.length; i++){
-            names = names + `${names === '' ? '' : ' + '}` + data[i].food.name;
-        }
-        return names;
-
-    }
-
-
     return (
         <>
-        
-            <Modal show={isShow} 
+             <Modal show={isShow} 
                 onHide={closeX} 
                 size="sm"
                 fade={false}
@@ -216,6 +270,8 @@ const OrderModal = ({isShow, closeModal}) => {
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>First name</label>
                                 <input 
                                 type="text" 
+                                defaultValue={(e) => { setPayData({...payData, firstName: e.target.value }) }}
+                                    onChange={(e) => { setPayData({...payData, firstName: e.target.value }) }}
                                 className="form-control font-metrolight fs-13" 
                                 placeholder="E.g. Wale" />
                             </div>
@@ -228,6 +284,8 @@ const OrderModal = ({isShow, closeModal}) => {
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Email</label>
                                 <input 
                                 type="text" 
+                                defaultValue={(e) => { setPayData({...payData, email: e.target.value }) }}
+                                    onChange={(e) => { setPayData({...payData, email: e.target.value }) }}
                                 className="form-control font-metrolight fs-13" 
                                 placeholder="yourmail@you.com" />
                             </div>
@@ -242,7 +300,8 @@ const OrderModal = ({isShow, closeModal}) => {
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Phone</label>
                                 <input 
-                    
+                                defaultValue={(e) => { setPayData({...payData, phone: e.target.value }) }}
+                                onChange={(e) => { setPayData({...payData, phone: e.target.value }) }}
                                 type="text" 
                                 className="form-control font-metrolight fs-13" 
                                 placeholder="080xxx" />
@@ -250,40 +309,64 @@ const OrderModal = ({isShow, closeModal}) => {
                         </div>
 
                         <div className="col-md-6 col-6 inline">
+
                             <div className="form-group">
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
-                                <input 
-                    
-                    type="text" 
-                    className="form-control font-metrolight fs-13" 
-                    placeholder="Enter location" />
+                                <select className="form-control" id="exampleFormControlSelect1">
+                                    <option>Iwo road</option>
+                                    <option>Challenge</option>
+                                    <option>Bodija</option>
+                                    <option>Saki</option>
+                                    <option>Lautech gate</option>
+                                </select>
+                              
                             </div>
                         </div>
 
                     </div>
+               
+                                <div className="row">
+                                    <div className="col-md-6 col-6 inline">
 
-                    <div className="form-group">
-                        <div className="d-flex align-items-center mb">
-                            <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
-                            <Link onClick={(e) => toggleAdd(e)} className="font-metromedium fs-13 ml-auto mb-1" style={{color: colors.primary.orange}}>
-                                {
-                                    showAdd ? 'Remove' : 'Add description'
-                                }
-                            </Link>
-                        </div>
-                        <input 
+                                        <div className="form-group">
+                                            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Amount</label>
 
-                        type="text" 
-                        className="form-control font-metrolight fs-13" 
-                        placeholder="your address" />
-                    </div>
+                                        <input 
+                                                        defaultValue={(e) => { setPayData({...payData, amount: e.target.value }) }}
+                                                        onChange={(e) => { setPayData({...payData, amount: e.target.value }) }}
+                                                        type="number" min="3" className="form-control font-metrolight fs-13" placeholder="$0.00" />
+
+
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 col-6 inline">
+                                    <div className="form-group">
+                                        <div className="d-flex align-items-center mb">
+                                            <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
+                                            <Link onClick={(e) => toggleAdd(e)} className="font-metromedium fs-13 ml-auto mb-1" style={{color: colors.primary.orange}}>
+                                                {
+                                                    showAdd ? 'Remove' : 'Add description'
+                                                }
+                                            </Link>
+                                        </div>
+                                        <input 
+                                            defaultValue={(e) => { setPayData({...payData, address: e.target.value }) }}
+                                            onChange={(e) => { setPayData({...payData, address: e.target.value }) }}
+
+                                        type="text" 
+                                        className="form-control font-metrolight fs-13" 
+                                        placeholder="your address" />
+                                    </div>
+                                    </div>
+                                </div>
 
                     {
                         showAdd &&
                         <div className="form-group">
                         <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Description</label>
                             <textarea 
-                        
+                              defaultValue={(e) => { setPayData({...payData, description: e.target.value }) }}
+                              onChange={(e) => { setPayData({...payData, description: e.target.value }) }}
                             type="text" 
                             className="form-control font-metrolight fs-13" 
                             placeholder="Type here"></textarea>
@@ -292,16 +375,23 @@ const OrderModal = ({isShow, closeModal}) => {
 
 
                     <div className="form-group">
-                                                        
-                        {
-                            loading &&
-                            <button className="btn btn-lg btn-block onwhite"><ButtonSpinner imageUrl={`../../../images/assets/spinner-white.svg`} /></button>
-                        }
-                        {
-                            !loading &&
-                            <button className="btn btn-lg btn-block bg-orange onwhite">Order Now</button>
-                        }
+            
+                    <PaystackButton 
+
+                    id="pay-button"
+                    email={payData.email}
+                    amount={payData.amount}
+                    name={payData.name}
+                    phone={payData.phone}
+                    publicKey={process.env.REACT_APP_PAYSTACK_PUBLIC_KEY}
+                    text={'Pay Now'}
+                    onSuccess={onPaySuccess}
+                    onClose={onPayClose}
+                    className="paystack-button"
+                    />
                     </div>
+                    
+              
 
             </form>
 
@@ -315,10 +405,12 @@ const OrderModal = ({isShow, closeModal}) => {
 </Modal.Body>
 
             </Modal>
-        
         </>
     )
 
 }
 
-export default OrderModal;
+export default PayModal;
+
+
+
