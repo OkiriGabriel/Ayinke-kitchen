@@ -68,14 +68,14 @@ const App = () => {
                         {/* <Route exact path="/search/:query" component={Search} /> */}
                         <Route exact path="/search" component={Search} />
 
-                        <Route exact path="/dashboard/account" component={Account} />
-                        <Route exact path="/dashboard" component={DashboardLayout(Dashboard)} />
-                        <Route exact path="/dashboard/add-location" component={DashboardLayout(LocationAdd)} />
-                        <Route exact path="/dashboard/food-items" component={DashboardLayout(FoodItems)}/>
-                        <Route exact path="/dashboard/orders" component={DashboardLayout(Orders)}/>
-                        <Route exact path="/dashboard/locations" component={DashboardLayout(Locations)}/>
+                        {/* <Route exact path="/dashboard/account" component={Account} /> */}
+                        <Route exact path="/admin" component={DashboardLayout(Dashboard)} />
+                        <Route exact path="/admin/add-location" component={DashboardLayout(LocationAdd)} />
+                        <Route exact path="/admin/food-items" component={DashboardLayout(FoodItems)}/>
+                        <Route exact path="/admin/orders" component={DashboardLayout(Orders)}/>
+                        <Route exact path="/admin/locations" component={DashboardLayout(Locations)}/>
 
-                        <Route exact path="/dashboard/food-items/add" component={DashboardLayout(AddFood)}/>
+                        <Route exact path="/admin/food-items/add" component={DashboardLayout(AddFood)}/>
 
                         {/* put this here */}
                         <Route exact path="/:id" component={RestDetails} />

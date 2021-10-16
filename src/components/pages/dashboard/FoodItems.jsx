@@ -286,7 +286,7 @@ const FoodItems = (props) => {
 
                                 <div className="overview-box">
 
-                                    <h2 className="font-helveticamedium mb-2">Food Items</h2>
+                                    <h2 className="font-helveticamedium fs-20 mb-4">Food Items</h2>
 
                                     <div className="ui-dashboard-card frnd-list">
 

@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 const Header = () => {
     return (
         <>
-                <nav className="navbar navbar-dark sticky-top bg-dark pt-3 pb-3  flex-md-nowrap p-0 shadow">
-                    <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Ayinke kitchen</a>
+                <nav className="navbar navbar-dark sticky-top bg-light pt-3 pb-3  flex-md-nowrap p-0 shadow">
+                    <a className="navbar-brand col-md-3  onblack font-helveticabold col-lg-2 mr-0" href="#">Ayinke May Kitchen</a>
                     <button className="navbar-toggler position-absolute d-md-none collapsed pt-3 pb-3 " type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                     </button>

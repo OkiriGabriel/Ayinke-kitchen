@@ -22,33 +22,87 @@ const Dashboard = () => {
                     <div className="">
                         <div className="row">
 
-                            <div className="col-md-6 col-lg-6 col-sm-12">
+                            <div className="col-md-4 col-lg-4 col-sm-12">
 
                             <div className="ui-dashboard-card">
-                                <div className="ui-card-body ui-full-bg-norm" style={{backgroundImage: 'url("../../../images/assets/blob-one.svg")'}}>
+                                    <div className="ui-card-body ui-full-bg-norm" style={{backgroundImage: 'url("../../../images/assets/blob-one.svg")'}}>
 
-                                    <div className="d-flex">
-                                        
-                                    <div>
-                                    <h3 className="brand-orange fs-18 mrgb0 font-weight-bold">
-                                        Your Orders
-                                    </h3>
+                                        <div className="d-flex">
+                                            
+                                        <div>
+                                        <h3 className="brand-orange fs-18 mrgb0 font-weight-bold">
+                                            Your Orders
+                                        </h3>
 
-                                    <p className="onmineshaft fs-14  mt-2 mb-2">Track orders from your customers, see new orders.</p>
-                                
+                                        <p className="onmineshaft fs-14  mt-2 mb-2">Track your orders.</p>
+                                    
+                                        </div>
+
+                                        <Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
+                                            View Orders
+                                            <span className="fe fe-chevron-right fs-14 pdl" style={{position: 'relative', top: '2px'}}></span>
+                                        </Link>
+
+                                        </div>
+
                                     </div>
+                                </div>
 
-                                    <Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
-                                        View Orders
-                                        <span className="fe fe-chevron-right fs-14 pdl" style={{position: 'relative', top: '2px'}}></span>
-                                    </Link>
+                            
+                            </div>
+                            <div className="col-md-4 col-lg-4 col-sm-12">
+                                <div className="ui-dashboard-card">
+                                    <div className="ui-card-body ui-full-bg-norm" style={{backgroundImage: 'url("../../../images/assets/blob-one.svg")'}}>
+
+                                        <div className="d-flex">
+                                            
+                                        <div>
+                                        <h3 className="brand-orange fs-18 mrgb0 font-weight-bold">
+                                          Transactions
+                                        </h3>
+
+                                        <p className="onmineshaft fs-14  mt-2 mb-2">View your transaction.</p>
+                                    
+                                        </div>
+
+                                        <Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
+                                            View Transaction
+                                            <span className="fe fe-chevron-right fs-14 pdl" style={{position: 'relative', top: '2px'}}></span>
+                                        </Link>
+
+                                        </div>
 
                                     </div>
-
                                 </div>
                             </div>
+                                <div className="col-md-4 col-lg-4 col-sm-12">
 
-                            </div>
+                                <div className="ui-dashboard-card">
+                                    <div className="ui-card-body ui-full-bg-norm" style={{backgroundImage: 'url("../../../images/assets/blob-one.svg")'}}>
+
+                                        <div className="d-flex">
+                                            
+                                        <div>
+                                        <h3 className="brand-orange fs-18 mrgb0 font-weight-bold">
+                                            Meals
+                                        </h3>
+
+                                        <p className="onmineshaft fs-14  mt-2 mb-2">Track your orders.</p>
+                                    
+                                        </div>
+
+                                        <Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
+                                            View Meals
+                                            <span className="fe fe-chevron-right fs-14 pdl" style={{position: 'relative', top: '2px'}}></span>
+                                        </Link>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                </div>
 
                         </div>
                     </div>
