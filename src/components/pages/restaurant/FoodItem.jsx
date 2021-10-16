@@ -63,8 +63,8 @@ const FoodItem = ({ food, price, get, imgSrc }) => {
                         </div>
 
 
-                        <div className="item-btn ml-auto">
-                            <Link onClick={e => select(e), toggleModal} className="item-btn"><span className={`fe fe-${closeIcon} fs-14`} style={{color: colors.primary.green}}></span></Link>
+                        <div className="item-btn ml-auto" onClick={toggleModal}>
+                            <Link onClick={e => select(e)} className="item-btn"><span className={`fe fe-${closeIcon} fs-14`} style={{color: colors.primary.green}}></span></Link>
                          </div>
                         
 

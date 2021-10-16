@@ -280,6 +280,8 @@ const PayModal = ({isShow, closeModal}) => {
 
                         </div>
 
+                        {/*  */}
+
                         <div className="col-md-6 col-6 inline">
 
                             <div className="form-group">
