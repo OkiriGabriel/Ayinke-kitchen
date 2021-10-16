@@ -97,6 +97,10 @@ form textarea {
     color: #0E0C59 !important;
 }
 
+.bg-oran {
+  background-color: #786a5c !important;
+}
+
 .g24{
  color: #09337c !important;
 }
@@ -2430,7 +2434,7 @@ form .custom-checkbox span{
 }
 
 .search-bx-btn {
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 2rem;
   border-radius: 10px;
   margin-left: 9px;
   color: #fff;
@@ -2449,18 +2453,18 @@ form .custom-checkbox span{
 
 
 .foorm {
-  width: 300px;
-  margin: 0 auto;
-  text-align: center;
   padding-bottom: 10px;
+  margin-bottom: 20px;
 }
+
+
 
 .value-button {
   display: inline-block;
   border: 1px solid #ddd;
   margin: 0px;
-  width: 50px;
-  height: 43px;
+  width: 52px;
+  height: 48px;
   text-align: center;
   vertical-align: middle;
   padding: 11px 0;
@@ -2473,16 +2477,17 @@ form .custom-checkbox span{
   user-select: none;
 }
 
+
 .value-button:hover {
   cursor: pointer;
 }
 
 .foorm #decrease {
-  border-radius: 8px 0 0 8px;
+  border-radius: 100px;
 }
 
 .foorm #increase {
-  border-radius: 0 8px 8px 0;
+  border-radius: 100px;
 }
 
 form #input-wrap {
@@ -2493,12 +2498,13 @@ form #input-wrap {
 input#number {
   text-align: center;
   border: none;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
+  /* border-bottom: 1px solid #ddd; */
   margin-top: 0px;
   width: 57px;
-  height: 44px;
+  background: transparent;
   padding-top: 4px;
+  color: #fff;
   padding-bottom: 8px;
 }
 
@@ -2590,4 +2596,12 @@ form .form-control:focus {
   width: 4px;
   border-radius: 100px;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.counter {
+  background: #000;
+  padding: 2.5rem 2rem;
+  margin-top: 2.4rem;
+  border-radius: 10px;
+  margin-bottom: 6rem;
 }

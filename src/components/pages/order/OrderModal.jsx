@@ -9,11 +9,13 @@ import colors from '../../helpers/colors'
 import LocationContext from '../../../context/location/locationContext'
 
 
+
 const PayModal = ({isShow, closeModal}) => {
     const [step, setStep] = useState(0);
 
     const locationContext = useContext(LocationContext);
     const [modalTitle, setModalTitle] = useState('');
+    
     const [showAdd, setShowAdd] = useState(false);
     const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(false);

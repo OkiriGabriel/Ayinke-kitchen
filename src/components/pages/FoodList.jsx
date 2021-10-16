@@ -1,20 +1,8 @@
-// import React, { useEffect, useContext, useState, Fragment } from 'react';
-// import { Link } from 'react-router-dom';
-
 import NavBar from '../layouts/partials/NavBar'
-// import Slider from '../layouts/partials/Slider';
-// import SearchBox from '../layouts/partials/SearchBox';
-// import Restaurant from '../layouts/partials/Restaurant'
-
-// import UserContext from '../../context/user/userContext';
-// import LocationContext from '../../context/location/locationContext';
-// import FoodContext from '../../context/food/foodContext'
 import OrderModal from './order/OrderModal';
 import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
-
-
 import Slider from '../layouts/partials/Slider';
 
 import Restaurant from '../layouts/partials/Restaurant'
@@ -28,6 +16,7 @@ import ReviewContext from '../../context/review/reviewContext';
 
 import Placeholder from '../layouts/partials/Placeholder'
 import FoodItem from '../pages/restaurant/FoodItem';
+import QModal from './order/QuantityModal';
 import Food from '../pages/restaurant/Food';
 import BottomBar from '../layouts/partials/BottomBar';
 import storage from '../helpers/storage';
@@ -40,11 +29,12 @@ import Dropdown from '../layouts/partials/DropDown'
 
 
 
-const Home = (props) => {
+const Home = ({isShow, closeModal}) => {
     const [count, setCount] = useState(0);
     const [sel, setSel] = useState(false);
     const [show, setShow] = useState(false);
     const [pricing, setPrincing] = useState(0);
+    const [foodName, setFoodName] = useState('');
     const [closeIcon, setClose] = useState('plus')
 
     
@@ -54,19 +44,7 @@ const Home = (props) => {
         items: []
     });
 
-    useEffect(() => {
         
-    
-        
-    }, [])
-
-                  
-    const toggleModal = () => {
-        setShow(!show);
-    }
-
-
-
     const inc = (e) => {
         if(e) e.preventDefault()
         setCount(count + 1);
@@ -84,6 +62,19 @@ const Home = (props) => {
 
     }
 
+    useEffect(() => {
+        
+    
+        
+    }, [])
+
+                  
+    const toggleModal = () => {
+        setShow(!show);
+    }
+
+
+
     const select = (e) => {
 
         if(e) e.preventDefault();
@@ -99,11 +90,12 @@ const Home = (props) => {
 
     }
 
-    const getSelected = (e, t, price) => {
+    const getSelected = (e, t, price, food) => {
         if(e) e.preventDefault();
 
         if(t === 'add'){
             setPrincing(pricing + parseFloat(price))
+            setFoodName(foodName +  toString(food))
         }
 
         if(t === 'sub'){
@@ -154,48 +146,78 @@ const Home = (props) => {
 
                     {/* <Alert show={aData.show} type={aData.type} message={aData.message} /> */}
 
-                 <div className="">
-                    <div className="row food-disp pub">
-                        <>
-                        <FoodItem 
-                            food="Rice + Beans"
-                            imgSrc="../../images/assets/food-1.jpeg"
-                            price="200" 
-                            get={getSelected}
-                            />
-
-                      
+                 <div className="row">
+                    <div className="col-lg-7">
+                        <div className="row food-disp pub">
+                            <>
                             <FoodItem 
-                            food="Jollof + Chicken"
-                            imgSrc="../../images/assets/food-3.jpg"
-                            price="5000" 
-                            get={getSelected}
-                            />
+                                food="Rice + Beans"
+                                imgSrc="../../images/assets/food-1.jpeg"
+                                price="200" 
+                                get={getSelected}
+                                />
 
-                        <FoodItem 
-                            food="Rice + Beans"
-                            imgSrc="../../images/assets/food-1.jpeg"
-                            price="200" 
-                            get={getSelected}
-                            />
 
-                      
+                                <FoodItem 
+                                food="Jollof + Chicken"
+                                imgSrc="../../images/assets/food-3.jpg"
+                                price="5000" 
+                                get={getSelected}
+                                />
+
                             <FoodItem 
-                            food="Jollof + Chicken"
-                            imgSrc="../../images/assets/food-3.jpg"
-                            price="5000" 
-                            get={getSelected}
-                            />
+                                id="2"
+                                food="Rice + Beans"
+                                imgSrc="../../images/assets/food-1.jpeg"
+                                price="200" 
+                                get={getSelected}
+                                />
 
+
+                                <FoodItem 
+                                food="Jollof + Chicken"
+                                imgSrc="../../images/assets/food-3.jpg"
+                                price="5000" 
+                                get={getSelected}
+                                />
+
+
+                            </>    
+                        </div>
+                    </div>
+
+                    <div className="col-md-5">
+                        <div className="counter">
+                        <h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">QTY of meal </h2>
+
+                        <div className="d-flex">
+                        <form className="foorm">
+                                <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
+                                <input type="number" id="number" value={count} defaultValue={0} />
+                                <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
+                            </form>
+
+                            <div className="bar-food ml-auto mt-5">
+                                
+                                <p className="mrgb0">
+                                    <span className="title font-helveticabold onwhite  fs-14 pdr food-lit">Total:</span>
+                                    {/* <span className="title font-helveticabold onwhite  fs-14 pdr food-lit">{foodName.toS}</span> */}
+                                    <span className="title font-helveticabold onwhite fs-15 food-lit">&#x20A6;{ pricing.toFixed(2) }</span>
+                                </p>
+                            </div>
+                        </div>
                       
-                        </>    
 
+                  
+
+                            <button onClick={toggleModal}  className="btn btn-lg btn-block bg-oran  onwhite">Checkout</button>
+                        </div>
                     </div>
                 </div>
 
             </div>
            
-
+{/* 
             <footer>
                 <div id="bottom-bar" className="bottom-bar food">
 
@@ -222,9 +244,10 @@ const Home = (props) => {
 
                 </div>
             </footer>
-
+ */}
 
             <OrderModal isShow={show}  closeModal={toggleModal} />
+           
             
         </>
     )
