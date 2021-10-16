@@ -14,44 +14,44 @@ const ProjLineChart = () => {
     const data = [
         {
           name: "Monday",
-          transactions: 4000,
-          orders: 2400,
+          Transactions: 4000,
+          Orders: 2400,
           amt: 2400
         },
         {
           name: "Tuesday",
-          transactions: 3000,
-          orders: 1398,
+          Transactions: 3000,
+          Orders: 1398,
           amt: 2210
         },
         {
           name: "Wednesday",
-          transactions: 2000,
-          orders: 9800,
+          Transactions: 2000,
+          Orders: 9800,
           amt: 2290
         },
         {
           name: "Thursday",
-          transactions: 2780,
-          orders: 3908,
+          Transactions: 2780,
+          Orders: 3908,
           amt: 2000
         },
         {
           name: "Friday",
-          transactions: 1890,
-          orders: 4800,
+          Transactions: 1890,
+          Orders: 4800,
           amt: 2181
         },
         {
           name: "Saturday",
-          transactions: 2390,
-          orders: 3800,
+          Transactions: 2390,
+          Orders: 3800,
           amt: 2500
         },
         {
           name: "Sunday",
-          transactions: 3490,
-          orders: 4300,
+          Transactions: 3490,
+          Orders: 4300,
           amt: 2100
         }
       ];
@@ -77,11 +77,11 @@ const ProjLineChart = () => {
                 <Legend />
                 <Line
                     type="monotone"
-                    dataKey="orders"
+                    dataKey="Orders"
                     stroke="#8884d8"
                     activeDot={{ r: 8 }}
                 />
-                <Line type="monotone" dataKey="transactions" stroke="#82ca9d" />
+                <Line type="monotone" dataKey="Transactions" stroke="#82ca9d" />
             </LineChart>
             
         </>
