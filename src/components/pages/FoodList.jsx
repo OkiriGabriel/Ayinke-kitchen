@@ -167,7 +167,7 @@ const Home = () => {
 
                     <div className="col-lg-4 col-md-12">
                         <div className="counter">
-                        <h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">QTY of meal </h2>
+                        <h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">Total Cart</h2>
 
                         <div className="row">
                             {/* <div className="col-md-6">
