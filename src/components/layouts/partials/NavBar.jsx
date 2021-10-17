@@ -36,7 +36,7 @@ const NavBar = ({ scrollTo, openModal, position }) => {
     
     return (
         <>
-             <header id="header" className={`header  ${position === true ? 'header-sticky': 'bg-orange'}`}>
+             <header id="header" className={`header  ${position === true ? 'header-sticky': ''}`}>
                 <div className="">
                 
                     <div className="navigation">

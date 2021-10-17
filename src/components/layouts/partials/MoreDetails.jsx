@@ -163,7 +163,8 @@ const MoreDetails = ({ isShow, closeModal, actionType, remove, deleteType }) => 
                                         </div>
                                         <div className="col-md-6">
 
-                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Sat: 2 Rice + chicken</p>
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Sat: 1 Yam + egg ,</p>
+                                            <p className="font-helveticamedium  fs-17 onblack ">Sat: 2 Rice + chicken</p>
 
                                         </div>
                                     </div>

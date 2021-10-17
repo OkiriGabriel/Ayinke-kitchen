@@ -180,11 +180,11 @@ const Home = () => {
 
                             <div className="col-md-12">
                             <div className="bar-food ml-auto">
-                            <h2 className="title font-helveticabold onwhite  fs-13 pdr food-lit">Food Name: {name}</h2>
+                            <h2 className="title font-helveticabold onwhite  fs-13 pdr food-lit">Meal: {name}</h2>
 
                                 <p className="mrgb0 ">
                                     <span className="title font-helveticabold onwhite  fs-13 pdr food-lit">Total:</span>
-                                    <span className="title font-helveticabold onwhite fs-15 food-lit">&#x20A6;{ pricing }</span>
+                                    <span className="title font-helveticabold onwhite fs-15 food-lit">&#x20A6; {' '} { pricing }</span>
                                 </p>
                             </div></div>  
  
