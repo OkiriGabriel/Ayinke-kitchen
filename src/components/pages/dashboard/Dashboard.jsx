@@ -4,12 +4,19 @@ import TopBar from './TopBar'
 import BottomNav from './BottomNav';
 import OverView from './OverView'
 
+import PieChart from './components/TwoPieChart';
+import LineChart from './components/ProjLineChart';
 
+import MoreDetails from '../../layouts/partials/MoreDetails';
 
 const Dashboard = () => {
 
-    
-    
+    const [show, setShow] = useState(false);
+
+    const toggleModal = (e) => {
+        if(e) e.preventDefault();
+        setShow(!show)
+    };
 
     return(
         <>
@@ -172,8 +179,131 @@ const Dashboard = () => {
                     
                 </section>  
 
+                <div className="ui-separate-small"></div>
+
+                <div className="row">
+
+                    <div className="col-md-4">
+
+                        <div className="overview-box">
+
+                            <div className="ui-dashboard-card">
+
+                                <PieChart />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    <div className="col-md-8">
+
+                        <div className="overview-box">
+
+                            <div className="ui-dashboard-card p-5">
+
+                                <LineChart />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="ui-separate-small"></div>
+                       
+                <div className="row">
+
+                    <div className="col-md-12 mrgb2">
+
+                        <div className="overview-box">
+
+                            <h2 className="font-helveticamedium mb-2">Orders</h2>
+                            
+                            <div className="ui-dashboard-card ">
+
+
+                                <table className="table custom-table">
+
+                                    <thead>
+                                        <tr className="font-helvetica">
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Address</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td className="font-helvetica">Rice and beans</td>
+                                            <td className="font-helvetica">07014257371</td>
+                                            <td className="font-helvetica">johndoe@gmail.com</td>
+                                            <td className="font-helvetica">Along Alao Farms Road Tanke Akata, Ilorin</td>
+                                            <td className="ui-text-center">
+                                                <Link onClick={(e) => toggleModal(e)} ><span className="fe fe-align-center"></span></Link>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td className="font-helvetica">Beans and Bread</td>
+                                            <td className="font-helvetica">07014257371</td>
+                                            <td className="font-helvetica">johndoe@gmail.com</td>
+                                            <td className="font-helvetica">Along Alao Farms Road Tanke Akata, Ilorin</td>
+                                            <td className="ui-text-center">
+                                                <Link onClick={(e) => toggleModal(e)} ><span className="fe fe-align-center"></span></Link>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td className="font-helvetica">Jollof and Chicken</td>
+                                            <td className="font-helvetica">07014257371</td>
+                                            <td className="font-helvetica">johndoe@gmail.com</td>
+                                            <td className="font-helvetica">Along Alao Farms Road Tanke Akata, Ilorin</td>
+                                            <td className="ui-text-center">
+                                                <Link onClick={(e) => toggleModal(e)} ><span className="fe fe-align-center"></span></Link>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td className="font-helvetica">Plantains and Beans</td>
+                                            <td className="font-helvetica">07014257371</td>
+                                            <td className="font-helvetica">johndoe@gmail.com</td>
+                                            <td className="font-helvetica">Along Alao Farms Road Tanke Akata, Ilorin</td>
+                                            <td className="ui-text-center">
+                                                <Link onClick={(e) => toggleModal(e)} ><span className="fe fe-align-center"></span></Link>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td className="font-helvetica">Rice and Beans</td>
+                                            <td className="font-helvetica">07014257371</td>
+                                            <td className="font-helvetica">johndoe@gmail.com</td>
+                                            <td className="font-helvetica">Along Alao Farms Road Tanke Akata, Ilorin</td>
+                                            <td className="ui-text-center">
+                                                <Link onClick={(e) => toggleModal(e)} ><span className="fe fe-align-center"></span></Link>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
             </main>
            
+
+           <MoreDetails isShow={show} closeModal={toggleModal} />
         </>
     )
 
