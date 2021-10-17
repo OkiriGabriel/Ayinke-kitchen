@@ -33,9 +33,10 @@ const NavBar = ({ scrollTo, openModal, position }) => {
         history.push('/signin')
     }
 
+    
     return (
         <>
-             <header id="header" className={`header ${position === true ? 'header-sticky': 'bg-brandccpurple'}`}>
+             <header id="header" className={`header  ${position === true ? 'header-sticky': 'bg-orange'}`}>
                 <div className="">
                 
                     <div className="navigation">

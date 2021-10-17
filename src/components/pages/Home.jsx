@@ -59,7 +59,7 @@ const Home = (props) => {
                                 <div data-aos={"fade-right"} className="col-lg-7 col-md-7">
                                     
                                     <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
-                                       Welcome to <br /> Ayinke - Kitchen
+                                       Welcome to <br /> Ayinke May - Kitchen
                                     </h1>
 
                                     <div class="onwhite font-helveticamedium fs-17 intro" style={{lineHeight: '27px'}}>
@@ -67,7 +67,7 @@ const Home = (props) => {
                                     </div>
 
                                     <div className="ui-group-button mrgt3">
-                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue">Food Items</Link>
+                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue">Order Now</Link>
                                     
                                     </div>
 
@@ -122,7 +122,7 @@ const Home = (props) => {
                                             <img src="../../../../images/assets/your-location.png"  width="60px"alt="" />
                                         </span>
                                         <h2 className="brandccpurple fs-25 how-it-works font-helveticabold mrgt1 ml-2 mrgb0">
-                                            Set delivery location
+                                            Select delivery location
                                             </h2>
                                         </div>
 

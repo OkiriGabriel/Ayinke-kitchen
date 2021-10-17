@@ -44,6 +44,7 @@ const Home = ({isShow, closeModal}) => {
         items: []
     });
 
+    
         
     const inc = (e) => {
         if(e) e.preventDefault()
@@ -147,7 +148,7 @@ const Home = ({isShow, closeModal}) => {
                     {/* <Alert show={aData.show} type={aData.type} message={aData.message} /> */}
 
                  <div className="row">
-                    <div className="col-lg-7">
+                    <div className="col-lg-8">
                         <div className="row food-disp pub">
                             <>
                             <FoodItem 
@@ -186,7 +187,7 @@ const Home = ({isShow, closeModal}) => {
                         </div>
                     </div>
 
-                    <div className="col-md-5">
+                    <div className="col-md-4">
                         <div className="counter">
                         <h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">QTY of meal </h2>
 
