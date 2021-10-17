@@ -2328,7 +2328,7 @@ form .custom-checkbox span{
 
 .fooditem-bx {
   padding: 1.3rem 1rem;
-  margin-top: 2.8rem !important;
+  margin-top: 0.2rem !important;
   background: #fff;
   border-radius: 8px;
 }
@@ -2461,6 +2461,9 @@ form .custom-checkbox span{
 .foorm {
   padding-bottom: 10px;
   margin-bottom: 20px;
+  position: relative;
+  top: 14px;
+  left: -24px;
 }
 
 
@@ -2469,11 +2472,11 @@ form .custom-checkbox span{
   display: inline-block;
   border: 1px solid #ddd;
   margin: 0px;
-  width: 52px;
-  height: 48px;
+  width: 39px;
+  height: 39px;
   text-align: center;
   vertical-align: middle;
-  padding: 11px 0;
+  padding: 9px 0;
   background: #eee;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -2508,6 +2511,7 @@ input#number {
   /* border-bottom: 1px solid #ddd; */
   margin-top: 0px;
   width: 57px;
+  font-size: 14px ;
   background: transparent;
   padding-top: 4px;
   color: #fff;

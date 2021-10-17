@@ -19,39 +19,39 @@ const SideMenu = () => {
     return(
         <>
   
-  <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-dbrown sidebar collapse">
                 <div className="sidebar-sticky pt-3">
                     <ul className="nav flex-column">
-                        <li className="nav-item">
-                        <Link className="nav-link" to="/admin">
+                        <li className="nav-item ">
+                        <Link className="nav-link onwhite ml-4 mb-4 " to="/admin">
                             <span className="fe fe-home pdr" />
                             Home
                         </Link>
                         </li>
 
                         <li className="nav-item">
-                        <Link className="nav-link" to='/admin/food-items'>
+                        <Link className="nav-link onwhite ml-4 mb-4" to='/admin/food-items'>
                             <span className="fe fe-list pdr" />
                             Meals
                         </Link>
                         </li>
 
                         <li className="nav-item">
-                        <Link className="nav-link" to="/admin/orders">
+                        <Link className="nav-link onwhite ml-4 mb-4" to="/admin/orders">
                             <span className="fe fe-calendar pdr" />
                            Orders
                         </Link>
                         </li>
 
-                        <li className="nav-item">
-                        <Link className="nav-link" to="/admin/locations">
+                        <li className="nav-item onwhite">
+                        <Link className="nav-link ml-4 mb-4" to="/admin/locations">
                             <span className="fe fe-map-pin pdr" />
                             Locations
                         </Link>
                         </li>
 
                         <li className="nav-item">
-                        <Link className="nav-link" href="#">
+                        <Link className="nav-link onwhite ml-4 mb-4" href="#">
                             <span className="fe fe-log-out pdr" />
                             Logout
                         </Link>

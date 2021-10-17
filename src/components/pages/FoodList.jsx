@@ -29,39 +29,10 @@ import Dropdown from '../layouts/partials/DropDown'
 
 
 
-const Home = ({isShow, closeModal}) => {
-    const [count, setCount] = useState(0);
-    const [sel, setSel] = useState(false);
+const Home = () => {
     const [show, setShow] = useState(false);
     const [pricing, setPrincing] = useState(0);
-    const [foodName, setFoodName] = useState('');
-    const [closeIcon, setClose] = useState('plus')
-
-    
-    const [selected, setSelected] = useState({
-        count: 0,
-        total: 0,
-        items: []
-    });
-
-    
-        
-    const inc = (e) => {
-        if(e) e.preventDefault()
-        setCount(count + 1);
-    }
-
-    const dec = (e) => {
-        if(e) e.preventDefault()
-
-        if(count < 1){
-            setCount(0)
-        }else{
-            setCount(count - 1);
-        }
-        
-
-    }
+    const [name, setName] = useState('');
 
     useEffect(() => {
         
@@ -75,35 +46,37 @@ const Home = ({isShow, closeModal}) => {
     }
 
 
-
-    const select = (e) => {
-
-        if(e) e.preventDefault();
-
-        if(sel === false){
-            setClose('x');
-        }else{
-            setClose('plus')
-        }
-
-       setSel(!sel);
-
-
-    }
-
-    const getSelected = (e, t, price, food) => {
+    const getSelected = (e, t, count, price, n) => {
         if(e) e.preventDefault();
 
         if(t === 'add'){
-            setPrincing(pricing + parseFloat(price))
-            setFoodName(foodName +  toString(food))
+            setPrincing(pricing + parseInt(price))
+            setName(name + ' + ' + n);
         }
 
         if(t === 'sub'){
-            setPrincing(pricing - parseFloat(price))
+            
+            setPrincing( parseInt(pricing - (count * price)))
+            setName('');
         }
         
     } 
+
+    const getCount = (e, type, p) => {
+        
+     
+        if(e) e.preventDefault();
+
+        if(type === 'add'){
+            setPrincing(pricing + parseInt(p))
+        }
+
+        if(type === 'sub'){
+            setPrincing(pricing - parseInt(p))
+        }
+        
+    }
+
 
 
     return(
@@ -148,7 +121,7 @@ const Home = ({isShow, closeModal}) => {
                     {/* <Alert show={aData.show} type={aData.type} message={aData.message} /> */}
 
                  <div className="row">
-                    <div className="col-lg-8">
+                    <div className="col-lg-8 col-md-12">
                         <div className="row food-disp pub">
                             <>
                             <FoodItem 
@@ -156,6 +129,8 @@ const Home = ({isShow, closeModal}) => {
                                 imgSrc="../../images/assets/food-1.jpeg"
                                 price="200" 
                                 get={getSelected}
+                                getCount={getCount}
+                                
                                 />
 
 
@@ -164,6 +139,7 @@ const Home = ({isShow, closeModal}) => {
                                 imgSrc="../../images/assets/food-3.jpg"
                                 price="5000" 
                                 get={getSelected}
+                                getCount={getCount}
                                 />
 
                             <FoodItem 
@@ -172,6 +148,7 @@ const Home = ({isShow, closeModal}) => {
                                 imgSrc="../../images/assets/food-1.jpeg"
                                 price="200" 
                                 get={getSelected}
+                                getCount={getCount}
                                 />
 
 
@@ -180,6 +157,7 @@ const Home = ({isShow, closeModal}) => {
                                 imgSrc="../../images/assets/food-3.jpg"
                                 price="5000" 
                                 get={getSelected}
+                                getCount={getCount}
                                 />
 
 
@@ -187,31 +165,35 @@ const Home = ({isShow, closeModal}) => {
                         </div>
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-12">
                         <div className="counter">
                         <h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">QTY of meal </h2>
 
-                        <div className="d-flex">
+                        <div className="row">
+                            {/* <div className="col-md-6">
                         <form className="foorm">
                                 <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
-                                <input type="number" id="number" value={count} defaultValue={0} />
+                                <input type="number" id="number" value={count} defaultValue={1} />
                                 <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
                             </form>
+                            </div> */}
 
-                            <div className="bar-food ml-auto mt-5">
-                                
-                                <p className="mrgb0">
-                                    <span className="title font-helveticabold onwhite  fs-14 pdr food-lit">Total:</span>
-                                    {/* <span className="title font-helveticabold onwhite  fs-14 pdr food-lit">{foodName.toS}</span> */}
-                                    <span className="title font-helveticabold onwhite fs-15 food-lit">&#x20A6;{ pricing.toFixed(2) }</span>
+                            <div className="col-md-12">
+                            <div className="bar-food ml-auto">
+                            <h2 className="title font-helveticabold onwhite  fs-13 pdr food-lit">Food Name: {name}</h2>
+
+                                <p className="mrgb0 ">
+                                    <span className="title font-helveticabold onwhite  fs-13 pdr food-lit">Total:</span>
+                                    <span className="title font-helveticabold onwhite fs-15 food-lit">&#x20A6;{ pricing }</span>
                                 </p>
-                            </div>
+                            </div></div>  
+ 
                         </div>
                       
 
                   
 
-                            <button onClick={toggleModal}  className="btn btn-lg btn-block bg-oran  onwhite">Checkout</button>
+                            <button onClick={toggleModal}  className="btn btn-lg btn-block bg-oran mrgt1  onwhite">Checkout</button>
                         </div>
                     </div>
                 </div>

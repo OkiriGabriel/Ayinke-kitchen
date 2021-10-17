@@ -250,6 +250,11 @@ body {
   margin-bottom: 0 !important;
 }
 
+.bg-dbrown{
+  background-color: #0e0c40 !important;
+}
+
+
 .ui-dashboard-card{
   position: relative;
   display: flex;
@@ -258,9 +263,11 @@ body {
   -ms-flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #fff !important;
   background-clip: border-box;
   border-radius: 0.45rem;
+  padding: 1.3rem;
+  border-radius: 5px;
 }
 
 .ui-card-header{

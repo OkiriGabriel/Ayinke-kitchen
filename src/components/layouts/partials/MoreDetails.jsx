@@ -64,9 +64,12 @@ const MoreDetails = ({ isShow, closeModal, actionType, remove, deleteType }) => 
                         <div className="modal-content-box">
 
                             <div className="modal-header-box">
-                                <h2 className="font-metropolisregular fs-16">Meal Details</h2>
+                                <h2 className="font-helveticabold onblack fs-16">Order Details</h2>
+                                <div className="ui-bg-sliver">
+
+                                </div>
                                 <div className="ml-auto">
-                                    <Link onClick={closeModal} style={{ position: 'relative', top: '-3px' }}>
+                                    <Link  className="fe-order"onClick={closeModal} style={{ position: 'relative', top: '-3px' }}>
                                         <span className="fe fe-x on-cord-o fs-13"></span>
                                     </Link>
                                 </div>
@@ -74,33 +77,99 @@ const MoreDetails = ({ isShow, closeModal, actionType, remove, deleteType }) => 
 
                             <div className="modal-content-area">
 
-                                <div className="ui-text-center">
+                                <div className="">
 
-                                    <img src="../../../images/assets/avatar.svg" alt="Child" />
+                                    {/* <img src="../../../images/assets/avatar.svg" alt="Child" /> */}
 
                                     <div className="row">
                                         <div className="col-md-6">
 
-                                            <p className="font-metropolissemibold fs-20 mt-3">Rice and bean</p>
+                                            <p className="  fs-17 onblack onblack font-helveticamedium mt-3">Name</p>
 
                                         </div>
                                         <div className="col-md-6">
 
-                                            <p className="font-metropolissemibold fs-20 mt-3">4500</p>
+                                            <p className="font-helveticamedium  fs-17 onblack  mt-3">Adedeji ibrahim</p>
 
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-md-6">
 
-                                            <p className="font-metropolissemibold fs-20 mt-3">Delivered</p>
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Phone Number</p>
 
                                         </div>
                                         <div className="col-md-6">
 
-                                            <p className="font-metropolissemibold fs-20 mt-3">20/10/2021</p>
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">080 090 xxxxx</p>
 
                                         </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Email address</p>
+
+                                        </div>
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">you@example.com</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Address</p>
+
+                                        </div>
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">No 9, ipaja street, off iyanaoru Lagos state</p>
+
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium fs-17 onblack mt-3">Amount paid</p>
+
+                                        </div>
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">NGN 2000</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Date</p>
+
+                                        </div>
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">10/10/2021</p>
+
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Orders</p>
+
+                                        </div>
+                                        <div className="col-md-6">
+
+                                            <p className="font-helveticamedium  fs-17 onblack mt-3">Sat: 2 Rice + chicken</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="d-flex mt-5">
+                                    <Link  className=" ml-auto btn btn-lgr btn-block onwhite bg-dbrown fs-16 mb-3">Export</Link>
                                     </div>
 
                                 </div>

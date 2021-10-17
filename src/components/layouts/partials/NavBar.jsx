@@ -42,7 +42,7 @@ const NavBar = ({ scrollTo, openModal, position }) => {
                     <div className="navigation">
                         <div className="container">
                         <nav className="main-nav navbar navbar-right navbar-expand-md">
-                        <Link to="/" className="navbar-brand font-helveticabold fs-25 onwhite" href="">AYINKE MAY KITCHEN</Link>
+                        <Link to="/" className="navbar-brand font-helveticabold fs-25 onwhite" href="">Ayinke May Kitchen</Link>
                         {/* <div>
                             <Link to="/" className="navbar-brand box-icon" href="">
                                 <span><img src="fonts/icons/su/icon@boxes.svg" alt="box-icon" /></span>

@@ -19,7 +19,7 @@ const Orders = () => {
 
                                     <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
                                         <h1 className="fs-30 brand-green font-helveticabold mrgb0">0</h1>
-                                        <p className="mrgb0 brand-green fs-13 font-helvetica">0 Orders </p>
+                                        <p className="mrgb0 brand-green fs-13 font-helveticamedium">0 Orders </p>
                                     </div>
 
                                 </div>
@@ -32,7 +32,7 @@ const Orders = () => {
 
                                     <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
                                         <h1 className="fs-30 brand-green font-helveticabold mrgb0">0</h1>
-                                        <p className="mrgb0 brand-green fs-13 font-helvetica">0 Transactions </p>
+                                        <p className="mrgb0 brand-green fs-13 font-helveticamedium">0 Transactions </p>
                                     </div>
 
                                 </div>
@@ -47,7 +47,7 @@ const Orders = () => {
 
                                 <div className="overview-box">
 
-                                    <h2 className="font-helveticamedium mb-2">Orders</h2>
+                                    <h2 className="font-helveticamedium fs-20 mb-2">Orders</h2>
                                     
                                     <div className="ui-dashboard-card frnd-list">
 
@@ -55,48 +55,48 @@ const Orders = () => {
                                         <table className="table custom-table">
 
                                             <thead>
-                                                <tr className="font-helvetica">
-                                                    <th>S/N</th>
-                                                    <th>Amount</th>
-                                                    <th>Description</th>
-                                                    <th>Status</th>
+                                                <tr className="font-helveticabold">
+                                                    <th className="font-helveticabold onblack">S/N</th>
+                                                    <th className="font-helveticabold onblack">Amount</th>
+                                                    <th className="font-helveticabold onblack">Description</th>
+                                                    <th className="font-helveticabold onblack">Status</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 <tr>
-                                                    <td className="font-helvetica">1</td>
-                                                    <td className="font-helvetica">1000</td>
-                                                    <td className="font-helvetica">Rice and beans</td>
-                                                    <td className="font-helvetica">Delivered</td>
+                                                    <td className="font-helveticamedium">1</td>
+                                                    <td className="font-helveticamedium">1000</td>
+                                                    <td className="font-helveticamedium">Rice and beans</td>
+                                                    <td className="font-helveticamedium">Delivered</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">2</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Beans and Bread</td>
-                                                    <td className="font-helvetica">Delivered</td>
+                                                    <td className="font-helveticamedium">2</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Beans and Bread</td>
+                                                    <td className="font-helveticamedium">Delivered</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">3</td>
-                                                    <td className="font-helvetica">2000</td>
-                                                    <td className="font-helvetica">Jollof and Chicken</td>
-                                                    <td className="font-helvetica">Delivered</td>
+                                                    <td className="font-helveticamedium">3</td>
+                                                    <td className="font-helveticamedium">2000</td>
+                                                    <td className="font-helveticamedium">Jollof and Chicken</td>
+                                                    <td className="font-helveticamedium">Delivered</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">4</td>
-                                                    <td className="font-helvetica">2500</td>
-                                                    <td className="font-helvetica">Plantains and Beans</td>
-                                                    <td className="font-helvetica">Delivered</td>
+                                                    <td className="font-helveticamedium">4</td>
+                                                    <td className="font-helveticamedium">2500</td>
+                                                    <td className="font-helveticamedium">Plantains and Beans</td>
+                                                    <td className="font-helveticamedium">Delivered</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">5</td>
-                                                    <td className="font-helvetica">3000</td>
-                                                    <td className="font-helvetica">Rice and Beans</td>
-                                                    <td className="font-helvetica">Delivered</td>
+                                                    <td className="font-helveticamedium">5</td>
+                                                    <td className="font-helveticamedium">3000</td>
+                                                    <td className="font-helveticamedium">Rice and Beans</td>
+                                                    <td className="font-helveticamedium">Delivered</td>
                                                 </tr>
                                             </tbody>
 
@@ -116,7 +116,7 @@ const Orders = () => {
 
                                 <div className="overview-box">
 
-                                    <h2 className="font-helveticamedium mb-2">Transactions</h2>
+                                    <h2 className="font-helveticamedium fs-20 mb-2">Transactions</h2>
                                     
                                     <div className="ui-dashboard-card frnd-list">
 
@@ -125,47 +125,47 @@ const Orders = () => {
 
                                             <thead>
                                                 <tr className="font-helvetica">
-                                                    <th>S/N</th>
-                                                    <th>Name</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
+                                                    <th className="font-helveticabold onblack">S/N</th>
+                                                    <th className="font-helveticabold onblack">Name</th>
+                                                    <th className="font-helveticabold onblack">Price</th>
+                                                    <th className="font-helveticabold onblack">Status</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 <tr>
-                                                    <td className="font-helvetica">1</td>
-                                                    <td className="font-helvetica">Rice + Chicken</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Available</td>
+                                                    <td className="font-helveticamedium">1</td>
+                                                    <td className="font-helveticamedium">Rice + Chicken</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Available</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">2</td>
-                                                    <td className="font-helvetica">Beans + Bread</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Available</td>
+                                                    <td className="font-helveticamedium">2</td>
+                                                    <td className="font-helveticamedium">Beans + Bread</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Available</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">3</td>
-                                                    <td className="font-helvetica">Jollof + Chicken</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Available</td>
+                                                    <td className="font-helveticamedium">3</td>
+                                                    <td className="font-helveticamedium">Jollof + Chicken</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Available</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">4</td>
-                                                    <td className="font-helvetica">Plantains + Beans</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Available</td>
+                                                    <td className="font-helveticamedium">4</td>
+                                                    <td className="font-helveticamedium">Plantains + Beans</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Available</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td className="font-helvetica">5</td>
-                                                    <td className="font-helvetica">Rice + Beans</td>
-                                                    <td className="font-helvetica">1500</td>
-                                                    <td className="font-helvetica">Available</td>
+                                                    <td className="font-helveticamedium">5</td>
+                                                    <td className="font-helveticamedium">Rice + Beans</td>
+                                                    <td className="font-helveticamedium">1500</td>
+                                                    <td className="font-helveticamedium">Available</td>
                                                 </tr>
                                             </tbody>
 
