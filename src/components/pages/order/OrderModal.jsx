@@ -251,13 +251,13 @@ const PayModal = ({isShow, closeModal}) => {
 
         <div className="modal-content-area">
 
-            
+{/*             
         <form className="foorm">
                     <h2 className="brandcox-firefly font-helveticamedium mb-3 fs-13">QTY of meal </h2>
                         <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
                         <input type="number" id="number" value={count} defaultValue={0} />
                         <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
-                    </form>
+                    </form> */}
 
         <form className="gnr-for mrgt1" onSubmit={(e) => e.preventDefault()}>
         <p className="brandcox-firefly font-helveticamedium fs-13 mb-2  ">please confirm your order and checkout</p>

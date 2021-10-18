@@ -4,7 +4,7 @@ import {Modal} from 'react-bootstrap';
 import FoodList from '../FoodList'
 
 
-const PayModal = ({isShow, closeModal,  get, getCount }) => {
+const PayModal = ({isShow, closeModal,  price, getCount }) => {
     const [modalTitle, setModalTitle] = useState('');
     
     const [showAdd, setShowAdd] = useState(false);
@@ -39,7 +39,7 @@ const PayModal = ({isShow, closeModal,  get, getCount }) => {
     const inc = (e) => {
         if(e) e.preventDefault()
         setCount(count + 1);
-        getCount(e, 'add')
+        getCount(e, 'add', price)
     }
 
     const dec = (e) => {
@@ -49,14 +49,11 @@ const PayModal = ({isShow, closeModal,  get, getCount }) => {
             setCount(1)
         }else{
             setCount(count - 1);
-            getCount(e, 'sub')
+            getCount(e, 'sub', price)
         }
-
-        
         
 
     }
-
     
     const closeX = () => {
         setLoading(false);
@@ -97,7 +94,7 @@ const PayModal = ({isShow, closeModal,  get, getCount }) => {
                                         <form className="foorm ui-text-center">
                                         <h2 className="brandcox-firefly text-center font-helveticamedium mrgb2 fs-15">QTY of meal </h2>
                                             <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
-                                            <input className="onblack" type="number" id="number" value={count} defaultValue={0} />
+                                            <input className="onblack" type="number" id="number" value={count} defaultValue={1} />
                                             <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
                                         </form>
 

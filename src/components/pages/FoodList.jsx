@@ -51,7 +51,13 @@ const Home = () => {
 
         if(t === 'add'){
             setPrincing(pricing + parseInt(price))
-            setName(name + ' + ' + n);
+
+            if(name !== ''){
+                setName(name + ' + ' + n);
+            }else{
+                setName(name + n);
+            }
+            
         }
 
         if(t === 'sub'){

@@ -58,7 +58,10 @@ const Home = (props) => {
 
                                 <div data-aos={"fade-right"} className="col-lg-7 col-md-7">
                                     
-                                    <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
+                                    {/* <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
+                                       Welcome to <br /> Ayinke May - Kitchen
+                                    </h1> */}
+                                       <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
                                        Welcome to <br /> Ayinke May - Kitchen
                                     </h1>
 
@@ -351,8 +354,8 @@ const Home = (props) => {
                 <p className="onwhite fs-14 mrgt1 text-center font-helveticamedium "> Lorem, ipsum dolor sit amet consectetur adipisicing</p>
        
         <div className="ui-group-button mrgt2 text-center">
-            <Link to="/contact" className="btn btn-big bg-brandccred onwhite oop ui-hide-mobile-only">Check available food</Link>
-            <Link to="/donation" className="btn btn-big ghost onwhite order font-helveticamedium">Order Now</Link>
+            {/* <Link to="/contact" className="btn btn-big bg-brandccred onwhite oop ui-hide-mobile-only">Check available food</Link> */}
+            <Link to="/food-list" className="btn btn-big ghost onwhite order font-helveticamedium">Order Now</Link>
         </div>
         
 
