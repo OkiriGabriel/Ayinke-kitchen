@@ -1,26 +1,22 @@
 import React, { useEffect, useContext, useState, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import {Modal} from 'react-bootstrap';
-import FoodList from '../FoodList'
 
 
-const PayModal = ({isShow, closeModal,  price, getCount }) => {
+
+const PayModal = ({isShow, closeModal, food, price, get, imgSrc }) => {
     const [modalTitle, setModalTitle] = useState('');
-    
-    const [showAdd, setShowAdd] = useState(false);
+
     const [count, setCount] = useState(1);
     const [loading, setLoading] = useState(false);
     const [sel, setSel] = useState(false)
-    
-    const [closeIcon, setClose] = useState('plus');
-    const [iconShow, setIcon] = useState(false);
-    
-
+    const [pricing, setPrincing] = useState(0);
     
     const multiple = 100;
     const dollarRate = 410;
 
     useEffect(() => {
+     
 
         // locationContext.getLocations();
         setModalTitle('Order now');
@@ -33,6 +29,17 @@ const PayModal = ({isShow, closeModal,  price, getCount }) => {
     }
 
 
+    const getCount = (e, type, p) => {
+        if(e) e.preventDefault();
+
+        if(type === 'add'){
+            setPrincing(pricing + parseInt(p))
+        }
+
+        if(type === 'sub'){
+            setPrincing(pricing - parseInt(p))
+        }
+    }
 
 
     
@@ -54,6 +61,9 @@ const PayModal = ({isShow, closeModal,  price, getCount }) => {
         
 
     }
+
+    
+   
     
     const closeX = () => {
         setLoading(false);
@@ -66,6 +76,7 @@ const PayModal = ({isShow, closeModal,  price, getCount }) => {
                 onHide={closeX} 
                 size="sm"
                 fade={false}
+                getCount={getCount}
                 keyboard={false}
                 aria-labelledby="small-modal"
                 centered

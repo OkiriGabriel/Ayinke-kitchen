@@ -3,21 +3,18 @@ import {Link} from 'react-router-dom';
 import {Modal} from 'react-bootstrap';
 import Alert from '../../layouts/partials/Alert'
 import { PaystackButton } from 'react-paystack';
-import DropDown from '../../layouts/partials/DropDown';
 import Axios from 'axios'
 import colors from '../../helpers/colors'
-import LocationContext from '../../../context/location/locationContext'
+
 
 
 
 const PayModal = ({isShow, closeModal}) => {
     const [step, setStep] = useState(0);
-
-    const locationContext = useContext(LocationContext);
     const [modalTitle, setModalTitle] = useState('');
     
     const [showAdd, setShowAdd] = useState(false);
-    const [count, setCount] = useState(0);
+
     const [loading, setLoading] = useState(false);
     const [iconShow, setIcon] = useState(false);
     
@@ -28,7 +25,7 @@ const PayModal = ({isShow, closeModal}) => {
 
     useEffect(() => {
 
-        // locationContext.getLocations();
+
         setModalTitle('Order now');
 
     });
@@ -42,10 +39,9 @@ const PayModal = ({isShow, closeModal}) => {
         email: '',
         name: '',
         phone: '',
-        amount: (3 * dollarRate) * multiple,
         address: '',
         description: '',
-        location: ''
+        location_id: ''
     });
     const toggleAdd = (e) => {
         if(e) e.preventDefault();
@@ -67,55 +63,13 @@ const PayModal = ({isShow, closeModal}) => {
         type: 'success'
     });
     
-    const getLocations = () => {
-        const loc = locationContext.locations.map((l) => {
-            const c ={
-                value: l._id,
-                label: l.name,
-                left: '',
-                image: ''
-            }
-            return c;
-        });
 
-        return loc;
-    }
-
-    // const setAmount = (a) => {
-
-    //     if(a > 0){
-    //         const am = (a * dollarRate) * multiple;
-    //         setAmt(am);
-    //     }else{
-    //         const am = (a * dollarRate) * multiple;
-    //         setAmt(am);
-    //     }
-
-    // }
-
-    
-    const inc = (e) => {
-        if(e) e.preventDefault()
-        setCount(count + 1);
-    }
-
-    const dec = (e) => {
-        if(e) e.preventDefault()
-
-        if(count < 1){
-            setCount(0)
-        }else{
-            setCount(count - 1);
-        }
-        
-
-    }
 
     const pay = (e) => {
 
         e.preventDefault();
 
-        if(!payData.email || !payData.name || !payData.phone || !payData.amount){
+        if(!payData.email || !payData.name || !payData.phone || !payData.description || !payData.location || !payData.address){
             setAData({...aData, show: true, type: 'danger', message: `All fields are required.`});
             setTimeout(() => {
                 setAData({...aData, show: false})
@@ -138,9 +92,22 @@ const PayModal = ({isShow, closeModal}) => {
             setTimeout(() => {
                 setAData({...aData, show: false})
             },2000)
-        }else if(!payData.amount)
+        }else if(!payData.location)
         {
-            setAData({...aData, show: true, type: 'danger', message: `Please support/donate`});
+            setAData({...aData, show: true, type: 'danger', message: `Choose a location`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else
+        if(!payData.description)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Enter instruction`});
+            setTimeout(() => {
+                setAData({...aData, show: false})
+            },2000)
+        }else if(!payData.location)
+        {
+            setAData({...aData, show: true, type: 'danger', message: `Enter your address`});
             setTimeout(() => {
                 setAData({...aData, show: false})
             },2000)
@@ -177,7 +144,7 @@ const PayModal = ({isShow, closeModal}) => {
 
         try {
 
-            await Axios.post(`${process.env.REACT_APP_AUTH_API_URL}/auth/register`, {...regData})
+            await Axios.post(`${process.env.REACT_APP_ORDER_UR}/order`, {...regData})
             .then((resp) => {
 
                 if(resp.data.error === false){
@@ -269,7 +236,7 @@ const PayModal = ({isShow, closeModal}) => {
                         <div className="col-md-6 col-6 inline">
 
                             <div className="form-group">
-                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>First name</label>
+                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Full name</label>
                                 <input 
                                 type="text" 
                                 defaultValue={(e) => { setPayData({...payData, firstName: e.target.value }) }}
@@ -318,8 +285,8 @@ const PayModal = ({isShow, closeModal}) => {
                                 <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
                                 <select className="form-control" 
                                 
-                                defaultValue={(e) => { setPayData({...payData, location: e.target.value }) }}
-                                onChange={(e) => { setPayData({...payData, location: e.target.value }) }}>
+                                defaultValue={(e) => { setPayData({...payData, location_id: e.target.value }) }}
+                                onChange={(e) => { setPayData({...payData, location_id: e.target.value }) }}>
                                     <option value="iwo">Iwo road</option>
                                     <option value="challenge">Challenge</option>
                                     <option value="bodija">Bodija</option>
@@ -333,28 +300,12 @@ const PayModal = ({isShow, closeModal}) => {
                     </div>
                
                                 <div className="row">
-                                    <div className="col-md-6 col-6 inline">
-
-                                        <div className="form-group">
-                                            <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Amount</label>
-
-                                        <input 
-                                                        defaultValue={(e) => { setPayData({...payData, amount: e.target.value }) }}
-                                                        onChange={(e) => { setPayData({...payData, amount: e.target.value }) }}
-                                                        type="number" min="3" className="form-control font-metrolight fs-13" placeholder="$0.00" />
-
-
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 col-6 inline">
+                                 
+                                    <div className="col-md-12 col-12 inline">
                                     <div className="form-group">
                                         <div className="d-flex align-items-center mb">
                                             <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
-                                            <Link onClick={(e) => toggleAdd(e)} className="font-metromedium fs-13 ml-auto mb-1" style={{color: colors.primary.orange}}>
-                                                {
-                                                    showAdd ? 'Remove' : 'Add description'
-                                                }
-                                            </Link>
+                                         
                                         </div>
                                         <input 
                                             defaultValue={(e) => { setPayData({...payData, address: e.target.value }) }}
@@ -367,10 +318,9 @@ const PayModal = ({isShow, closeModal}) => {
                                     </div>
                                 </div>
 
-                    {
-                        showAdd &&
+            
                         <div className="form-group">
-                        <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Description</label>
+                        <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Instruction</label>
                             <textarea 
                               defaultValue={(e) => { setPayData({...payData, description: e.target.value }) }}
                               onChange={(e) => { setPayData({...payData, description: e.target.value }) }}
@@ -378,7 +328,7 @@ const PayModal = ({isShow, closeModal}) => {
                             className="form-control font-metrolight fs-13" 
                             placeholder="Type here"></textarea>
                         </div>
-                    }
+                
 
 
                     <div className="form-group">

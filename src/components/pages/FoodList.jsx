@@ -1,31 +1,8 @@
 import NavBar from '../layouts/partials/NavBar'
 import OrderModal from './order/OrderModal';
-import React, { useEffect, useContext, useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
-import Slider from '../layouts/partials/Slider';
-
-import Restaurant from '../layouts/partials/Restaurant'
-
-import UserContext from '../../context/user/userContext';
-import FoodContext from '../../context/food/foodContext';
-import AddressContext from '../../context/address/addressContext'
-import LocationContext from '../../context/location/locationContext';
-import FoodItemContext from '../../context/foodItem/foodItemContext';
-import ReviewContext from '../../context/review/reviewContext';
-
-import Placeholder from '../layouts/partials/Placeholder'
+import React, { useEffect, useContext, useState, Fragment } from 'react'
 import FoodItem from '../pages/restaurant/FoodItem';
 import QModal from './order/QuantityModal';
-import Food from '../pages/restaurant/Food';
-import BottomBar from '../layouts/partials/BottomBar';
-import storage from '../helpers/storage';
-import scroller from '../helpers/scroller';
-
-
-import colors from '../helpers/colors'
-import Alert from '../layouts/partials/Alert'
-import Dropdown from '../layouts/partials/DropDown'
 
 
 
@@ -205,36 +182,7 @@ const Home = () => {
                 </div>
 
             </div>
-           
-{/* 
-            <footer>
-                <div id="bottom-bar" className="bottom-bar food">
-
-                    <div className="bar-food">
-                        <Link  className="pdr1 mrl"><span className="fe fe-chevron-left fs-15" style={{color: colors.neutral.grey, position:'relative', top:'5px'}}></span></Link>
-                        <img src="../../../images/icons/dfood2.svg" alt="food icon"/>
-                        <sup className="fd-sup">{ count }</sup>
-                    </div>
-
-                    <div className="bar-food">
-                        <p className="mrgb0">
-                            <span className="title font-metrolight fs-14 pdr food-lit">Total:</span>
-                            <span className="title font-metrobold fs-15 food-lit">&#x20A6;{ pricing.toFixed(2) }</span>
-                        </p>
-                    </div>
-
-                    <div className="ml-auto">
-
-                        <div className="bar-food">
-                            <Link  onClick={toggleModal} className={`bar-fdbtn font-metromedium fs-14 onwhite  `} style={{backgroundColor: colors.primary.green}}>Proceed</Link>
-                        </div> 
-
-                    </div>
-
-                </div>
-            </footer>
- */}
-
+ 
             <OrderModal isShow={show}  closeModal={toggleModal} />
            
             

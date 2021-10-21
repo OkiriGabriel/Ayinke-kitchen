@@ -68,15 +68,15 @@ const Login = (props) => {
 
             try {
 
-                await Axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {...loginData})
+                await Axios.post(`${process.env.REACT_APP_API_URL}/admin`, {...loginData})
                 .then((resp) => {
 
                     if(resp.data.error === false){
 
                         // //save info to local storage
-                        localStorage.setItem('token', resp.data.token);
-                        localStorage.setItem('userId', resp.data.data._id);
-                        props.history.push('/dashboard');
+                        // localStorage.setItem('token', resp.data.token);
+                        // localStorage.setItem('userId', resp.data.data._id);
+                        props.history.push('/admin');
 
                     }
 

@@ -1,13 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom';
-import FoodContext from '../../../context/food/foodContext';
-import LocationContext from '../../../context/location/locationContext'
-import Placeholder from '../../layouts/partials/Placeholder'
 import colors from '../../helpers/colors'
 import QModal from '../order/QuantityModal';
 
 
-const FoodItem = ({ food, price, get, imgSrc, getCount }) => {
+const FoodItem = ({ food, price, get, imgSrc, getCount,   }) => {
 
 
 
@@ -108,7 +105,7 @@ const FoodItem = ({ food, price, get, imgSrc, getCount }) => {
 
             </div>
         </div>
-        {/* <QModal isShow={show}  closeModal={toggleModal} /> */}
+        <QModal isShow={show}  closeModal={toggleModal} getCount={getCount()}/>
 
 
 
