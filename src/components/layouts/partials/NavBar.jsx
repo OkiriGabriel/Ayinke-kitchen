@@ -77,7 +77,7 @@ const NavBar = ({ scrollTo, openModal, position }) => {
                                     <li className="nav-item brandccred font-helveticabold"><Link to="/search" className="nav-link onwhite">Search</Link></li>
                                     {
                                         !storage.checkToken() &&
-                                        <li className="nav-item last"><Link onClick={toggleModal}  className="btn btn-mini mt-2 fs-14 font-helveticabold onwhite bg-orange">Contact</Link></li>
+                                        <li className="nav-item last"><Link onClick={toggleModal}  className="btn btn-mini mt-2 fs-14 font-helveticabold onwhite ghost ccblue">Contact Us</Link></li>
                                     }
                                 </ul>
                             

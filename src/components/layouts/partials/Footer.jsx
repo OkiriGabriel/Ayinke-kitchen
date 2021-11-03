@@ -19,7 +19,7 @@ const Footer = () => {
                             <div className="row">
 
                                 <div className="col-md-3 logo-x">
-                                <Link to="/" className="navbar-brand font-helveticabold fs-25 on-black" href="">AYINKE MAY KITCHEN</Link>
+                                <Link to="/" className="navbar-brand font-helveticabold fs-25 on-black" href="">AYINKEMAY KITCHEN</Link>
                                 </div>
                             
                             </div>
@@ -28,10 +28,11 @@ const Footer = () => {
                                     <div className="row foo-ter mrgt3">
 
                                     <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-helveticabold  fs-18 on-black mrgb">Locations</h4>
+                                            <h4 className="font-helveticabold  fs-18 on-black mrgb"><i className="fa fa-map-pin"></i></h4>
                                             <ul className="font-helveticamedium links">
-                                                <li className="link-underlined onmineshaft font-helveticamedium"> 31 Ogo Oluwa Street.</li>
-                                                <li className="link-underlined onmineshaft font-helveticamedium"> Ojodu, Lagos.</li>
+                                                <li className="link-underlined onmineshaft font-helveticamedium">Lobito Crescent, Wuse 2,
+                                                    </li>
+                                                <li className="link-underlined onmineshaft font-helveticamedium">Abuja, FCT</li>
 
                                             </ul>
                                         </div>
@@ -49,7 +50,7 @@ const Footer = () => {
                                         <div className="col-md-3 col-6 foot-er">
                                             <h4 className="font-helveticabold  fs-18 on-black mrgb">Pages</h4>
                                             <ul className="font-interregular links">
-                                                <li><Link to="/food-list" className="link-underlined hover font-helveticamedium">Food items</Link></li>
+                                                <li><Link to="/food-list" className="link-underlined hover font-helveticamedium">Meals</Link></li>
                                                 <li><Link to="/contact" className="link-underlined hover font-helveticamedium">Contact us</Link></li>
                                                 <li><Link to="/feedback" className="link-underlined hover font-helveticamedium">Feedback</Link></li>
                                                 
@@ -87,7 +88,7 @@ const Footer = () => {
 
                             <div className="ui-text-center">
 
-                                <p className="font-gilroylight fs-14 mrgb0 brand-neutral">Copyright &copy; 2021 - Akinyemo Kitchen. All rights reserved.</p>
+                                <p className="font-gilroylight fs-14 mrgb0 brand-neutral">Copyright &copy; 2021 - AyinkeMay Kitchen. All rights reserved.</p>
 
                             </div>
 

@@ -47,7 +47,7 @@ const Home = (props) => {
 
             <NavBar position={true} />
             
-            <section className="hero home-hero ui-full-bg-norm" style={{backgroundImage: 'url("../../images/assets/bg@backfive.jpg")'}}>
+            <section className="hero home-hero ui-full-bg-norm" style={{backgroundImage: 'url("../../images/assets/femoree-kn_ANxnwCQ0-unsplash2 (FILEminimizer).jpg")', backgroundSize: 'contain'}}>
                 
                 <div className="container flex-height home">
                     <div className="ui-wrapper-small">
@@ -62,22 +62,23 @@ const Home = (props) => {
                                        Welcome to <br /> Ayinke May - Kitchen
                                     </h1> */}
                                        <h1  className="headline onwhite font-helveticabold fs-50 mrgt2">
-                                       Welcome to <br /> Ayinke May - Kitchen
+                                       Welcome to <br /> AyinkeMay Kitchen
                                     </h1>
 
                                     <div class="onwhite font-helveticamedium fs-17 intro" style={{lineHeight: '27px'}}>
-                                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br /> Facilis quam maxime amet sint? Perferendis placeat excepturi temporibus ut ea nesciunt!
+                                       Home of Sumptuous, Healthy Meals
+                                        {/*<br /> Facilis quam maxime amet sint? Perferendis placeat excepturi temporibus ut ea nesciunt!*/}
                                     </div>
 
                                     <div className="ui-group-button mrgt3">
-                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue">Order Now</Link>
+                                        <Link to="/food-list" className="btn btn-big ghost onwhite ccblue bg-orange">Order Now</Link>
                                     
                                     </div>
 
                                     <div className="d-flex mrgt1">
                                          <div className="d-flex mt-5 mr-3">
                                             <li class="list-inline-item "><a href="/" target="_blank" class="ig link-underlined hover"><img src="../../../images/assets/paystack.svg" alt="" /></a></li>
-                                            <p className="onwhite fs-12 font-helveticamedium mrgb0">Pay with Paystack</p>
+                                            <p className="onwhite fs-12 font-helveticamedium mrgb0 text-gray">Pay with Paystack</p>
                                         </div>
 
                                     
