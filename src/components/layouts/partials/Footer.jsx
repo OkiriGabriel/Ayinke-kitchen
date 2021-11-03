@@ -63,10 +63,10 @@ const Footer = () => {
                                                 <li>
                                                 <div class="widget about_widget soc">
                                                     <ul class="social_media list-inline">
-                                                    <li class="list-inline-item"><a target="_blank" href="" class="bg-instagram"><i class="fab fa-instagram onwhite" aria-hidden="true"></i></a></li>
-                                                        <li class="list-inline-item"><a target="_blank" href="" class="bg-facebook"><i class="fab fa-facebook-f onwhite" aria-hidden="true"></i></a></li>
-                                                        <li class="list-inline-item"><a target="_blank" href="" class="bg-facebook"><i class="fab fa-twitter onwhite" aria-hidden="true"></i></a></li>
-                                                        <li class="list-inline-item"><a target="_blank" href="" class="bg-facebook"><i class="fab fa-linkedin onwhite" aria-hidden="true"></i></a></li>
+                                                    <li class="list-inline-item"><a target="_blank" href="https://www.instagram.com/ayinkemaykitchen/" class="bg-instagram"><i class="fab fa-instagram onwhite" aria-hidden="true"></i></a></li>
+                                                        <li class="list-inline-item"><a target="_blank" href="https://web.facebook.com/profile.php?id=100074187304013" class="bg-facebook"><i class="fab fa-facebook-f onwhite" aria-hidden="true"></i></a></li>
+                                                        <li class="list-inline-item"><a target="_blank" href="tel:+2348079083439" class="bg-facebook"><i class="fas phone onwhite" aria-hidden="true"></i></a></li>
+                                                        {/*<li class="list-inline-item"><a target="_blank" href="" class="bg-facebook"><i class="fab fa-linkedin onwhite" aria-hidden="true"></i></a></li>*/}
                                                     </ul>
                                                 </div>
                                                 </li>

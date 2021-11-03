@@ -65,7 +65,7 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                                 </div>
 
                                 <div className="ui-group-button mrgt3">
-                                    <a  href="" className="btn btn-big bg-orange onwhite">Shoot Us an Email</a>
+                                    <a  href="mailto:aymaykitchen@gmail.com" className="btn btn-big bg-orange onwhite">Shoot Us an Email</a>
                                 </div>
 
                                 <p class="onblack font-helveticamedium fs-13 mt-4" style={{lineHeight: '24px'}}>If order related please visit our support clcik the ink below
@@ -75,9 +75,10 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                                 <div className="mrgt3">
 
                                 <ul class="social_media list-inline onwhite mrgt3">
-                                    <li class="list-inline-item "><a href="https://www.instagram.com/concreap/" target="_blank" class="ig link-underlined hover"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/concreap" target="_blank" class="fb link-underlined hover"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://www.linkedin.com/company/concreap/" target="_blank" class="lkd link-underlined hover"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item "><a href="https://www.instagram.com/ayinkemaykitchen/" target="_blank" class="ig link-underlined hover"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://web.facebook.com/profile.php?id=100074187304013" target="_blank" class="fb link-underlined hover"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="tel:+2348079083439" target="_blank" class="fb link-underlined hover"><i class="fab fa-phone" aria-hidden="true"></i></a></li>
+                                    {/*<li class="list-inline-item"><a href="https://www.linkedin.com/company/concreap/" target="_blank" class="lkd link-underlined hover"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>*/}
                                 </ul>
 
                                 </div>
