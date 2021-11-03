@@ -1,224 +1,276 @@
-import React, { useEffect, useContext, useState, Fragment } from 'react';
-import {Link} from 'react-router-dom';
-import {Modal} from 'react-bootstrap';
-import Alert from '../../layouts/partials/Alert'
-import { PaystackButton } from 'react-paystack';
-import Axios from 'axios'
-import colors from '../../helpers/colors'
+import React, { useEffect, useContext, useState, Fragment } from "react";
+import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
+import Alert from "../../layouts/partials/Alert";
+import { PaystackButton } from "react-paystack";
+import Axios from "axios";
+import colors from "../../helpers/colors";
+import axios from "axios";
+import { getLocations } from "../../../services/location";
+import { payNow, postOrder } from "../../../services/order";
 
+const PayModal = ({ isShow, closeModal }) => {
+	const [step, setStep] = useState(0);
+	const [modalTitle, setModalTitle] = useState("");
 
+	const [showAdd, setShowAdd] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+	const [iconShow, setIcon] = useState(false);
+	const [locations, setLocations] = useState([]);
 
-const PayModal = ({isShow, closeModal}) => {
-    const [step, setStep] = useState(0);
-    const [modalTitle, setModalTitle] = useState('');
-    
-    const [showAdd, setShowAdd] = useState(false);
+	const multiple = 100;
+	const dollarRate = 410;
 
-    const [loading, setLoading] = useState(false);
-    const [iconShow, setIcon] = useState(false);
-    
+	useEffect(() => {
+		setModalTitle("Order now");
+	});
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await getLocations();
 
-    
-    const multiple = 100;
-    const dollarRate = 410;
+				setLocations(response.locations);
+				setPayData({ ...payData, location_id: locations[0].id });
+			} catch (error) {
+				console.error(error);
+			}
+		})();
+	}, [locations]);
 
-    useEffect(() => {
+	const close = (e) => {
+		e.preventDefault();
+		closeModal();
+	};
 
+	const [payData, setPayData] = useState({
+		email: "",
+		name: "",
+		phone: "",
+		address: "",
+		instruction: "",
+		location_id: "",
+	});
+	const toggleAdd = (e) => {
+		if (e) e.preventDefault();
+		setShowAdd(!showAdd);
+	};
 
-        setModalTitle('Order now');
+	const [amt, setAmt] = useState(0);
+	const [paid, setPaid] = useState(false);
+	const [aData, setAData] = useState({
+		type: "",
+		message: "",
+		show: false,
+	});
 
-    });
+	const [msgData, setMsgData] = useState({
+		title: "",
+		message: "",
+		buttonText: "",
+		type: "success",
+	});
 
-    const close = (e) => {
-        e.preventDefault();
-        closeModal();
-    }
+	const postOrderAndPayNow = async (e) => {
+		e.preventDefault();
 
-    const [payData, setPayData] = useState({
-        email: '',
-        name: '',
-        phone: '',
-        address: '',
-        description: '',
-        location_id: ''
-    });
-    const toggleAdd = (e) => {
-        if(e) e.preventDefault();
-        setShowAdd(!showAdd);
-    }
+		if (
+			!payData.email ||
+			!payData.name ||
+			!payData.phone ||
+			!payData.instruction ||
+			!payData.location ||
+			!payData.address
+		) {
+			console.log("paydata", payData);
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `All fields are required.`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.email) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Your email is needed.`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.name) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Please enter your name`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.phone) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Please enter your phone number`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.location) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Choose a location`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.instruction) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Enter instruction`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.location) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Enter your address`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else {
+			if (amt > 0) {
+				payData.amount = amt;
+			}
 
-    const [amt, setAmt] = useState(0);
-    const [paid, setPaid] = useState(false);
-    const [aData, setAData] = useState({
-        type: '',
-        message: '',
-        show: false
-    });
+			// const payButton = document.querySelector(".paystack-button");
+			const orderResponse = await postOrder(payData);
+			const payNowResponse = await payNow(orderResponse.order_id);
+			if (!payNowResponse) {
+				setAData({
+					...aData,
+					show: true,
+					type: "danger",
+					message: `We cannot proccess your request now, please try again.`,
+				});
+				setTimeout(() => {
+					setAData({ ...aData, show: false });
+				}, 2000);
+				// payButton.click();
+			}
+			window.location.href = payNowResponse;
+		}
+	};
 
-    const[msgData, setMsgData] = useState({
-        title: '',
-        message: '',
-        buttonText: '',
-        type: 'success'
-    });
-    
+	const saveEmail = async () => {
+		const regData = {
+			email: payData.email,
+			phoneNumber: payData.phone,
+			password: "#commanD555/" + payData.email,
+			phoneCode: "+234",
+		};
 
+		try {
+			await Axios.post(`${process.env.REACT_APP_ORDER_UR}/order`, {
+				...regData,
+			})
+				.then((resp) => {
+					if (resp.data.error === false) {
+						setPaid(true);
+					}
+				})
+				.catch((err) => {
+					setAData({
+						...aData,
+						show: true,
+						type: "danger",
+						message: `${err.response.data.message}`,
+					});
+					setTimeout(() => {
+						setAData({ ...aData, show: false });
+					}, 2000);
+				});
+		} catch (err) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `${err.response.data.message}`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		}
+	};
 
-    const pay = (e) => {
+	const onPaySuccess = () => {
+		setPaid(true);
+		saveEmail();
+	};
+	const onPayClose = () => {
+		setAData({
+			...aData,
+			show: true,
+			type: "danger",
+			message: `We understand that you may not want to support. Thank you so much 😊`,
+		});
+		setTimeout(() => {
+			setAData({ ...aData, show: false });
+		}, 4000);
+	};
 
-        e.preventDefault();
+	const closeX = () => {
+		setStep(0);
+		setLoading(false);
+		closeModal();
+	};
 
-        if(!payData.email || !payData.name || !payData.phone || !payData.description || !payData.location || !payData.address){
-            setAData({...aData, show: true, type: 'danger', message: `All fields are required.`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else if(!payData.email)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Your email is needed.`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else if(!payData.name)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Please enter your name`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else if(!payData.phone)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Please enter your phone number`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else if(!payData.location)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Choose a location`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else
-        if(!payData.description)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Enter instruction`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else if(!payData.location)
-        {
-            setAData({...aData, show: true, type: 'danger', message: `Enter your address`});
-            setTimeout(() => {
-                setAData({...aData, show: false})
-            },2000)
-        }else{
+	return (
+		<>
+			<Modal
+				show={isShow}
+				onHide={closeX}
+				size="sm"
+				fade={false}
+				keyboard={false}
+				aria-labelledby="small-modal"
+				centered
+				className="custom-modal rem-modal"
+			>
+				<Modal.Body>
+					<div className="modal-box">
+						<div className="modal-sidebar"></div>
 
-            
-            if(amt > 0){
-                payData.amount = amt;
-            }
+						<div className="modal-content-box">
+							<div className="modal-header-box">
+								<h2 className=" font-helveticabold fs-16">Checkout</h2>
+								<div className="ml-auto">
+									<Link
+										className="fe-order"
+										onClick={closeModal}
+										style={{ position: "relative", top: "-3px" }}
+									>
+										<span className="fe fe-x on-cord-o fs-13"></span>
+									</Link>
+								</div>
+							</div>
 
-            const payButton = document.querySelector('.paystack-button');
-            if(payButton){
-
-                payButton.click();
-                
-            }else{
-                setAData({...aData, show: true, type: 'danger', message: `We cannot proccess your request now, please try again.`});
-                setTimeout(() => {
-                    setAData({...aData, show: false})
-                },2000)
-            }
-        }
-
-    }
-
-    const saveEmail = async () => {
-
-        const regData = {
-            email: payData.email,
-            phoneNumber: payData.phone,
-            password:'#commanD555/'+payData.email,
-            phoneCode: '+234'
-        }
-
-        try {
-
-            await Axios.post(`${process.env.REACT_APP_ORDER_UR}/order`, {...regData})
-            .then((resp) => {
-
-                if(resp.data.error === false){
-                    setPaid(true)
-                }
-
-            }).catch((err) => {
-
-                setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
-                setTimeout(() => {
-                    setAData({...aData, show: false});
-                }, 2000);
-            })
-            
-        } catch (err) {
-            setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
-            setTimeout(() => {
-                setAData({...aData, show: false});
-            }, 2000);
-        }
-
-    }
-
-    const onPaySuccess = () => {
-        setPaid(true);
-        saveEmail();
-    }
-    const onPayClose = () => {
-        setAData({...aData, show: true, type: 'danger', message: `We understand that you may not want to support. Thank you so much 😊`});
-        setTimeout(() => {
-            setAData({...aData, show: false})
-        },4000)
-    }
-
-
-    
-    const closeX = () => {
-        setStep(0);
-        setLoading(false);
-        closeModal();
-    }
-
-    return (
-        <>
-             <Modal show={isShow} 
-                onHide={closeX} 
-                size="sm"
-                fade={false}
-                keyboard={false}
-                aria-labelledby="small-modal"
-                centered
-                className="custom-modal rem-modal"
-            >
-
-<Modal.Body>
-
-<div className="modal-box">
-
-    <div className="modal-sidebar"></div>
-
-    <div className="modal-content-box">
-
-        <div className="modal-header-box">
-            <h2 className=" font-helveticabold fs-16">Checkout</h2>
-            <div className="ml-auto">
-                <Link className="fe-order" onClick={closeModal} style={{ position: 'relative', top: '-3px' }}>
-                    <span className="fe fe-x on-cord-o fs-13"></span>
-                </Link>
-            </div>
-        </div>
-
-        <div className="modal-content-area">
-
-{/*             
+							<div className="modal-content-area">
+								{/*             
         <form className="foorm">
                     <h2 className="brandcox-firefly font-helveticamedium mb-3 fs-13">QTY of meal </h2>
                         <div onClick={(e) => { dec(e) }} className="value-button" id="decrease" >-</div>
@@ -226,148 +278,214 @@ const PayModal = ({isShow, closeModal}) => {
                         <div onClick={(e) => { inc(e) }} className="value-button" id="increase" >+</div>
                     </form> */}
 
-        <form className="gnr-for mrgt1" onSubmit={(e) => e.preventDefault()}>
-        <p className="brandcox-firefly font-helveticamedium fs-13 mb-2  ">please confirm your order and checkout</p>
+								<form
+									className="gnr-for mrgt1"
+									onSubmit={(e) => e.preventDefault()}
+								>
+									<p className="brandcox-firefly font-helveticamedium fs-13 mb-2  ">
+										please confirm your order and checkout
+									</p>
 
-            <Alert show={aData.show} type={aData.type} message={aData.message} />
+									<Alert
+										show={aData.show}
+										type={aData.type}
+										message={aData.message}
+									/>
 
-                    <div className="row">
+									<div className="row">
+										<div className="col-md-6 col-6 inline">
+											<div className="form-group">
+												<label
+													className="font-metromedium fs-13 mb"
+													style={{ color: colors.primary.green }}
+												>
+													Full name
+												</label>
+												<input
+													type="text"
+													defaultValue={(e) => {
+														setPayData({
+															...payData,
+															name: e.target.value,
+														});
+													}}
+													onChange={(e) => {
+														setPayData({
+															...payData,
+															name: e.target.value,
+														});
+													}}
+													className="form-control font-metrolight fs-13"
+													placeholder="E.g. Wale"
+												/>
+											</div>
+										</div>
 
-                        <div className="col-md-6 col-6 inline">
+										{/*  */}
 
-                            <div className="form-group">
-                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Full name</label>
-                                <input 
-                                type="text" 
-                                defaultValue={(e) => { setPayData({...payData, firstName: e.target.value }) }}
-                                    onChange={(e) => { setPayData({...payData, firstName: e.target.value }) }}
-                                className="form-control font-metrolight fs-13" 
-                                placeholder="E.g. Wale" />
-                            </div>
+										<div className="col-md-6 col-6 inline">
+											<div className="form-group">
+												<label
+													className="font-metromedium fs-13 mb"
+													style={{ color: colors.primary.green }}
+												>
+													Email
+												</label>
+												<input
+													type="text"
+													defaultValue={(e) => {
+														setPayData({ ...payData, email: e.target.value });
+													}}
+													onChange={(e) => {
+														setPayData({ ...payData, email: e.target.value });
+													}}
+													className="form-control font-metrolight fs-13"
+													placeholder="yourmail@you.com"
+												/>
+											</div>
+										</div>
+									</div>
 
-                        </div>
+									<div className="row">
+										<div className="col-md-6 col-6 inline">
+											<div className="form-group">
+												<label
+													className="font-metromedium fs-13 mb"
+													style={{ color: colors.primary.green }}
+												>
+													Phone
+												</label>
+												<input
+													defaultValue={(e) => {
+														setPayData({ ...payData, phone: e.target.value });
+													}}
+													onChange={(e) => {
+														setPayData({ ...payData, phone: e.target.value });
+													}}
+													type="text"
+													className="form-control font-metrolight fs-13"
+													placeholder="080xxx"
+												/>
+											</div>
+										</div>
 
-                        {/*  */}
+										<div className="col-md-6 col-6 inline">
+											<div className="form-group">
+												<label
+													className="font-metromedium fs-13 mb"
+													style={{ color: colors.primary.green }}
+												>
+													Location
+												</label>
+												<select
+													className="form-control"
+													defaultValue={(e) => {
+														setPayData({
+															...payData,
+															location_id: e.target.value,
+														});
+													}}
+													onChange={(e) => {
+														setPayData({
+															...payData,
+															location_id: e.target.value,
+														});
+													}}
+												>
+													{locations.length ? (
+														locations.map((location) => (
+															<option value={location.id}>
+																{location.name}
+															</option>
+														))
+													) : (
+														<option value="loading">loading...</option>
+													)}
+													{/* <option value="iwo">Iwo road</option>
+													<option value="challenge">Challenge</option>
+													<option value="bodija">Bodija</option>
+													<option value="saki">Saki</option>
+													<option value="gate">Lautech gate</option> */}
+												</select>
+											</div>
+										</div>
+									</div>
 
-                        <div className="col-md-6 col-6 inline">
+									<div className="row">
+										<div className="col-md-12 col-12 inline">
+											<div className="form-group">
+												<div className="d-flex align-items-center mb">
+													<label
+														className="font-metromedium fs-13"
+														style={{ color: colors.primary.green }}
+													>
+														Address
+													</label>
+												</div>
+												<input
+													defaultValue={(e) => {
+														setPayData({ ...payData, address: e.target.value });
+													}}
+													onChange={(e) => {
+														setPayData({ ...payData, address: e.target.value });
+													}}
+													type="text"
+													className="form-control font-metrolight fs-13"
+													placeholder="your address"
+												/>
+											</div>
+										</div>
+									</div>
 
-                            <div className="form-group">
-                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Email</label>
-                                <input 
-                                type="text" 
-                                defaultValue={(e) => { setPayData({...payData, email: e.target.value }) }}
-                                    onChange={(e) => { setPayData({...payData, email: e.target.value }) }}
-                                className="form-control font-metrolight fs-13" 
-                                placeholder="yourmail@you.com" />
-                            </div>
+									<div className="form-group">
+										<label
+											className="font-metromedium fs-13 mb"
+											style={{ color: colors.primary.green }}
+										>
+											Instruction
+										</label>
+										<textarea
+											defaultValue={(e) => {
+												setPayData({ ...payData, instruction: e.target.value });
+											}}
+											onChange={(e) => {
+												setPayData({ ...payData, instruction: e.target.value });
+											}}
+											type="text"
+											className="form-control font-metrolight fs-13"
+											placeholder="Type here"
+										></textarea>
+									</div>
 
-                        </div>
-
-                    </div>
-
-                    <div className="row">
-
-                        <div className="col-md-6 col-6 inline">
-                            <div className="form-group">
-                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Phone</label>
-                                <input 
-                                defaultValue={(e) => { setPayData({...payData, phone: e.target.value }) }}
-                                onChange={(e) => { setPayData({...payData, phone: e.target.value }) }}
-                                type="text" 
-                                className="form-control font-metrolight fs-13" 
-                                placeholder="080xxx" />
-                            </div>
-                        </div>
-
-                        <div className="col-md-6 col-6 inline">
-
-                            <div className="form-group">
-                                <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Location</label>
-                                <select className="form-control" 
-                                
-                                defaultValue={(e) => { setPayData({...payData, location_id: e.target.value }) }}
-                                onChange={(e) => { setPayData({...payData, location_id: e.target.value }) }}>
-                                    <option value="iwo">Iwo road</option>
-                                    <option value="challenge">Challenge</option>
-                                    <option value="bodija">Bodija</option>
-                                    <option value="saki">Saki</option>
-                                    <option value="gate">Lautech gate</option>
-                                </select>
-                              
-                            </div>
-                        </div>
-
-                    </div>
-               
-                                <div className="row">
-                                 
-                                    <div className="col-md-12 col-12 inline">
-                                    <div className="form-group">
-                                        <div className="d-flex align-items-center mb">
-                                            <label className="font-metromedium fs-13" style={{color: colors.primary.green}}>Address</label>
-                                         
-                                        </div>
-                                        <input 
-                                            defaultValue={(e) => { setPayData({...payData, address: e.target.value }) }}
-                                            onChange={(e) => { setPayData({...payData, address: e.target.value }) }}
-
-                                        type="text" 
-                                        className="form-control font-metrolight fs-13" 
-                                        placeholder="your address" />
-                                    </div>
-                                    </div>
-                                </div>
-
-            
-                        <div className="form-group">
-                        <label className="font-metromedium fs-13 mb" style={{color: colors.primary.green}}>Instruction</label>
-                            <textarea 
-                              defaultValue={(e) => { setPayData({...payData, description: e.target.value }) }}
-                              onChange={(e) => { setPayData({...payData, description: e.target.value }) }}
-                            type="text" 
-                            className="form-control font-metrolight fs-13" 
-                            placeholder="Type here"></textarea>
-                        </div>
-                
-
-
-                    <div className="form-group">
-            
-                    <PaystackButton 
-
-                    id="pay-button"
-                    email={payData.email}
-                    amount={payData.amount}
-                    name={payData.name}
-                    phone={payData.phone}
-                    publicKey={process.env.REACT_APP_PAYSTACK_PUBLIC_KEY}
-                    text={'Pay Now'}
-                    onSuccess={onPaySuccess}
-                    onClose={onPayClose}
-                    className="paystack-button"
-                    />
-                    </div>
-                    
-              
-
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</Modal.Body>
-
-            </Modal>
-        </>
-    )
-
-}
+									<div className="form-group">
+										<button
+											class="btn paynow-btn font-helveticamedium "
+											type="button"
+											onClick={postOrderAndPayNow}
+										>
+											Pay Now
+										</button>
+										{/* <PaystackButton
+											id="pay-button"
+											email={payData.email}
+											amount={payData.amount}
+											name={payData.name}
+											phone={payData.phone}
+											publicKey={process.env.REACT_APP_PAYSTACK_PUBLIC_KEY}
+											text={"Pay Now"}
+											onSuccess={onPaySuccess}
+											onClose={onPayClose}
+											className="paystack-button"
+										/> */}
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</Modal.Body>
+			</Modal>
+		</>
+	);
+};
 
 export default PayModal;
-
-
-
