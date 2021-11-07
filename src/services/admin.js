@@ -7,7 +7,7 @@ export const login = async (loginObj) => {
 		console.log("lg", loginObj);
 		const response = await instance.post(resourceUrl, loginObj);
 		console.log("res", response);
-		return response.data[0];
+		return response.data;
 	} catch (error) {
 		console.log("th paynow error", error);
 		throw error;

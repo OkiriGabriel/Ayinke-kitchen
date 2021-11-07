@@ -12,11 +12,12 @@ const Home = () => {
 	const [pricing, setPrincing] = useState(0);
 	const [name, setName] = useState("");
 	const [meals, setMeals] = useState([]);
-	const [close, setClose] = useState(false);
+	const [close, setClose] = useState(true);
 	const toggleClose = () => setClose(!close);
+	const smallDevices = () => window.matchMedia("(max-width: 768px)");
 	const handleClose = () => {
-		const matchMedia = window.matchMedia("(max-width: 768px)");
-		if (matchMedia.matches) {
+		// const matchMedia = window.matchMedia("(max-width: 768px)");
+		if (smallDevices().matches) {
 			setClose(true);
 		} else {
 			setClose(false);
@@ -154,9 +155,14 @@ const Home = () => {
 									))
 								) : (
 									<div className="spinner-holder">
-										<Spinner animation="border" role="status" variant="success">
+										{/* <Spinner animation="border" role="status" variant="success">
 											<span className="visually-hidden">Loading...</span>
-										</Spinner>
+										</Spinner> */}
+										<img
+											src="../../images/assets/spinner.svg"
+											alt="spinner"
+											width="100px"
+										/>
 									</div>
 								)}
 
@@ -172,7 +178,9 @@ const Home = () => {
 					</div>
 
 					<div
-						style={{ display: close ? "none" : "block" }}
+						style={{
+							display: close && smallDevices().matches ? "none" : "block",
+						}}
 						className="col-lg-4 col-md-12 cart"
 					>
 						<div className="counter">
