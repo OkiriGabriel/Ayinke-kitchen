@@ -1,9 +1,25 @@
 import instance from "./";
-const resourseUrl = "/order";
+const resourceUrl = "/order";
 // annoying wrapper to avoid annoying data key
 
-export const postOrder = async (data) =>
-	(await instance.post(resourseUrl, data)).data;
+export const postOrder = async (data) => {
+	try {
+		return (await instance.post(resourceUrl, data)).data;
+	} catch (error) {
+		console.log("post now error", error);
+	}
+};
 
-export const payNow = async (orderId) =>
-	(await instance.get("/paynow", { order_id: orderId })).data;
+export const payNow = async (orderId) => {
+	try {
+		const response = await instance.get(`/paynow`, {
+			params: {
+				order_id: orderId,
+			},
+		});
+		console.log("the response", response);
+		return response.data;
+	} catch (error) {
+		console.log("th paynow error", error);
+	}
+};

@@ -93,36 +93,36 @@ const App = () => {
 										<Route exact path="/search" component={Search} />
 
 										{/* <Route exact path="/dashboard/account" component={Account} /> */}
-										<Route exact path="/admin/login" component={Login} />
+										<Route exact path="/admin" component={Login} />
 										<Route
 											exact
-											path="/admin"
+											path="/admin/dashboard"
 											component={DashboardLayout(Dashboard)}
 										/>
 										<Route
 											exact
-											path="/admin/add-location"
+											path="/admin/dashboard/add-location"
 											component={DashboardLayout(LocationAdd)}
 										/>
 										<Route
 											exact
-											path="/admin/food-items"
+											path="/admin/dashboard/food-items"
 											component={DashboardLayout(FoodItems)}
 										/>
 										<Route
 											exact
-											path="/admin/orders"
+											path="/admin/dashboard/orders"
 											component={DashboardLayout(Orders)}
 										/>
 										<Route
 											exact
-											path="/admin/locations"
+											path="/admin/dashboard/locations"
 											component={DashboardLayout(Locations)}
 										/>
 
 										<Route
 											exact
-											path="/admin/food-items/add"
+											path="/admin/dashboard/food-items/add"
 											component={DashboardLayout(AddFood)}
 										/>
 
