@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-	baseURL: "http://api.ayinkemaykitchen.com/api/",
+	baseURL: "https://api.ayinkemaykitchen.com/api/",
 });
 
 const { API_KEY } = process.env;
