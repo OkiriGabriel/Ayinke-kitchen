@@ -8,6 +8,7 @@ import { Spinner } from "react-bootstrap";
 import MealStorage from "../../utils/storage";
 
 const Home = () => {
+	console.log("FROM FOOD LISTS");
 	const [show, setShow] = useState(false);
 	const [pricing, setPrincing] = useState(0);
 	const [name, setName] = useState("");
@@ -45,9 +46,12 @@ const Home = () => {
 		(async () => {
 			try {
 				setMealStorage(MealStorage.getMeals());
+				console.log("some triall");
 				const response = await getMeals();
+				console.log("some t res", response);
 				setMeals(response.meals);
 			} catch (error) {
+				console.log("some error", error);
 				console.error(error);
 			}
 		})();
