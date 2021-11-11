@@ -61,7 +61,7 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                                 
 
                                 <div class="onblack font-helveticamedium fs-18 mt-4" style={{lineHeight: '24px'}}>
-                                Shoot us an email at AkinyemoKitchen@gmail.com or contact us on our channels.
+                                Shoot us an email at aymaykitchen@gmail.com or contact us on our channels.
                                 </div>
 
                                 <div className="ui-group-button mrgt3">
