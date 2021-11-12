@@ -15,6 +15,7 @@ import LocationState from "./context/location/locationState";
 import AddressState from "./context/address/addressState";
 import FoodState from "./context/food/foodState";
 import FoodItemState from "./context/foodItem/foodItemState";
+import { loggedIn } from "./utils/storage/auth";
 
 //
 // components: lazyload pages
@@ -92,43 +93,6 @@ const App = () => {
 										{/* <Route exact path="/search/:query" component={Search} /> */}
 										<Route exact path="/search" component={Search} />
 
-										{/* <Route exact path="/dashboard/account" component={Account} /> */}
-										<Route exact path="/admin/login" component={Login} />
-										<Route
-											exact
-											path="/admin"
-											component={DashboardLayout(Dashboard)}
-										/>
-										<Route
-											exact
-											path="/admin/add-location"
-											component={DashboardLayout(LocationAdd)}
-										/>
-										<Route
-											exact
-											path="/admin/food-items"
-											component={DashboardLayout(FoodItems)}
-										/>
-										<Route
-											exact
-											path="/admin/orders"
-											component={DashboardLayout(Orders)}
-										/>
-										<Route
-											exact
-											path="/admin/locations"
-											component={DashboardLayout(Locations)}
-										/>
-
-										<Route
-											exact
-											path="/admin/food-items/add"
-											component={DashboardLayout(AddFood)}
-										/>
-
-										{/* put this here */}
-										{/* <Route exact path="/:id" component={RestDetails} /> */}
-
 										<Route exact path="/order/plates" component={Plates} />
 
 										<Route
@@ -136,6 +100,48 @@ const App = () => {
 											path="/order/confirm"
 											component={ConfirmOrder}
 										/>
+										{/* <Route exact path="/dashboard/account" component={Account} /> */}
+										<Route exact path="/admin" component={Login} />
+
+										{/* {loggedIn && (
+											<> */}
+										<Route
+											exact
+											path="/admin/dashboard"
+											component={DashboardLayout(Dashboard)}
+										/>
+										<Route
+											exact
+											path="/admin/dashboard/add-location"
+											component={DashboardLayout(LocationAdd)}
+										/>
+										<Route
+											exact
+											path="/admin/dashboard/food-items"
+											component={DashboardLayout(FoodItems)}
+										/>
+										<Route
+											exact
+											path="/admin/dashboard/orders"
+											component={DashboardLayout(Orders)}
+										/>
+										<Route
+											exact
+											path="/admin/dashboard/locations"
+											component={DashboardLayout(Locations)}
+										/>
+
+										<Route
+											exact
+											path="/admin/dashboard/food-items/add"
+											component={DashboardLayout(AddFood)}
+										/>
+										{/* </>
+										)} */}
+
+										{/* put this here */}
+										{/* <Route exact path="/:id" component={RestDetails} /> */}
+
 										<Route path="*" render={() => <Redirect to="/" />} />
 									</Switch>
 								</Suspense>

@@ -9,7 +9,7 @@ import axios from "axios";
 import { getLocations } from "../../../services/location";
 import { payNow, postOrder } from "../../../services/order";
 
-const PayModal = ({ isShow, closeModal }) => {
+const PayModal = ({ isShow, closeModal, mealStorage }) => {
 	const [step, setStep] = useState(0);
 	const [modalTitle, setModalTitle] = useState("");
 
@@ -18,6 +18,7 @@ const PayModal = ({ isShow, closeModal }) => {
 	const [loading, setLoading] = useState(false);
 	const [iconShow, setIcon] = useState(false);
 	const [locations, setLocations] = useState([]);
+	console.log("locations", locations);
 
 	const multiple = 100;
 	const dollarRate = 410;
@@ -29,13 +30,16 @@ const PayModal = ({ isShow, closeModal }) => {
 		(async () => {
 			try {
 				const response = await getLocations();
-
+				console.log("order modal");
+				console.log(locations);
 				setLocations(response.locations);
-				setPayData({ ...payData, location_id: locations[0].id });
 			} catch (error) {
 				console.error(error);
 			}
 		})();
+	}, []);
+	useEffect(() => {
+		setPayData({ ...payData, location_id: locations[0]?.id });
 	}, [locations]);
 
 	const close = (e) => {
@@ -75,11 +79,11 @@ const PayModal = ({ isShow, closeModal }) => {
 		e.preventDefault();
 
 		if (
-			!payData.email ||
-			!payData.name ||
-			!payData.phone ||
-			!payData.instruction ||
-			!payData.location ||
+			!payData.name &&
+			!payData.email &&
+			!payData.phone &&
+			!payData.instruction &&
+			// !payData.location &&
 			!payData.address
 		) {
 			console.log("paydata", payData);
@@ -88,16 +92,6 @@ const PayModal = ({ isShow, closeModal }) => {
 				show: true,
 				type: "danger",
 				message: `All fields are required.`,
-			});
-			setTimeout(() => {
-				setAData({ ...aData, show: false });
-			}, 2000);
-		} else if (!payData.email) {
-			setAData({
-				...aData,
-				show: true,
-				type: "danger",
-				message: `Your email is needed.`,
 			});
 			setTimeout(() => {
 				setAData({ ...aData, show: false });
@@ -112,6 +106,16 @@ const PayModal = ({ isShow, closeModal }) => {
 			setTimeout(() => {
 				setAData({ ...aData, show: false });
 			}, 2000);
+		} else if (!payData.email) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Your email is needed.`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
 		} else if (!payData.phone) {
 			setAData({
 				...aData,
@@ -122,12 +126,22 @@ const PayModal = ({ isShow, closeModal }) => {
 			setTimeout(() => {
 				setAData({ ...aData, show: false });
 			}, 2000);
-		} else if (!payData.location) {
+		} else if (!payData.location_id) {
 			setAData({
 				...aData,
 				show: true,
 				type: "danger",
 				message: `Choose a location`,
+			});
+			setTimeout(() => {
+				setAData({ ...aData, show: false });
+			}, 2000);
+		} else if (!payData.address) {
+			setAData({
+				...aData,
+				show: true,
+				type: "danger",
+				message: `Enter your address`,
 			});
 			setTimeout(() => {
 				setAData({ ...aData, show: false });
@@ -142,24 +156,23 @@ const PayModal = ({ isShow, closeModal }) => {
 			setTimeout(() => {
 				setAData({ ...aData, show: false });
 			}, 2000);
-		} else if (!payData.location) {
-			setAData({
-				...aData,
-				show: true,
-				type: "danger",
-				message: `Enter your address`,
-			});
-			setTimeout(() => {
-				setAData({ ...aData, show: false });
-			}, 2000);
 		} else {
-			if (amt > 0) {
-				payData.amount = amt;
-			}
+			// if (amt > 0) {
+			// 	payData.amount = amt;
+			// }
 
 			// const payButton = document.querySelector(".paystack-button");
-			const orderResponse = await postOrder(payData);
+			const order = {
+				...payData,
+				meals: mealStorage,
+			};
+			console.log("the full order", order);
+			const orderResponse = await postOrder(order);
+			// console.log("order response", orderResponse);
+			// orderResponse.order_id
 			const payNowResponse = await payNow(orderResponse.order_id);
+			console.log("paynow response", payNowResponse);
+
 			if (!payNowResponse) {
 				setAData({
 					...aData,
@@ -172,7 +185,17 @@ const PayModal = ({ isShow, closeModal }) => {
 				}, 2000);
 				// payButton.click();
 			}
-			window.location.href = payNowResponse;
+			setPayData({
+				email: "",
+				name: "",
+				phone: "",
+				address: "",
+				instruction: "",
+				location_id: locations[0]?.id,
+			});
+			localStorage.removeItem("meals");
+			closeModal();
+			window.location.href = payNowResponse.url;
 		}
 	};
 
@@ -259,13 +282,13 @@ const PayModal = ({ isShow, closeModal }) => {
 							<div className="modal-header-box">
 								<h2 className=" font-helveticabold fs-16">Checkout</h2>
 								<div className="ml-auto">
-									<Link
+									<button
 										className="fe-order"
 										onClick={closeModal}
 										style={{ position: "relative", top: "-3px" }}
 									>
 										<span className="fe fe-x on-cord-o fs-13"></span>
-									</Link>
+									</button>
 								</div>
 							</div>
 
@@ -394,7 +417,7 @@ const PayModal = ({ isShow, closeModal }) => {
 												>
 													{locations.length ? (
 														locations.map((location) => (
-															<option value={location.id}>
+															<option key={location.id} value={location.id}>
 																{location.name}
 															</option>
 														))
