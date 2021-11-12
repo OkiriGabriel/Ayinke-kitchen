@@ -52,11 +52,16 @@
     font-family: 'helveticaneuelight' !important;
 }
 .font-helveticamedium, .font-helveticamedium a, .font-helveticamedium span{
-    font-family: 'helveticaneuemedium' !important;
+    font-family: 'verdana' !important;
 }
 .font-helveticalight, .font-helveticalight a, .font-helveticalight span{
     font-family: 'helveticaneuethin' !important;
 }
 .font-helveticabold, .font-helveticabold a, .font-helveticabold span{
-    font-family: 'helveticaneuebold' !important;
+    font-family: 'verdana' !important;
+    font-width: bold;
+}
+
+.helvetica{
+    font-family: 'Helvetica Neue';
 }
