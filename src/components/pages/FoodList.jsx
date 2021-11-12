@@ -5,7 +5,7 @@ import FoodItem from "../pages/restaurant/FoodItem";
 import QModal from "./order/QuantityModal";
 import { getMeals } from "../../services/meal";
 import { Spinner } from "react-bootstrap";
-import MealStorage from "../../utils/storage";
+import MealStorage from "../../utils/storage/meal";
 
 const Home = () => {
 	console.log("FROM FOOD LISTS");

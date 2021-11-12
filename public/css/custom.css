@@ -1402,9 +1402,12 @@ a.md-button {
 	align-items: center;
 }
 
-.ui-group-button a,
 .ui-group-button a {
 	margin: 0 0.9rem;
+}
+
+.ui-group-button button:first-of-type {
+	margin: 0 1.8rem 0 0;
 }
 
 .ui-group-button a,

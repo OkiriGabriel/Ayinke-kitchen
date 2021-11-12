@@ -6,8 +6,8 @@ import NavBar from "../../layouts/partials/NavBar";
 import Alert from "../../layouts/partials/Alert";
 import ButtonSpinner from "../../layouts/partials/ButtonSpinner";
 
-import storage from "../../helpers/storage";
 import { login } from "../../../services/admin";
+import storage, { loggedIn } from "../../../utils/storage/auth";
 
 const Login = (props) => {
 	const history = useHistory();
@@ -15,9 +15,10 @@ const Login = (props) => {
 	const [step, setStep] = useState(0);
 	const [pass, setPass] = useState("password");
 	const [loading, setLoading] = useState(false);
+	// const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loginData, setLogData] = useState({
-		email: "",
-		password: "",
+		email: "adedejiibrahim7@gmail.com",
+		password: "aklsftt",
 	});
 
 	const [aData, setAData] = useState({
@@ -27,8 +28,8 @@ const Login = (props) => {
 	});
 
 	useEffect(() => {
-		if (storage.checkToken()) {
-			history.push("/dashboard");
+		if (loggedIn()) {
+			history.push("/admin/dashboard");
 		}
 	}, []);
 
@@ -80,8 +81,10 @@ const Login = (props) => {
 
 			try {
 				const loginResponse = await login(loginData);
+				console.log("lg res", loginResponse);
 				if (loginResponse.success) {
-					localStorage.setItem("ayk-toke", loginResponse.token);
+					storage.setToken(loginResponse.token);
+					console.log("supposed push");
 					history.push("/admin/dashboard");
 				} else {
 					setAData({

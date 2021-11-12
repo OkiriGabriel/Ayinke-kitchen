@@ -1,11 +1,11 @@
 import axios from "axios";
+import AuthStorage from "../utils/storage/auth";
 const instance = axios.create({
 	baseURL: "https://api.ayinkemaykitchen.com/api/",
 });
 
-const { API_KEY } = process.env;
-const config = {
-	headers: { "x-api-key": API_KEY },
+export const config = {
+	headers: { Authorization: `Bearer ${AuthStorage.getToken()}` },
 };
 
 export default instance;

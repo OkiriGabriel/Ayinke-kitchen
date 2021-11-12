@@ -215,9 +215,9 @@ const Dashboard = () => {
 					</div>
 				</div>
 
-				<div className="ui-separate-small"></div>
+				{/* <div className="ui-separate-small"></div> */}
 
-				<div className="row">
+				{/* <div className="row">
 					<div className="col-md-12 mrgb2">
 						<div className="overview-box">
 							<h2 className="font-helveticamedium fs-20  onblack mb-2">
@@ -337,7 +337,7 @@ const Dashboard = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</main>
 
 			<MoreDetails isShow={show} closeModal={toggleModal} />

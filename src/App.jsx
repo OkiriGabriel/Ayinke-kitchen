@@ -15,6 +15,7 @@ import LocationState from "./context/location/locationState";
 import AddressState from "./context/address/addressState";
 import FoodState from "./context/food/foodState";
 import FoodItemState from "./context/foodItem/foodItemState";
+import { loggedIn } from "./utils/storage/auth";
 
 //
 // components: lazyload pages
@@ -92,8 +93,18 @@ const App = () => {
 										{/* <Route exact path="/search/:query" component={Search} /> */}
 										<Route exact path="/search" component={Search} />
 
+										<Route exact path="/order/plates" component={Plates} />
+
+										<Route
+											exact
+											path="/order/confirm"
+											component={ConfirmOrder}
+										/>
 										{/* <Route exact path="/dashboard/account" component={Account} /> */}
 										<Route exact path="/admin" component={Login} />
+
+										{/* {loggedIn && (
+											<> */}
 										<Route
 											exact
 											path="/admin/dashboard"
@@ -125,17 +136,12 @@ const App = () => {
 											path="/admin/dashboard/food-items/add"
 											component={DashboardLayout(AddFood)}
 										/>
+										{/* </>
+										)} */}
 
 										{/* put this here */}
 										{/* <Route exact path="/:id" component={RestDetails} /> */}
 
-										<Route exact path="/order/plates" component={Plates} />
-
-										<Route
-											exact
-											path="/order/confirm"
-											component={ConfirmOrder}
-										/>
 										<Route path="*" render={() => <Redirect to="/" />} />
 									</Switch>
 								</Suspense>
