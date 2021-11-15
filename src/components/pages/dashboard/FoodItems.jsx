@@ -18,7 +18,7 @@ import UserContext from "../../../context/user/userContext";
 import LocationContext from "../../../context/location/locationContext";
 import AddressContext from "../../../context/address/addressContext";
 import Dropdown from "../../layouts/partials/DropDown";
-import { getMeals } from "../../../services/meal";
+import { deleteMeal, getMeals, updateMeal } from "../../../services/admin/meal";
 
 const FoodItems = (props) => {
 	const foodContext = useContext(FoodContext);
@@ -36,11 +36,12 @@ const FoodItems = (props) => {
 	const [showD, setShowD] = useState(false);
 	const [showM, setShowM] = useState(false);
 	const [empty, setEmpty] = useState(false);
+	const [currentMealId, setCurrentMealId] = useState("");
 	const [filter, setFilter] = useState({
 		filter: false,
 		value: "",
 	});
-	const eL = [1, 2];
+	// const eL = [1, 2];
 	const [msgModal, setMessage] = useState({
 		title: "",
 		message: "",
@@ -53,32 +54,14 @@ const FoodItems = (props) => {
 	useEffect(() => {
 		(async () => {
 			try {
-				const response = await getMeals();
-				setMeals(response.meals);
+				const responseMeals = await getMeals();
+				setMeals(responseMeals);
 			} catch (error) {
 				console.log("some error", error);
 				throw error;
 			}
 		})();
 	}, []);
-
-	// useEffect(() => {
-	// 	fetchDefaults();
-	// 	displayEmpty();
-	// }, []);
-
-	// const fetchDefaults = async () => {
-	// 	if (storage.checkToken()) {
-	// 		userContext.getUser();
-	// 	}
-
-	// 	if (storage.checkUserID()) {
-	// 		locationContext.getLocations();
-	// 		addressContext.getRestAddresses(storage.getUserID());
-	// 		foodContext.getAllFood();
-	// 		foodItemContext.getRestFoodItems(storage.getUserID());
-	// 	}
-	// };
 
 	const displayEmpty = () => {
 		setTimeout(() => {
@@ -107,134 +90,168 @@ const FoodItems = (props) => {
 		setShowAlert(!showAlert);
 	};
 
-	const updateFoodStatus = async (foodId, status) => {
-		setSLoading(true);
+	// const updateFoodStatus = async (foodId, status) => {
+	// 	setSLoading(true);
 
-		await Axios.put(
-			`${process.env.REACT_APP_API_URL}/food-items/restaurant/${foodId}`,
-			{ status: status },
-			storage.getConfigWithBearer()
-		)
-			.then((resp) => {
-				if (resp.data.error === false) {
-					setMessage({
-						...msgModal,
-						type: "success",
-						title: "Successful!",
-						message: "Food item status changed successfuly",
-						buttonText: "close",
-					});
-					toggleAlert();
+	// 	await Axios.put(
+	// 		`${process.env.REACT_APP_API_URL}/food-items/restaurant/${foodId}`,
+	// 		{ status: status },
+	// 		storage.getConfigWithBearer()
+	// 	)
+	// 		.then((resp) => {
+	// 			if (resp.data.error === false) {
+	// 				setMessage({
+	// 					...msgModal,
+	// 					type: "success",
+	// 					title: "Successful!",
+	// 					message: "Food item status changed successfuly",
+	// 					buttonText: "close",
+	// 				});
+	// 				toggleAlert();
 
-					// get all food items again to update the page
-					foodItemContext.getRestFoodItems(storage.getUserID(), filter.value);
+	// 				// get all food items again to update the page
+	// 				foodItemContext.getRestFoodItems(storage.getUserID(), filter.value);
 
-					setSLoading(false);
-				}
-			})
-			.catch((err) => {
-				setMessage({
-					...msgModal,
-					type: "error",
-					title: "Error!",
-					message: "Cannot change food item.",
-					buttonText: "close",
-				});
-				toggleAlert();
-				setSLoading(false);
-			});
+	// 				setSLoading(false);
+	// 			}
+	// 		})
+	// 		.catch((err) => {
+	// 			setMessage({
+	// 				...msgModal,
+	// 				type: "error",
+	// 				title: "Error!",
+	// 				message: "Cannot change food item.",
+	// 				buttonText: "close",
+	// 			});
+	// 			toggleAlert();
+	// 			setSLoading(false);
+	// 		});
+	// };
+
+	// const getLocations = () => {
+	// 	const loc = locationContext.locations.map((l) => {
+	// 		const c = {
+	// 			value: l._id,
+	// 			label: l.name,
+	// 			left: "",
+	// 			image: "",
+	// 		};
+	// 		return c;
+	// 	});
+
+	// 	const all = {
+	// 		value: "",
+	// 		label: "All",
+	// 		left: "",
+	// 		image: "",
+	// 	};
+
+	// 	loc.unshift(all);
+
+	// 	return loc;
+	// };
+
+	// const getSelected = (val) => {
+	// 	setEmpty(false);
+	// 	setFoodItemList([]);
+	// 	searchRef.current.value = "";
+
+	// 	foodItemContext.getRestFoodItems(storage.getUserID(), val.value);
+	// 	setFilter({ ...filter, filter: true, value: val.value });
+	// };
+
+	// const getFood = (id) => {
+	// 	const data = {
+	// 		name: "food",
+	// 		type: "type",
+	// 	};
+
+	// 	let i = 0;
+	// 	if (foodContext.allFood.length > 0) {
+	// 		const food = foodContext.allFood.find((f) => f._id === id);
+
+	// 		if (!food) {
+	// 			console.log("food not found", i);
+	// 		} else {
+	// 			data.name = food.name;
+	// 			data.type = food.type;
+	// 		}
+	// 	}
+
+	// 	return data;
+	// };
+
+	// const formatList = (data) => {
+	// 	const list = data.map((item) => {
+	// 		item.foodName = getFood(item.food).type + " " + getFood(item.food).name;
+	// 		return item;
+	// 	});
+
+	// 	return list;
+	// };
+
+	// const search = (e) => {
+	// 	let currentList = [];
+	// 	let newList = [];
+
+	// 	if (e.target.value !== "") {
+	// 		currentList = formatList(foodItemContext.restFoodItems);
+
+	// 		newList = currentList.filter((i) => {
+	// 			const c = i.foodName.toLowerCase();
+	// 			const f = e.target.value.toLowerCase();
+
+	// 			if (c.includes(f) !== null) {
+	// 				return c.includes(f);
+	// 			}
+	// 		});
+	// 	} else {
+	// 		newList = formatList(foodItemContext.restFoodItems);
+	// 	}
+
+	// 	setFoodItemList(newList);
+	// };
+
+	const openDeleteModal = (id) => {
+		setCurrentMealId(id);
+		setShowD(true);
 	};
 
-	const getLocations = () => {
-		const loc = locationContext.locations.map((l) => {
-			const c = {
-				value: l._id,
-				label: l.name,
-				left: "",
-				image: "",
-			};
-			return c;
-		});
-
-		const all = {
-			value: "",
-			label: "All",
-			left: "",
-			image: "",
-		};
-
-		loc.unshift(all);
-
-		return loc;
+	const closeDeleteModal = () => {
+		setCurrentMealId("");
+		setShowD(false);
 	};
 
-	const getSelected = (val) => {
-		setEmpty(false);
-		setFoodItemList([]);
-		searchRef.current.value = "";
-
-		foodItemContext.getRestFoodItems(storage.getUserID(), val.value);
-		setFilter({ ...filter, filter: true, value: val.value });
+	const openEditMeal = (id) => {
+		setCurrentMealId(id);
+		setShowM(true);
 	};
 
-	const getFood = (id) => {
-		const data = {
-			name: "food",
-			type: "type",
-		};
+	const closeEditMeal = () => {
+		setCurrentMealId("");
+		setShowM(false);
+	};
 
-		let i = 0;
-		if (foodContext.allFood.length > 0) {
-			const food = foodContext.allFood.find((f) => f._id === id);
+	const handleMealUpdate = (updatedMeal) => {
+		const updatedMeals = meals.map((meal) =>
+			Number(meal.id) === Number(updatedMeal.id) ? updatedMeal : meal
+		);
+		setMeals(updatedMeals);
+	};
 
-			if (!food) {
-				console.log("food not found", i);
-			} else {
-				data.name = food.name;
-				data.type = food.type;
+	const handleMealDelete = async () => {
+		try {
+			const response = await deleteMeal(currentMealId);
+			if (response.status) {
+				const restMeals = meals.filter(
+					(meal) => Number(meal.id) !== Number(currentMealId)
+				);
+				setMeals(restMeals);
 			}
+			closeDeleteModal();
+		} catch (error) {
+			closeDeleteModal();
 		}
-
-		return data;
-	};
-
-	const formatList = (data) => {
-		const list = data.map((item) => {
-			item.foodName = getFood(item.food).type + " " + getFood(item.food).name;
-			return item;
-		});
-
-		return list;
-	};
-
-	const search = (e) => {
-		let currentList = [];
-		let newList = [];
-
-		if (e.target.value !== "") {
-			currentList = formatList(foodItemContext.restFoodItems);
-
-			newList = currentList.filter((i) => {
-				const c = i.foodName.toLowerCase();
-				const f = e.target.value.toLowerCase();
-
-				if (c.includes(f) !== null) {
-					return c.includes(f);
-				}
-			});
-		} else {
-			newList = formatList(foodItemContext.restFoodItems);
-		}
-
-		setFoodItemList(newList);
-	};
-
-	const toggleDel = () => {
-		setShowD(!showD);
-	};
-
-	const toggleEditMeal = () => {
-		setShowM(!showM);
 	};
 
 	const barLinks = () => {
@@ -331,19 +348,19 @@ const FoodItems = (props) => {
 														<td className="font-helvetica">
 															{Number(meal.available)
 																? "Available"
-																: "Unavaialable"}
+																: "Not Avaialable"}
 														</td>
 														<td>
 															<div className="ui-group-button">
 																<button
 																	className="text-primary"
-																	onClick={toggleEditMeal}
+																	onClick={() => openEditMeal(meal.id)}
 																>
 																	<span className="fe fe-edit fs-16"></span>
 																</button>
 																<button
 																	className="text-danger"
-																	onClick={toggleDel}
+																	onClick={() => openDeleteModal(meal.id)}
 																>
 																	<span className="fe fe-trash-2 fs-16"></span>
 																</button>
@@ -367,8 +384,17 @@ const FoodItems = (props) => {
 				type={msgModal.type}
 				data={msgModal}
 			/>
-			<DelModal isShow={showD} closeModal={toggleDel} />
-			<EditMealModal isShow={showM} closeModal={toggleEditMeal} />
+			<DelModal
+				isShow={showD}
+				handleMealDelete={handleMealDelete}
+				closeModal={closeDeleteModal}
+			/>
+			<EditMealModal
+				mealId={currentMealId}
+				isShow={showM}
+				closeModal={closeEditMeal}
+				handleMealUpdate={handleMealUpdate}
+			/>
 		</>
 	);
 };

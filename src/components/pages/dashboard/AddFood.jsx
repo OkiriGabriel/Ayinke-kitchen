@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import DropDown from "../../layouts/partials/DropDown";
-import * as moment from "moment";
-import Axios from "axios";
 import LottiePlayer from "../../layouts/partials/LottiePlayer";
 
 import DashTopBar from "./DashTopBar";
@@ -23,6 +21,7 @@ import body from "../../helpers/body";
 
 import dayjs from "dayjs";
 import customParse from "dayjs/plugin/customParseFormat";
+import { addMeal } from "../../../services/admin/meal";
 dayjs.extend(customParse);
 
 const AddFood = (props) => {
@@ -46,7 +45,7 @@ const AddFood = (props) => {
 	const [foodData, setFoodData] = useState({
 		// status: false,
 		name: "",
-		price: 0,
+		price: "",
 		photo: "",
 		// multiAdd: [],
 	});
@@ -143,89 +142,8 @@ const AddFood = (props) => {
 		);
 	};
 
-	// const getStatus = () => {
-	// 	const c = [
-	// 		{
-	// 			value: true,
-	// 			label: "Available",
-	// 			left: "",
-	// 			image: "",
-	// 		},
-	// 		{
-	// 			value: false,
-	// 			label: "Not Available",
-	// 			left: "",
-	// 			image: "",
-	// 		},
-	// 		{
-	// 			value: "time",
-	// 			label: "Available By",
-	// 			left: "",
-	// 			image: "",
-	// 		},
-	// 	];
-	// 	return c;
-	// };
-
-	// const getFood = () => {
-	// 	const foods = foodContext.allFood.map((f) => {
-	// 		const c = {
-	// 			value: f._id,
-	// 			label: `${f.name} ${f.type ? "(" + f.type + ")" : ""}`,
-	// 			left: "",
-	// 			image: "",
-	// 		};
-	// 		return c;
-	// 	});
-	// 	return foods;
-	// };
-
-	// const getLoc = (id) => {
-	// 	const loc = locationContext.locations.find((l) => l._id === id);
-	// 	return loc;
-	// };
-
-	// const getLocations = () => {
-	// 	const addresses = addressContext.restAddresses.map((a) => {
-	// 		const c = {
-	// 			value: a._id,
-	// 			label: `${getLoc(a.location).name}, ${a.address}`,
-	// 			left: "",
-	// 			image: "",
-	// 		};
-	// 		return c;
-	// 	});
-	// 	return addresses;
-	// };
-
-	// const selectStatus = (val) => {
-	// 	if (val.label === "Available By") {
-	// 		setShowBy(true);
-	// 		setFoodData({ ...foodData, status: false });
-	// 	} else {
-	// 		setShowBy(false);
-	// 		setFoodData({ ...foodData, status: val.value, availableBy: "" });
-	// 	}
-	// };
-
-	// const selectFood = (val) => {
-	// 	setFoodData({ ...foodData, food: val.value });
-	// };
-
-	// const selectLocation = (val) => {
-	// 	setFoodData({ ...foodData, address: val.value });
-	// };
-
-	// const handleTime = (e) => {
-	// 	const t = dayjs(e.target.value).toDate();
-	// 	setFoodData({ ...foodData, availableBy: t });
-	// };
-
 	const submit = async (e) => {
 		e.preventDefault();
-		let url = "/food-items/restaurant",
-			data;
-
 		if (!foodData.name && !foodData.price && !foodData.photo) {
 			setAData({
 				...aData,
@@ -276,80 +194,49 @@ const AddFood = (props) => {
 			console.log("food data", foodData);
 
 			try {
-				if (multiple) {
-					url = "food-items/restaurant/multiple";
-					data = {
-						status: foodData.status,
-						food: foodData.food,
-						address: foodData.multiAdd,
-						price: foodData.price,
-						availableBy: foodData.availableBy,
-					};
-				} else {
-					url = "food-items/restaurant";
-					data = {
-						status: foodData.status,
-						food: foodData.food,
-						address: foodData.address,
-						price: foodData.price,
-						availableBy: foodData.availableBy,
-					};
+				const formData = new FormData();
+				Object.keys(foodData).forEach((key) => {
+					formData.append(key, foodData[key]);
+				});
+				for (let value of formData.values()) {
+					console.log("iterator value", value);
 				}
+				const mealResponse = await addMeal(formData);
+				console.log("meal res here", mealResponse);
 
-				await Axios.post(
-					`${process.env.REACT_APP_API_URL}/${url}/${storage.getUserID()}`,
-					{ ...data },
-					storage.getConfigWithBearer()
-				)
-					.then((resp) => {
-						if (
-							resp.data.status === 206 &&
-							resp.data.error === true &&
-							resp.data.message === "Food item exists"
-						) {
-							setMsgData({
-								...msgData,
-								type: "error",
-								title: "Opps!",
-								message:
-									"You cannot add a food item to the same location twice",
-								buttonText: "Try again",
-							});
-							setStep(1);
-							foodItemContext.getRestFoodItems(storage.getUserID());
-						}
+				setFoodData({ name: "", price: 0, photo: "" });
 
-						if (resp.data.error === false) {
-							setMsgData({
-								...msgData,
-								type: "success",
-								title: "Successful!",
-								message: "You have successfully added another food item",
-								buttonText: "Close",
-							});
-							setStep(1);
-							console.log(msgData.type);
-							foodItemContext.getRestFoodItems(storage.getUserID());
-						}
-					})
-					.catch((err) => {
-						setAData({
-							...aData,
-							show: true,
-							type: "danger",
-							message: `${err.response.data.message}`,
-						});
-						setTimeout(() => {
-							setAData({ ...aData, show: false });
-						}, 2000);
-						setLoading(false);
-					});
+				setAData({
+					...aData,
+					show: true,
+					type: "success",
+					message: `Food item added successfully!`,
+				});
+				setTimeout(() => {
+					setAData({ ...aData, show: false });
+				}, 2000);
+
+				setLoading(false);
+				// 	if (resp.data.error === false) {
+				// 		setMsgData({
+				// 			...msgData,
+				// 			type: "success",
+				// 			title: "Successful!",
+				// 			message: "You have successfully added another food item",
+				// 			buttonText: "Close",
+				// 		});
+				// 		setStep(1);
+				// 		console.log(msgData.type);
+				// 		foodItemContext.getRestFoodItems(storage.getUserID());
+				// 	}
+				// })
 			} catch (err) {
+				console.log("the error", err);
 				setAData({
 					...aData,
 					show: true,
 					type: "danger",
-					message: `${err.response.data.message}`,
+					message: err.message,
 				});
 				setTimeout(() => {
 					setAData({ ...aData, show: false });
@@ -358,21 +245,6 @@ const AddFood = (props) => {
 			}
 		}
 	};
-
-	// const handleCheck = async (id, e) => {
-	// 	// add if it is checked
-	// 	if (e && e.target.checked) {
-	// 		const qa = [`${id}`];
-	// 		setFoodData({ ...foodData, multiAdd: foodData.multiAdd.concat(qa) });
-	// 	}
-	// 	// remove if it is unchecked
-	// 	if (e && !e.target.checked) {
-	// 		const index = foodData.multiAdd.findIndex(
-	// 			(itm) => itm.toString() === id.toString()
-	// 		);
-	// 		foodData.multiAdd.splice(index, 1);
-	// 	}
-	// };
 
 	const goBack = (e) => {
 		if (e) e.preventDefault();
@@ -396,22 +268,9 @@ const AddFood = (props) => {
 
 	return (
 		<>
-			<DashTopBar pageTitle="Add Food" linkComps={barLinks} />
+			<DashTopBar pageTitle="Add Meal" linkComps={barLinks} />
 
 			<section className="mrgb6">
-				{/* <div className="container">
-                    <div className="row">
-                        <div className="col-lg-7 mx-auto">
-                            
-                                <div className="ui-full-bg-norm fooditem-bx ui-text-center ui-box-shadow-dark-light mrgt5" style={{backgroundImage: 'url("../../../images/assets/fooditem.png")'}}>
-                                    <h1 className="fs-30 brand-green font-metrobold mrgb0">{ foodItemContext.total }</h1>
-                                    <p className="mrgb0 brand-green fs-13 font-metromedium">{ !foodItemContext.loading ? foodItemContext.total : 0 } food items in { !addressContext.loading ? addressContext.restAddresses.length : 0 } locations </p>
-                                </div>
-
-                        </div>
-                    </div>
-                </div> */}
-
 				<div className="row">
 					<div className="col-lg-5 mx-auto">
 						<div className="mrgt2 bg-white">
@@ -436,6 +295,7 @@ const AddFood = (props) => {
 													defaultValue={(e) => {
 														setFoodData({ ...foodData, name: e.target.value });
 													}}
+													value={foodData.name}
 													onChange={(e) => {
 														setFoodData({ ...foodData, name: e.target.value });
 													}}
@@ -464,6 +324,7 @@ const AddFood = (props) => {
 														price: e.target.value,
 													});
 												}}
+												value={foodData.price}
 												onChange={(e) => {
 													setFoodData({
 														...foodData,
@@ -523,10 +384,12 @@ const AddFood = (props) => {
 														setFoodData({ ...foodData, photo: e.target.value });
 													}}
 													onChange={(e) => {
-														setFoodData({ ...foodData, photo: e.target.value });
+														setFoodData({
+															...foodData,
+															photo: e.target.files[0],
+														});
 													}}
 													type="file"
-													placeholder="0.00"
 													className="form-control"
 												/>
 											</div>

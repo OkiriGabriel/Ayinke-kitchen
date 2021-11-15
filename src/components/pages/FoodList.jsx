@@ -3,7 +3,7 @@ import OrderModal from "./order/OrderModal";
 import React, { useEffect, useContext, useState, Fragment } from "react";
 import FoodItem from "../pages/restaurant/FoodItem";
 import QModal from "./order/QuantityModal";
-import { getMeals } from "../../services/meal";
+import { getMeals } from "../../services/user/meal";
 import { Spinner } from "react-bootstrap";
 import MealStorage from "../../utils/storage/meal";
 
@@ -152,7 +152,7 @@ const Home = () => {
 											meal={meal}
 											addToCart={incrementInCart}
 											key={meal.id}
-											imgSrc={meal.photo || "../../images/assets/food-1.jpeg"}
+											imgSrc={meal.image || "../../images/assets/food-1.jpeg"}
 											// get={getSelected}
 											// getCount={getCount}
 										/>

@@ -6,8 +6,8 @@ import { PaystackButton } from "react-paystack";
 import Axios from "axios";
 import colors from "../../helpers/colors";
 import axios from "axios";
-import { getLocations } from "../../../services/location";
-import { payNow, postOrder } from "../../../services/order";
+import { getLocations } from "../../../services/user/location";
+import { payNow, postOrder } from "../../../services/user/order";
 
 const PayModal = ({ isShow, closeModal, mealStorage }) => {
 	const [step, setStep] = useState(0);

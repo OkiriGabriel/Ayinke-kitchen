@@ -43,7 +43,10 @@ const Dashboard = () => {
 												</p>
 											</div>
 
-											<Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
+											<Link
+												to="/admin/dashboard/orders"
+												className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold"
+											>
 												View Orders
 												<span
 													className="fe fe-chevron-right fs-14 pdl"
@@ -54,7 +57,7 @@ const Dashboard = () => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-4 col-lg-4 col-sm-12">
+							{/* <div className="col-md-4 col-lg-4 col-sm-12">
 								<div className="ui-dashboard-card">
 									<div
 										className="ui-card-body ui-full-bg-norm"
@@ -84,7 +87,7 @@ const Dashboard = () => {
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> */}
 							<div className="col-md-4 col-lg-4 col-sm-12">
 								<div className="ui-dashboard-card">
 									<div
@@ -101,11 +104,14 @@ const Dashboard = () => {
 												</h3>
 
 												<p className="onmineshaft fs-14  mt-2 mb-2">
-													Track your orders.
+													Track your meals.
 												</p>
 											</div>
 
-											<Link className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold">
+											<Link
+												to="/admin/dashboard/food-items"
+												className="ui-upcase brand-orange fs-11 ml-auto font-weight-bold"
+											>
 												View Meals
 												<span
 													className="fe fe-chevron-right fs-14 pdl"
@@ -130,7 +136,10 @@ const Dashboard = () => {
 
 						<div className="row">
 							<div className="col-lg-4 col-md-4 col-sm-12">
-								<Link to="/dashboard/food-items/add" className="block-link">
+								<Link
+									to="/admin/dashboard/food-items/add"
+									className="block-link"
+								>
 									<div className="mng-item">
 										<div
 											className="avatar ui-full-bg-norm"
@@ -151,7 +160,7 @@ const Dashboard = () => {
 							</div>
 
 							<div className="col-lg-4 col-md-4 col-sm-12">
-								<Link to="/dashboard/add-location" className="block-link">
+								<Link to="/admin/dashboard/add-location" className="block-link">
 									<div className="mng-item">
 										<div
 											className="avatar ui-full-bg-norm"
@@ -171,7 +180,7 @@ const Dashboard = () => {
 								</Link>
 							</div>
 
-							<div className="col-lg-4 col-md-4 col-sm-12">
+							{/* <div className="col-lg-4 col-md-4 col-sm-12">
 								<Link className="block-link">
 									<div className="mng-item">
 										<div
@@ -190,7 +199,7 @@ const Dashboard = () => {
 										></span>
 									</div>
 								</Link>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</section>
@@ -339,8 +348,6 @@ const Dashboard = () => {
 					</div>
 				</div> */}
 			</main>
-
-			<MoreDetails isShow={show} closeModal={toggleModal} />
 		</>
 	);
 };

@@ -1,7 +1,23 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getOrders } from "../../../services/admin/order";
+import MoreDetails from "../../layouts/partials/MoreDetails";
 
 const Orders = () => {
+	const [orders, setOrders] = useState([]);
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const responseOrders = await getOrders();
+				setOrders(responseOrders);
+			} catch (error) {
+				console.log("some error orders", error);
+				throw error;
+			}
+		})();
+	}, []);
+
 	const [show, setShow] = useState(false);
 	const toggleModal = (e) => {
 		if (e) e.preventDefault();
@@ -23,10 +39,10 @@ const Orders = () => {
 										}}
 									>
 										<h1 className="fs-30 brand-green font-helveticabold mrgb0">
-											0
+											{orders.length}
 										</h1>
 										<p className="mrgb0 brand-green fs-13 font-helveticamedium">
-											Orders
+											Order(s)
 										</p>
 									</div>
 								</div>
@@ -73,28 +89,32 @@ const Orders = () => {
 											</thead>
 
 											<tbody>
-												{/* here */}
-												<tr>
-													<td className="font-helveticamedium">1</td>
-													<td className="font-helveticamedium">
-														Rice and beans
-													</td>
-													<td className="font-helveticamedium">07014257371</td>
-													<td className="font-helveticamedium">
-														johndoe@gmail.com
-													</td>
-													<td className="font-helveticamedium">
-														Along Alao Farms Road Tanke Akata, Ilorin
-													</td>
-													<td className="ui-text-center">
-														<Link onClick={(e) => toggleModal(e)}>
-															<span className="fe fe-align-center"></span>
-														</Link>
-													</td>
-												</tr>
-												{/* here */}
+												{orders.map((order, index) => (
+													<tr key={order.id}>
+														<td className="font-helveticamedium">
+															{index + 1}
+														</td>
+														<td className="font-helveticamedium">
+															{order.name}
+														</td>
+														<td className="font-helveticamedium">
+															07014257371
+														</td>
+														<td className="font-helveticamedium">
+															{order.email}
+														</td>
+														<td className="font-helveticamedium">
+															{order.address}
+														</td>
+														<td className="ui-text-center">
+															<button onClick={toggleModal}>
+																<span className="fe fe-align-center"></span>
+															</button>
+														</td>
+													</tr>
+												))}
 
-												<tr>
+												{/* <tr>
 													<td className="font-helveticamedium">2</td>
 													<td className="font-helveticamedium">
 														Jollof and Chicken
@@ -168,7 +188,7 @@ const Orders = () => {
 															<span className="fe fe-align-center"></span>
 														</Link>
 													</td>
-												</tr>
+												</tr> */}
 											</tbody>
 										</table>
 									</div>
@@ -315,6 +335,7 @@ const Orders = () => {
                         </div> */}
 					</div>
 				</main>
+				<MoreDetails isShow={show} closeModal={toggleModal} />
 			</section>
 		</>
 	);

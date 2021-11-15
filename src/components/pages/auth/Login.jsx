@@ -6,7 +6,7 @@ import NavBar from "../../layouts/partials/NavBar";
 import Alert from "../../layouts/partials/Alert";
 import ButtonSpinner from "../../layouts/partials/ButtonSpinner";
 
-import { login } from "../../../services/admin";
+import { login } from "../../../services/admin/auth";
 import storage, { loggedIn } from "../../../utils/storage/auth";
 
 const Login = (props) => {

@@ -1,4 +1,4 @@
-import instance from "./";
+import instance from "../";
 const resourseUrl = "/locations";
 
 // annoying wrapper to avoid annoying data key

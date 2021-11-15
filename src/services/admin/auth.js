@@ -1,4 +1,4 @@
-import instance from ".";
+import instance from "..";
 const resourceUrl = "/admin";
 
 // annoying wrapper to avoid annoying data key
