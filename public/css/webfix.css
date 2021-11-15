@@ -316,6 +316,7 @@ a {
 	width: 100%;
 	background-size: cover !important;
 	background-repeat: no-repeat !important;
+	background-position: center;
 	-webkit-transition: all 0.5s ease;  -moz-transition: all 0.5s ease; transition: all 0.5s ease;
 }
 
