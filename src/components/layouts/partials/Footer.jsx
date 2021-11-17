@@ -19,7 +19,11 @@ const Footer = () => {
                             <div className="row">
 
                                 <div className="col-md-3 logo-x">
-                                <Link to="/" className="navbar-brand font-helveticabold fs-25 on-black" href="">AYINKEMAY KITCHEN</Link>
+                                    <div>
+                                        <img src="../../../../images/assets/ay-may-logo.png" alt="" className="logo-md"/>
+                                    </div>
+
+                                    <Link to="/" className="navbar-brand font-helveticabold fs-25 on-black" href="">AYINKEMAY KITCHEN</Link>
                                 </div>
                             
                             </div>

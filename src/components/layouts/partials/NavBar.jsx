@@ -49,6 +49,11 @@ const NavBar = ({
 									className="navbar-brand font-helveticabold fs-25 onwhite"
 									href=""
 								>
+									{/*<div>*/}
+										<img src="../../../../images/assets/ay-may-logo.png" alt="" className="logo-nav"/>
+
+									{/*</div>*/}
+
 									AyinkeMay Kitchen
 								</Link>
 								{/* <div>
@@ -71,7 +76,7 @@ const NavBar = ({
 								{/* </div> */}
 
 								<button
-									className="navbar-toggler collapsed"
+									className="navbar-toggler collapsed ml-auto"
 									type="button"
 									data-toggle="collapse"
 									data-target="#navbar-collapse"
