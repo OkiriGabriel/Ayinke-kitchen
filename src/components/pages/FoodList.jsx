@@ -118,7 +118,7 @@ const Home = () => {
 									<div className="form-group">
 										<input
 											type="text"
-											placeholder="search food of the day..."
+											placeholder="Search..."
 											className="search"
 
 											// onChange={(e) => setQuery(e.target.value)}
@@ -193,7 +193,7 @@ const Home = () => {
 								className="close counter-close"
 							></button>
 							<h2 className="brandcox-firefly text-center onwhite font-helveticamedium mrgb2 fs-20">
-								Total Cart
+								Cart
 							</h2>
 
 							<div className="row">

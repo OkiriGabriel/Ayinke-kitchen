@@ -37,27 +37,27 @@ const Footer = () => {
                                             </ul>
                                         </div>
 
-                                        <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-helveticabold   fs-18 on-black mrgb">Shops</h4>
-                                            <ul className="font-interregular links">
-                                                <li><a href="" className="link-underlined hover font-helveticamedium">Lorem</a></li>
-                                                <li><Link to="/careers" className="link-underlined hover font-helveticamedium">Lorem</Link></li>
-                                            </ul>
-                                        </div>
+                                        {/*<div className="col-md-3 col-6 foot-er">*/}
+                                        {/*    <h4 className="font-helveticabold   fs-18 on-black mrgb">Shops</h4>*/}
+                                        {/*    <ul className="font-interregular links">*/}
+                                        {/*        <li><a href="" className="link-underlined hover font-helveticamedium">Lorem</a></li>*/}
+                                        {/*        <li><Link to="/careers" className="link-underlined hover font-helveticamedium">Lorem</Link></li>*/}
+                                        {/*    </ul>*/}
+                                        {/*</div>*/}
 
                                       
 
-                                        <div className="col-md-3 col-6 foot-er">
+                                        <div className="col-md-3 col-6 text-xs-center foot-er">
                                             <h4 className="font-helveticabold  fs-18 on-black mrgb">Pages</h4>
-                                            <ul className="font-interregular links">
+                                            <ul className="font-interregular links text-xs-center">
                                                 <li><Link to="/food-list" className="link-underlined hover font-helveticamedium">Meals</Link></li>
-                                                <li><Link to="/contact" className="link-underlined hover font-helveticamedium">Contact us</Link></li>
+                                                {/*<li><Link to="/contact" className="link-underlined hover font-helveticamedium">Contact us</Link></li>*/}
                                                 <li><Link to="/feedback" className="link-underlined hover font-helveticamedium">Feedback</Link></li>
                                                 
                                             </ul>
                                         </div>
-                                        <div className="col-md-3 col-6 foot-er">
-                                            <h4 className="font-helveticabold    fs-18 on-black font-helveticamedium ">Connect with us online</h4>
+                                        <div className="col-md-6 col-6 foot-er">
+                                            <h4 className="font-helveticabold  fs-18 on-black font-helveticamedium ">Connect with us online</h4>
                                             <ul className="font-interregular links">
                                                 <li><Link className="link-underlined hover "></Link></li>
                                                 <li>
