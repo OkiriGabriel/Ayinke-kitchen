@@ -140,7 +140,7 @@ h6 {
 }
 
 .header .logo img {
-  width: 200px;
+  width: 100px;
 }
 
 .header .logo .text {
@@ -4168,3 +4168,12 @@ iframe {
   background-color: rgba(10,11,156,0.95);
 } */
 
+.logo-nav{
+  height: 90px;
+  width: 90px;
+}
+
+.logo-md{
+  height: 180px;
+  width: 180px;
+}

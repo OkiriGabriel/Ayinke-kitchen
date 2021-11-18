@@ -163,7 +163,7 @@ const Feedback = (props) => {
                                     }
                                     {
                                         !loading &&
-                                        <button className="btn btn-lg btn-block bg-orange onwhite">LOGIN</button>
+                                        <button className="btn btn-lg btn-block bg-orange onwhite">Submit</button>
                                     }
                                 </div>
                             </div>
