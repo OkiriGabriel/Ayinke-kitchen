@@ -123,11 +123,7 @@ const FoodList = () => {
 									<div className="form-group">
 										<input
 											type="text"
-<<<<<<< HEAD
 											placeholder="search for food you like..."
-=======
-											placeholder="Search..."
->>>>>>> 409bd8b3cef37e7034a55ed6c8cafb5f9592a9de
 											className="search"
 											// value={query}
 											onChange={handleSearch}
