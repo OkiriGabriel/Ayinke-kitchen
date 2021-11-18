@@ -10393,7 +10393,7 @@ body.fixed-header .header {
 .footer {
   background: #fff;
   font-size: 0.875rem;
-  padding: 1.25rem 0;
+  /*padding: 1.25rem 0;*/
   color: #9aa0ac;
 }
 

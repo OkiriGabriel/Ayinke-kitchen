@@ -50,7 +50,7 @@ const NavBar = ({
 									href=""
 								>
 									{/*<div>*/}
-										<img src="../../../../images/assets/ay-may-logo.png" alt="" className="logo-nav"/>
+										<img src="../../../../images/assets/ay-may-logo.png" alt="" style={{height: "90px", width: "90px"}}/>
 
 									{/*</div>*/}
 

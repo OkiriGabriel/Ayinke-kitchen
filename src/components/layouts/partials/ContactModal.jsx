@@ -68,10 +68,10 @@ const AlertModal = ({ isShow, closeModal, type, data }) => {
                                     <a  href="mailto:aymaykitchen@gmail.com" className="btn btn-big bg-orange onwhite">Shoot Us an Email</a>
                                 </div>
 
-                                <p class="onblack font-helveticamedium fs-13 mt-4" style={{lineHeight: '24px'}}>If order related please visit our support clcik the ink below
+                                {/*<p class="onblack font-helveticamedium fs-13 mt-4" style={{lineHeight: '24px'}}>If order related please visit our support link below*/}
                                 
-                                </p>
-                                <Link to="/feedback">Feedback</Link>
+                                {/*</p>*/}
+                                {/*<Link to="/feedback">Feedback</Link>*/}
                                 <div className="mrgt3">
 
                                 <ul class="social_media list-inline onwhite mrgt3">

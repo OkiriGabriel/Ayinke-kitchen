@@ -238,7 +238,7 @@ const Home = (props) => {
 
                                         <div className="">
                                             <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
+                                                <img src="../../../../images/assets/ewa-g.jpg" alt="" className="ui-rounded-small flist" />
                                             </span>
                                         </div>
 
