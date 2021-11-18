@@ -3,17 +3,17 @@ import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 import Placeholder from "../../layouts/partials/Placeholder";
 
-import FoodContext from "../../../context/food/foodContext";
-import FoodItemContext from "../../../context/foodItem/foodItemContext";
-import UserContext from "../../../context/user/userContext";
-import LocationContext from "../../../context/location/locationContext";
-import AddressContext from "../../../context/address/addressContext";
+// import FoodContext from "../../../context/food/foodContext";
+// import FoodItemContext from "../../../context/foodItem/foodItemContext";
+// import UserContext from "../../../context/user/userContext";
+// import LocationContext from "../../../context/location/locationContext";
+// import AddressContext from "../../../context/address/addressContext";
 
-import storage from "../../helpers/storage";
-import colors from "../../helpers/colors";
-import body from "../../helpers/body";
+// import storage from "../../helpers/storage";
+// import colors from "../../helpers/colors";
+// import body from "../../helpers/body";
 
-const SideMenu = () => {
+const SideMenu = ({ handleLogout }) => {
 	return (
 		<>
 			<nav
@@ -63,10 +63,17 @@ const SideMenu = () => {
 						</li>
 
 						<li className="nav-item">
-							<Link className="nav-link onwhite ml-4 mb-4" href="#">
+							<button
+								onClick={handleLogout}
+								className="nav-link onwhite ml-4 mb-4"
+							>
 								<span className="fe fe-log-out pdr" />
 								Logout
-							</Link>
+							</button>
+							{/* <Link className="nav-link onwhite ml-4 mb-4" href="#">
+								<span className="fe fe-log-out pdr" />
+								Logout
+							</Link> */}
 						</li>
 					</ul>
 				</div>

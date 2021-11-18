@@ -7,12 +7,13 @@ import { getMeals } from "../../services/user/meal";
 import { Spinner } from "react-bootstrap";
 import MealStorage from "../../utils/storage/meal";
 
-const Home = () => {
-	console.log("FROM FOOD LISTS");
+const FoodList = () => {
 	const [show, setShow] = useState(false);
 	const [pricing, setPrincing] = useState(0);
 	const [name, setName] = useState("");
 	const [meals, setMeals] = useState([]);
+	const [searchedMeals, setSearchedMeals] = useState([]);
+	const mealsToDisplay = searchedMeals.length ? searchedMeals : meals;
 	const [close, setClose] = useState(true);
 	const toggleClose = () => setClose(!close);
 	const smallDevices = () => window.matchMedia("(max-width: 768px)");
@@ -27,7 +28,6 @@ const Home = () => {
 	const [mealStorage, setMealStorage] = useState([]);
 
 	const incrementInCart = (meal) => {
-		console.log("the meal", meal);
 		const storageMeals = MealStorage.addMeal(meal);
 		setMealStorage(storageMeals);
 	};
@@ -46,9 +46,7 @@ const Home = () => {
 		(async () => {
 			try {
 				setMealStorage(MealStorage.getMeals());
-				console.log("some triall");
 				const response = await getMeals();
-				console.log("some t res", response);
 				setMeals(response.meals);
 			} catch (error) {
 				console.log("some error", error);
@@ -60,6 +58,12 @@ const Home = () => {
 	const toggleModal = () => {
 		handleClose(true);
 		setShow(!show);
+	};
+
+	const handleSearch = (e) => {
+		const regularExp = new RegExp(`${e.target.value}`, "ig");
+		const filteredMeals = meals.filter((meal) => regularExp.test(meal.name));
+		setSearchedMeals(filteredMeals);
 	};
 
 	// const getSelected = (e, t, count, price, n) => {
@@ -92,7 +96,7 @@ const Home = () => {
 	// 		setPrincing(pricing - parseInt(p));
 	// 	}
 	// };
-	console.log("state meals", mealStorage);
+	// console.log("state meals", mealStorage);
 	return (
 		<>
 			<NavBar
@@ -115,21 +119,22 @@ const Home = () => {
 									data-aos={"fade-right"}
 									className="col-lg-6  col-lg-10 mx-auto"
 								>
+									{/* query: {query} */}
 									<div className="form-group">
 										<input
 											type="text"
-											placeholder="search food of the day..."
+											placeholder="search for food you like..."
 											className="search"
-
-											// onChange={(e) => setQuery(e.target.value)}
-											// onKeyPress={search}
+											// value={query}
+											onChange={handleSearch}
 										/>
-										<button
-											class="btn btn-shape bg-btn-primary font-helveticamedium fs-17"
+										{/* <button
+									
+											className="btn btn-shape bg-btn-primary font-helveticamedium fs-17"
 											type="button"
 										>
 											Search
-										</button>
+										</button> */}
 									</div>
 								</div>
 							</div>
@@ -145,8 +150,8 @@ const Home = () => {
 					<div className="col-lg-8 col-md-12">
 						<div className="row food-disp pub">
 							<>
-								{meals.length ? (
-									meals.map((meal) => (
+								{mealsToDisplay.length ? (
+									mealsToDisplay.map((meal) => (
 										<FoodItem
 											mealStorage={mealStorage}
 											meal={meal}
@@ -159,9 +164,6 @@ const Home = () => {
 									))
 								) : (
 									<div className="spinner-holder">
-										{/* <Spinner animation="border" role="status" variant="success">
-											<span className="visually-hidden">Loading...</span>
-										</Spinner> */}
 										<img
 											src="../../images/assets/spinner.svg"
 											alt="spinner"
@@ -169,14 +171,6 @@ const Home = () => {
 										/>
 									</div>
 								)}
-
-								{/* <FoodItem
-									food="Jollof + Chicken"
-									imgSrc="../../images/assets/food-3.jpg"
-									price="5000"
-									get={getSelected}
-									getCount={getCount}
-								/> */}
 							</>
 						</div>
 					</div>
@@ -289,4 +283,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default FoodList;

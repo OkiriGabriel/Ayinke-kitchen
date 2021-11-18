@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 
-const DelModal = ({ isShow, closeModal, handleMealDelete }) => {
+const DelModal = ({ isShow, closeModal, handleDelete }) => {
 	const [loading, setLoading] = useState(false);
 	const [step, setStep] = useState(0);
 	const [msgData, setMsgData] = useState({
@@ -11,6 +11,17 @@ const DelModal = ({ isShow, closeModal, handleMealDelete }) => {
 		message: "",
 		title: "",
 	});
+
+	const doDelete = async () => {
+		try {
+			setLoading(true);
+			await handleDelete();
+			setLoading(false);
+		} catch (error) {
+			setLoading(false);
+			throw error;
+		}
+	};
 
 	// useEffect(() => {}, []);
 
@@ -70,7 +81,7 @@ const DelModal = ({ isShow, closeModal, handleMealDelete }) => {
 
 						<div className="modal-content-box">
 							<div className="modal-header-box">
-								<h2 className="font-metropolisregular fs-16">Delete Meal</h2>
+								<h2 className="font-metropolisregular fs-16">Delete </h2>
 								<div className="ml-auto">
 									<button
 										onClick={closeModal}
@@ -86,7 +97,7 @@ const DelModal = ({ isShow, closeModal, handleMealDelete }) => {
 								{step === 0 && (
 									<>
 										<p className="fs-15 font-weight-bold ui-text-center font-metropolisregular">
-											Are you sure you want to delete meal?
+											Are you sure you want to delete ?
 										</p>
 
 										<div className="form-group mrgt2">
@@ -101,10 +112,18 @@ const DelModal = ({ isShow, closeModal, handleMealDelete }) => {
 												</div>
 												<div className="col-md-6">
 													<button
-														onClick={handleMealDelete}
+														onClick={doDelete}
 														className="btn btn-block fs-14 onwhite btn-danger"
 													>
-														Yes
+														{loading ? (
+															<img
+																src="../../../images/assets/spinner-white.svg"
+																alt="spinner"
+																width="30px"
+															/>
+														) : (
+															"Yes"
+														)}
 													</button>
 												</div>
 

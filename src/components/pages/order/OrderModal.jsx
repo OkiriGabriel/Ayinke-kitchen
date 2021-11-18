@@ -2,10 +2,7 @@ import React, { useEffect, useContext, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Alert from "../../layouts/partials/Alert";
-import { PaystackButton } from "react-paystack";
-import Axios from "axios";
 import colors from "../../helpers/colors";
-import axios from "axios";
 import { getLocations } from "../../../services/user/location";
 import { payNow, postOrder } from "../../../services/user/order";
 
@@ -18,7 +15,7 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 	const [loading, setLoading] = useState(false);
 	const [iconShow, setIcon] = useState(false);
 	const [locations, setLocations] = useState([]);
-	console.log("locations", locations);
+	// console.log("locations", locations);
 
 	const multiple = 100;
 	const dollarRate = 410;
@@ -30,8 +27,8 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 		(async () => {
 			try {
 				const response = await getLocations();
-				console.log("order modal");
-				console.log(locations);
+				// console.log("order modal");
+				// console.log(locations);
 				setLocations(response.locations);
 			} catch (error) {
 				console.error(error);
@@ -157,23 +154,18 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 				setAData({ ...aData, show: false });
 			}, 2000);
 		} else {
-			// if (amt > 0) {
-			// 	payData.amount = amt;
-			// }
-
-			// const payButton = document.querySelector(".paystack-button");
+			setLoading(true);
 			const order = {
 				...payData,
 				meals: mealStorage,
 			};
 			console.log("the full order", order);
 			const orderResponse = await postOrder(order);
-			// console.log("order response", orderResponse);
-			// orderResponse.order_id
 			const payNowResponse = await payNow(orderResponse.order_id);
 			console.log("paynow response", payNowResponse);
 
 			if (!payNowResponse) {
+				setLoading(false);
 				setAData({
 					...aData,
 					show: true,
@@ -184,6 +176,7 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 					setAData({ ...aData, show: false });
 				}, 2000);
 				// payButton.click();
+				return;
 			}
 			setPayData({
 				email: "",
@@ -194,67 +187,68 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 				location_id: locations[0]?.id,
 			});
 			localStorage.removeItem("meals");
+			setLoading(false);
 			closeModal();
 			window.location.href = payNowResponse.url;
 		}
 	};
 
-	const saveEmail = async () => {
-		const regData = {
-			email: payData.email,
-			phoneNumber: payData.phone,
-			password: "#commanD555/" + payData.email,
-			phoneCode: "+234",
-		};
+	// const saveEmail = async () => {
+	// 	const regData = {
+	// 		email: payData.email,
+	// 		phoneNumber: payData.phone,
+	// 		password: "#commanD555/" + payData.email,
+	// 		phoneCode: "+234",
+	// 	};
 
-		try {
-			await Axios.post(`${process.env.REACT_APP_ORDER_UR}/order`, {
-				...regData,
-			})
-				.then((resp) => {
-					if (resp.data.error === false) {
-						setPaid(true);
-					}
-				})
-				.catch((err) => {
-					setAData({
-						...aData,
-						show: true,
-						type: "danger",
-						message: `${err.response.data.message}`,
-					});
-					setTimeout(() => {
-						setAData({ ...aData, show: false });
-					}, 2000);
-				});
-		} catch (err) {
-			setAData({
-				...aData,
-				show: true,
-				type: "danger",
-				message: `${err.response.data.message}`,
-			});
-			setTimeout(() => {
-				setAData({ ...aData, show: false });
-			}, 2000);
-		}
-	};
+	// 	try {
+	// 		await Axios.post(`${process.env.REACT_APP_ORDER_UR}/order`, {
+	// 			...regData,
+	// 		})
+	// 			.then((resp) => {
+	// 				if (resp.data.error === false) {
+	// 					setPaid(true);
+	// 				}
+	// 			})
+	// 			.catch((err) => {
+	// 				setAData({
+	// 					...aData,
+	// 					show: true,
+	// 					type: "danger",
+	// 					message: `${err.response.data.message}`,
+	// 				});
+	// 				setTimeout(() => {
+	// 					setAData({ ...aData, show: false });
+	// 				}, 2000);
+	// 			});
+	// 	} catch (err) {
+	// 		setAData({
+	// 			...aData,
+	// 			show: true,
+	// 			type: "danger",
+	// 			message: `${err.response.data.message}`,
+	// 		});
+	// 		setTimeout(() => {
+	// 			setAData({ ...aData, show: false });
+	// 		}, 2000);
+	// 	}
+	// };
 
-	const onPaySuccess = () => {
-		setPaid(true);
-		saveEmail();
-	};
-	const onPayClose = () => {
-		setAData({
-			...aData,
-			show: true,
-			type: "danger",
-			message: `We understand that you may not want to support. Thank you so much 😊`,
-		});
-		setTimeout(() => {
-			setAData({ ...aData, show: false });
-		}, 4000);
-	};
+	// const onPaySuccess = () => {
+	// 	setPaid(true);
+	// 	saveEmail();
+	// };
+	// const onPayClose = () => {
+	// 	setAData({
+	// 		...aData,
+	// 		show: true,
+	// 		type: "danger",
+	// 		message: `We understand that you may not want to support. Thank you so much 😊`,
+	// 	});
+	// 	setTimeout(() => {
+	// 		setAData({ ...aData, show: false });
+	// 	}, 4000);
+	// };
 
 	const closeX = () => {
 		setStep(0);
@@ -486,7 +480,15 @@ const PayModal = ({ isShow, closeModal, mealStorage }) => {
 											type="button"
 											onClick={postOrderAndPayNow}
 										>
-											Pay Now
+											{loading ? (
+												<img
+													src="../../../images/assets/spinner-white.svg"
+													alt="spinner"
+													width="30px"
+												/>
+											) : (
+												"Pay Now"
+											)}
 										</button>
 										{/* <PaystackButton
 											id="pay-button"

@@ -1,13 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Placeholder from "../../layouts/partials/Placeholder";
-import Axios from "axios";
 
 import DashTopBar from "./DashTopBar";
-
-import storage from "../../helpers/storage";
-
-import FoodModal from "./FoodModal";
 import AlertModal from "../../layouts/partials/AlertModal";
 import DelModal from "../../layouts/partials/DelModal";
 import EditMealModal from "../../layouts/partials/EditMealModal";
@@ -18,14 +13,14 @@ import UserContext from "../../../context/user/userContext";
 import LocationContext from "../../../context/location/locationContext";
 import AddressContext from "../../../context/address/addressContext";
 import Dropdown from "../../layouts/partials/DropDown";
-import { deleteMeal, getMeals, updateMeal } from "../../../services/admin/meal";
+import { deleteMeal, getMeals } from "../../../services/admin/meal";
 
 const FoodItems = (props) => {
-	const foodContext = useContext(FoodContext);
-	const foodItemContext = useContext(FoodItemContext);
-	const userContext = useContext(UserContext);
-	const locationContext = useContext(LocationContext);
-	const addressContext = useContext(AddressContext);
+	// const foodContext = useContext(FoodContext);
+	// const foodItemContext = useContext(FoodItemContext);
+	// const userContext = useContext(UserContext);
+	// const locationContext = useContext(LocationContext);
+	// const addressContext = useContext(AddressContext);
 
 	const searchRef = useRef(null);
 	const [meals, setMeals] = useState([]);
@@ -37,10 +32,10 @@ const FoodItems = (props) => {
 	const [showM, setShowM] = useState(false);
 	const [empty, setEmpty] = useState(false);
 	const [currentMealId, setCurrentMealId] = useState("");
-	const [filter, setFilter] = useState({
-		filter: false,
-		value: "",
-	});
+	// const [filter, setFilter] = useState({
+	// 	filter: false,
+	// 	value: "",
+	// });
 	// const eL = [1, 2];
 	const [msgModal, setMessage] = useState({
 		title: "",
@@ -49,7 +44,7 @@ const FoodItems = (props) => {
 		type: "",
 	});
 
-	const [foodItemList, setFoodItemList] = useState([]);
+	// const [foodItemList, setFoodItemList] = useState([]);
 
 	useEffect(() => {
 		(async () => {
@@ -89,128 +84,6 @@ const FoodItems = (props) => {
 		}
 		setShowAlert(!showAlert);
 	};
-
-	// const updateFoodStatus = async (foodId, status) => {
-	// 	setSLoading(true);
-
-	// 	await Axios.put(
-	// 		`${process.env.REACT_APP_API_URL}/food-items/restaurant/${foodId}`,
-	// 		{ status: status },
-	// 		storage.getConfigWithBearer()
-	// 	)
-	// 		.then((resp) => {
-	// 			if (resp.data.error === false) {
-	// 				setMessage({
-	// 					...msgModal,
-	// 					type: "success",
-	// 					title: "Successful!",
-	// 					message: "Food item status changed successfuly",
-	// 					buttonText: "close",
-	// 				});
-	// 				toggleAlert();
-
-	// 				// get all food items again to update the page
-	// 				foodItemContext.getRestFoodItems(storage.getUserID(), filter.value);
-
-	// 				setSLoading(false);
-	// 			}
-	// 		})
-	// 		.catch((err) => {
-	// 			setMessage({
-	// 				...msgModal,
-	// 				type: "error",
-	// 				title: "Error!",
-	// 				message: "Cannot change food item.",
-	// 				buttonText: "close",
-	// 			});
-	// 			toggleAlert();
-	// 			setSLoading(false);
-	// 		});
-	// };
-
-	// const getLocations = () => {
-	// 	const loc = locationContext.locations.map((l) => {
-	// 		const c = {
-	// 			value: l._id,
-	// 			label: l.name,
-	// 			left: "",
-	// 			image: "",
-	// 		};
-	// 		return c;
-	// 	});
-
-	// 	const all = {
-	// 		value: "",
-	// 		label: "All",
-	// 		left: "",
-	// 		image: "",
-	// 	};
-
-	// 	loc.unshift(all);
-
-	// 	return loc;
-	// };
-
-	// const getSelected = (val) => {
-	// 	setEmpty(false);
-	// 	setFoodItemList([]);
-	// 	searchRef.current.value = "";
-
-	// 	foodItemContext.getRestFoodItems(storage.getUserID(), val.value);
-	// 	setFilter({ ...filter, filter: true, value: val.value });
-	// };
-
-	// const getFood = (id) => {
-	// 	const data = {
-	// 		name: "food",
-	// 		type: "type",
-	// 	};
-
-	// 	let i = 0;
-	// 	if (foodContext.allFood.length > 0) {
-	// 		const food = foodContext.allFood.find((f) => f._id === id);
-
-	// 		if (!food) {
-	// 			console.log("food not found", i);
-	// 		} else {
-	// 			data.name = food.name;
-	// 			data.type = food.type;
-	// 		}
-	// 	}
-
-	// 	return data;
-	// };
-
-	// const formatList = (data) => {
-	// 	const list = data.map((item) => {
-	// 		item.foodName = getFood(item.food).type + " " + getFood(item.food).name;
-	// 		return item;
-	// 	});
-
-	// 	return list;
-	// };
-
-	// const search = (e) => {
-	// 	let currentList = [];
-	// 	let newList = [];
-
-	// 	if (e.target.value !== "") {
-	// 		currentList = formatList(foodItemContext.restFoodItems);
-
-	// 		newList = currentList.filter((i) => {
-	// 			const c = i.foodName.toLowerCase();
-	// 			const f = e.target.value.toLowerCase();
-
-	// 			if (c.includes(f) !== null) {
-	// 				return c.includes(f);
-	// 			}
-	// 		});
-	// 	} else {
-	// 		newList = formatList(foodItemContext.restFoodItems);
-	// 	}
-
-	// 	setFoodItemList(newList);
-	// };
 
 	const openDeleteModal = (id) => {
 		setCurrentMealId(id);
@@ -386,7 +259,7 @@ const FoodItems = (props) => {
 			/>
 			<DelModal
 				isShow={showD}
-				handleMealDelete={handleMealDelete}
+				handleDelete={handleMealDelete}
 				closeModal={closeDeleteModal}
 			/>
 			<EditMealModal

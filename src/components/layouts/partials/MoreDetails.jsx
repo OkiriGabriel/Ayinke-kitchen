@@ -1,15 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import axios from "axios";
+import moment from "moment";
+import { changeOrderStatus } from "../../../services/admin/order";
 
-const MoreDetails = ({
-	isShow,
-	closeModal,
-	actionType,
-	remove,
-	deleteType,
-}) => {
+const MoreDetails = ({ isShow, closeModal, order, updateOrderStatus }) => {
 	const [loading, setLoading] = useState(false);
 	const [step, setStep] = useState(0);
 	const [msgData, setMsgData] = useState({
@@ -18,7 +13,22 @@ const MoreDetails = ({
 		title: "",
 	});
 
-	useEffect(() => {}, []);
+	const handleOrderStatusChange = async () => {
+		const orderId = order.id;
+		try {
+			setLoading(true);
+			const data = await changeOrderStatus(orderId);
+			if (data.status === "success") {
+				updateOrderStatus(orderId);
+				setLoading(false);
+				closeModal();
+			}
+			// future alerts for failuer and or catch
+		} catch (error) {
+			setLoading(false);
+			throw error;
+		}
+	};
 
 	const close = (e) => {
 		if (e) e.preventDefault();
@@ -82,7 +92,10 @@ const MoreDetails = ({
 								</div>
 							</div>
 
-							<div className="modal-content-area">
+							<div
+								style={{ wordWrap: "break-word" }}
+								className="modal-content-area"
+							>
 								<div className="">
 									{/* <img src="../../../images/assets/avatar.svg" alt="Child" /> */}
 
@@ -94,7 +107,7 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack  mt-3">
-												Adedeji ibrahim
+												{order?.name}
 											</p>
 										</div>
 									</div>
@@ -106,7 +119,7 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												080 090 xxxxx
+												{order?.phone}
 											</p>
 										</div>
 									</div>
@@ -118,7 +131,7 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												you@example.com
+												{order?.email}
 											</p>
 										</div>
 									</div>
@@ -131,7 +144,7 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												No 9, ipaja street, off iyanaoru Lagos state
+												{order?.address}
 											</p>
 										</div>
 									</div>
@@ -143,7 +156,7 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												NGN 2000
+												NGN {parseFloat(order?.amount)}
 											</p>
 										</div>
 									</div>
@@ -156,7 +169,34 @@ const MoreDetails = ({
 										</div>
 										<div className="col-md-6">
 											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												10/10/2021
+												{/* {moment(order?.created_at, "DD MM YYYY hh:mm:ss")} */}
+												{moment(order?.created_at).fromNow()}
+											</p>
+										</div>
+									</div>
+
+									<div className="row">
+										<div className="col-md-6">
+											<p className="font-helveticamedium  fs-17 onblack mt-3">
+												Paid
+											</p>
+										</div>
+										<div className="col-md-6">
+											<p className="font-helveticamedium  fs-17 onblack mt-3">
+												{Number(order?.is_paid) ? "Yes" : "No"}
+											</p>
+										</div>
+									</div>
+
+									<div className="row">
+										<div className="col-md-6">
+											<p className="font-helveticamedium  fs-17 onblack mt-3">
+												Instruction
+											</p>
+										</div>
+										<div className="col-md-6">
+											<p className="font-helveticamedium  fs-17 onblack mt-3">
+												{order?.instruction}
 											</p>
 										</div>
 									</div>
@@ -167,19 +207,47 @@ const MoreDetails = ({
 											</p>
 										</div>
 										<div className="col-md-6">
-											<p className="font-helveticamedium  fs-17 onblack mt-3">
-												Sat: 1 Yam + egg ,
-											</p>
-											<p className="font-helveticamedium  fs-17 onblack ">
-												Sat: 2 Rice + chicken
-											</p>
+											{order?.items.map((item) => (
+												<p className="font-helveticamedium  fs-17 onblack mt-3">
+													<b className="text-primary">{item.pivot.quantity}</b>:{" "}
+													{item.name}
+												</p>
+											))}
 										</div>
 									</div>
 
-									<div className="d-flex mt-5">
-										<Link className=" ml-auto btn btn-lgr btn-block onwhite bg-dbrown fs-16 mb-3">
-											Export
-										</Link>
+									<div className="mt-5">
+										{order?.delivery_status === "pending" ? (
+											<button
+												onClick={handleOrderStatusChange}
+												className="btn btn-lgr btn-block onwhite bg-dbrown fs-16 mb-3"
+											>
+												{loading ? (
+													<img
+														src="../../../images/assets/spinner-white.svg"
+														alt="spinner"
+														width="30px"
+													/>
+												) : (
+													"Delivered"
+												)}
+											</button>
+										) : (
+											<button
+												onClick={handleOrderStatusChange}
+												className="btn btn-lgr btn-block onwhite bg-warning fs-16 mb-3"
+											>
+												{loading ? (
+													<img
+														src="../../../images/assets/spinner-white.svg"
+														alt="spinner"
+														width="30px"
+													/>
+												) : (
+													"Pend"
+												)}
+											</button>
+										)}
 									</div>
 								</div>
 							</div>

@@ -17,8 +17,8 @@ const Login = (props) => {
 	const [loading, setLoading] = useState(false);
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loginData, setLogData] = useState({
-		email: "adedejiibrahim7@gmail.com",
-		password: "aklsftt",
+		email: "",
+		password: "",
 	});
 
 	const [aData, setAData] = useState({
@@ -84,8 +84,8 @@ const Login = (props) => {
 				console.log("lg res", loginResponse);
 				if (loginResponse.success) {
 					storage.setToken(loginResponse.token);
-					console.log("supposed push");
-					history.push("/admin/dashboard");
+					window.location.href = "/admin/dashboard";
+					// 	history.push("/admin/dashboard");
 				} else {
 					setAData({
 						...aData,
@@ -98,32 +98,6 @@ const Login = (props) => {
 					}, 2000);
 				}
 				setLoading(false);
-
-				// await Axios.post(`${process.env.REACT_APP_API_URL}/admin`, {
-				// 	...loginData,
-				// })
-				// 	.then((resp) => {
-				// 		if (resp.data.error === false) {
-				// 			// //save info to local storage
-				// 			// localStorage.setItem('token', resp.data.token);
-				// 			// localStorage.setItem('userId', resp.data.data._id);
-				// 			props.history.push("/admin");
-				// 		}
-				// 	})
-				// 	.catch((err) => {
-				// 		if (err.response.data.message === "Invalid credentials") {
-				// 			setAData({
-				// 				...aData,
-				// 				show: true,
-				// 				type: "danger",
-				// 				message: "Invalid Email and Password",
-				// 			});
-				// 			setTimeout(() => {
-				// 				setAData({ ...aData, show: false });
-				// 			}, 2000);
-				// 		}
-				// 		setLoading(false);
-				// 	});
 			} catch (err) {
 				// setAData({...aData, show: true, type: 'danger', message: `${err.response.data.message}`});
 				console.log(err);

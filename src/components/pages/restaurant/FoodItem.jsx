@@ -15,7 +15,7 @@ const FoodItem = ({ imgSrc, addToCart, mealStorage, meal }) => {
 		if (e) e.preventDefault();
 		setShowAdd(!showAdd);
 	};
-	console.log("the src", imgSrc);
+	// console.log("the src", imgSrc);
 	// const inc = (e) => {
 	// 	if (e) e.preventDefault();
 	// 	setCount(count + 1);
