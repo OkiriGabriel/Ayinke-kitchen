@@ -150,7 +150,7 @@ const Search = (props) => {
 									<div className="form-group">
 										<input
 											type="text"
-											placeholder="search food of the day..."
+											placeholder="Search..."
 											className="search"
 
 											// onChange={(e) => setQuery(e.target.value)}

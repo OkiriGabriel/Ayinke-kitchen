@@ -217,19 +217,17 @@ const Home = (props) => {
                             <h3 className="fs-30 font-helveticabold brandccpurple mrgb2">Some of our Meals</h3>
 
                             <div className="row">
-                                 <div className="col-md-4 mrgb1">
+
+                                <div className="col-md-4 mrgb1">
 
                                     <div className="">
 
                                         <div className="">
                                             <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
+                                                <img src="../../../../images/assets/femoree-kn_ANxnwCQ0-unsplash2 (FILEminimizer).jpg" alt=""  className="ui-rounded-small flist" />
                                             </span>
-                                            {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 offer-dish mrgb0">*/}
-                                            {/*    Set delivery location*/}
-                                            {/*    </h2>*/}
-                                        </div>
 
+                                        </div>
                                     </div>
 
                                 </div>
@@ -240,17 +238,14 @@ const Home = (props) => {
 
                                         <div className="">
                                             <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/food-2.jpg" alt="" className="ui-rounded-small flist" />
+                                                <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
                                             </span>
-                                            {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">*/}
-                                            {/*       General Dishes*/}
-                                            {/*    </h2>*/}
                                         </div>
-                                 
 
                                     </div>
 
                                 </div>
+
 
                                 <div className="col-md-4 mrgb1">
 
@@ -260,72 +255,11 @@ const Home = (props) => {
                                             <span className=" bg-brandccbluee ui-rounded">
                                                 <img src="../../../../images/assets/amala.jpg" alt=""  className="ui-rounded-small flist" />
                                             </span>
-                                            {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">*/}
-                                            {/*    Nigerian Dishes*/}
-                                            {/*    </h2>*/}
+
                                         </div>
                                     </div>
 
                                     </div>
-                  
-
-
-                            </div>
-
-
-                            <div className="row mrgt3">
-                                 <div className="col-md-4 mrgb1">
-
-                                    <div className="">
-
-                                        <div className="">
-                                            <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/food-1.jpeg" alt="" className="ui-rounded-small flist" />
-                                            </span>
-                                            {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 ml-2 offer-dish mrgb0">*/}
-                                            {/*    Set delivery location*/}
-                                            {/*    </h2>*/}
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div className="col-md-4 mrgb1">
-
-                                    <div className="">
-
-                                        <div className="">
-                                            <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/food-2.jpg" alt="" className="ui-rounded-small flist" />
-                                            </span>
-                                            {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1  ml-2 offer-dish mrgb0">*/}
-                                            {/*       General Dishes*/}
-                                            {/*    </h2>*/}
-                                        </div>
-                                 
-
-                                    </div>
-
-                                </div>
-
-                                <div className="col-md-4 mrgb1">
-
-                                    <div className="">
-
-                                        <div className="">
-                                            <span className=" bg-brandccbluee ui-rounded">
-                                                <img src="../../../../images/assets/amala.jpg" alt=""  className="ui-rounded-small flist" />
-                                            </span>
-                                        {/*<h2 className="brandccpurple fs-20 font-helveticamedium mrgt1 offer-dish ml-2 mrgb0">*/}
-                                        {/*    Nigerian Dishes*/}
-                                        {/*    </h2>*/}
-                                        </div>
-                                    </div>
-
-                                    </div>
-                  
-
 
                             </div>
 
