@@ -63,6 +63,7 @@ const NavBar = ({
                             </Link>
                         </div> */}
 
+
 								{/* <div className="row btn-cart-wrapper"> */}
 								<button onClick={toggleClose} className="btn-cart">
 									{mealStorage?.length ? (

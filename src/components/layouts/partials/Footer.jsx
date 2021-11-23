@@ -65,7 +65,7 @@ const Footer = () => {
                                             <h4 className="font-helveticabold  fs-18 on-black mrgb">Pages</h4>
                                             <ul className="font-interregular links text-xs-center">
                                                 <li><Link to="/food-list" className="link-underlined hover font-helveticamedium">Meals</Link></li>
-                                                <li><Link to="mailto:aymaykitchen@gmail.com" className="link-underlined hover font-helveticamedium">Contact us</Link></li>
+                                                <li><Link to="mailto:ayinkemaykitchensupprt@gmail.com" className="link-underlined hover font-helveticamedium">Contact us</Link></li>
                                                 {/*<li><Link to="/feedback" className="link-underlined hover font-helveticamedium">Feedback</Link></li>*/}
                                                 
                                             </ul>
